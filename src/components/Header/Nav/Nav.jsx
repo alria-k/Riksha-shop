@@ -1,3 +1,5 @@
+import "./Nav.scss";
+
 export function Nav() {
   const menuItems = [
     "О нас",
@@ -99,15 +101,13 @@ export function Nav() {
           <ul className="nav-flex nav-user-interface__box">
             <ul className="nav-flex user-interface-cart__box">
               <li className="user-interface-cart__item">
-                <a className="user-interface__link" href="#f">
-                  0 ₽
-                </a>
-              </li>
-              <li className="user-interface-cart__item">
                 <a
                   className="user-interface__link user-interface-cart"
                   href="#f"
                 >
+                  <p className="user-interface__price" href="#f">
+                    0 ₽
+                  </p>
                   <div className="user-interface-cart__count">0</div>
                   <img
                     className="user-img"

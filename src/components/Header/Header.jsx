@@ -1,5 +1,7 @@
 import { Container } from "../index";
 import { Nav } from "./";
+import "./Header.scss";
+
 export function Header() {
   return (
     <div className="header">
