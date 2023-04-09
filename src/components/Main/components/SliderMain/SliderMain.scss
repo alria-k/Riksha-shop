@@ -1,0 +1,31 @@
+.sale-slider{
+    &__container{
+        position: relative;
+    }
+    &__text{
+        position: absolute;
+    }
+    &__title{
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 51px;
+        color: #1B1B1B;
+    }
+    &__discr{
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 25px;
+        color: #1B1B1B;
+    }
+    &__item{
+        min-width: 100%;
+        width: 100%;
+        &:not(:last-child){
+            margin-right: 30px;
+        }
+    }
+    &-img{
+        user-select: none;
+        pointer-events: none;
+    }
+}
