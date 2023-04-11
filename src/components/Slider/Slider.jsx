@@ -1,12 +1,37 @@
 import React from "react";
 import "./Slider.scss";
 
-export function Slider({ children, obj }) {
+export function Slider({ children, obj, options = { margin: 0 } }) {
   const [itemWidth, setItemWidth] = React.useState(0);
+  const [sliderPosition, setSliderPosition] = React.useState(0);
+  const [sliderCount, setSliderCount] = React.useState(0);
+
+  const moveBack = () => {
+    if (sliderCount > 0) {
+      setSliderCount(sliderCount - 1);
+    }
+  };
+
+  const moveForward = () => {
+    if (sliderCount != obj.length - 1) {
+      setSliderCount(sliderCount + 1);
+    }
+  };
+
+  React.useEffect(
+    () => setSliderPosition((itemWidth + options.margin) * sliderCount),
+    [sliderCount]
+  );
+
+  React.useLayoutEffect(() => {
+    window.addEventListener("resize", setItemWidth(itemWidth));
+    return () => window.removeEventListener("resize", setItemWidth(itemWidth));
+  }, [window.innerWidth]);
+
   return (
     <>
       <div className="slider-swiper__box">
-        <div className="slider-arrow slider-arrow--left">
+        <div onClick={moveBack} className="slider-arrow slider-arrow--left">
           <svg
             width="33"
             height="12"
@@ -24,6 +49,7 @@ export function Slider({ children, obj }) {
           className="slider-swiper"
           style={{
             width: itemWidth != 0 ? itemWidth * obj.length + "px" : 100 + "%",
+            transform: `translate3d(-${sliderPosition}px, 0, 0)`,
           }}
         >
           {React.Children.map(children, (child) => {
@@ -33,7 +59,7 @@ export function Slider({ children, obj }) {
             });
           })}
         </div>
-        <div className="slider-arrow slider-arrow--right">
+        <div onClick={moveForward} className="slider-arrow slider-arrow--right">
           <svg
             width="33"
             height="12"

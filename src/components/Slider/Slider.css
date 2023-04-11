@@ -3,10 +3,12 @@
   align-items: center;
   flex-wrap: nowrap;
   max-width: 100%;
+  padding-bottom: 65px;
 }
 
 .slider-swiper__box {
   position: relative;
+  overflow-x: hidden;
 }
 
 .slider-arrow {
@@ -16,7 +18,7 @@
   background: #FFFFFF;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
   border-radius: 100%;
-  top: 50%;
+  top: 38%;
   z-index: 3;
 }
 
@@ -28,7 +30,11 @@
 
 .slider-arrow--right {
   transform: rotate(180deg);
-  right: 0;
+  right: -20px;
+}
+
+.slider-arrow--left {
+  left: -20px;
 }
 
 .slider-arrow svg path {
