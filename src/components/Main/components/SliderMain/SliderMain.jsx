@@ -4,21 +4,20 @@ import "./SliderMain.scss";
 export function SliderMain({ obj, width, setWidth }) {
   const ref = React.useRef(null);
 
-  const resizeLol = () => {
-    setWidth(ref.current.offsetWidth);
-    return width;
+  const handleResize = () => {
+    setWidth(ref.current.getBoundingClientRect().width);
   };
 
   React.useEffect(() => {
     if (!ref.current) {
       return;
     }
-    resizeLol();
-  }, [ref.current]);
+    setWidth(ref.current.getBoundingClientRect().width);
+  });
 
-  React.useLayoutEffect(() => {
-    window.addEventListener("resize", resizeLol);
-    return () => window.removeEventListener("resize", resizeLol);
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   });
 
   return obj.map((elem) => {

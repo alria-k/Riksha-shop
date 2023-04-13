@@ -1,36 +1,45 @@
 import React from "react";
 import "./Slider.scss";
 
+//сделать бесконечный слайдер
+
 export function Slider({ children, obj, options = { margin: 0 } }) {
   const [itemWidth, setItemWidth] = React.useState(0);
   const [sliderPosition, setSliderPosition] = React.useState(0);
   const [sliderCount, setSliderCount] = React.useState(0);
+  const [transitionAllow, setTransitionAllow] = React.useState(false);
+  let transitionDuration = 400;
 
   const moveBack = () => {
     if (sliderCount > 0) {
       setSliderCount(sliderCount - 1);
+      addTransition();
     }
   };
 
   const moveForward = () => {
     if (sliderCount != obj.length - 1) {
       setSliderCount(sliderCount + 1);
+      addTransition();
     }
   };
 
-  React.useEffect(
-    () => setSliderPosition((itemWidth + options.margin) * sliderCount),
-    [sliderCount]
-  );
+  const addTransition = () => {
+    setTransitionAllow(true);
+    setTimeout(() => setTransitionAllow(false), transitionDuration);
+  };
 
-  React.useLayoutEffect(() => {
-    window.addEventListener("resize", setItemWidth(itemWidth));
-    return () => window.removeEventListener("resize", setItemWidth(itemWidth));
-  }, [window.innerWidth]);
+  React.useEffect(() => {
+    setSliderPosition((itemWidth + options.margin) * sliderCount);
+  }, [sliderCount]);
+
+  React.useEffect(() => {
+    setSliderPosition((itemWidth + options.margin) * sliderCount);
+  }, [sliderPosition]);
 
   return (
-    <>
-      <div className="slider-swiper__box">
+    <div className="slider-swiper__box">
+      <div className="slider-swiper__inner">
         <div onClick={moveBack} className="slider-arrow slider-arrow--left">
           <svg
             width="33"
@@ -50,6 +59,9 @@ export function Slider({ children, obj, options = { margin: 0 } }) {
           style={{
             width: itemWidth != 0 ? itemWidth * obj.length + "px" : 100 + "%",
             transform: `translate3d(-${sliderPosition}px, 0, 0)`,
+            transition: transitionAllow
+              ? `transform ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`
+              : "",
           }}
         >
           {React.Children.map(children, (child) => {
@@ -74,6 +86,6 @@ export function Slider({ children, obj, options = { margin: 0 } }) {
           </svg>
         </div>
       </div>
-    </>
+    </div>
   );
 }

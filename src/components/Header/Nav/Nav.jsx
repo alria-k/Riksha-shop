@@ -78,7 +78,7 @@ export function Nav() {
             {menuItems.map((elem, index) => {
               return (
                 <li key={index} className="menu-item">
-                  <a className="menu-link" href="#f">
+                  <a className="menu-link usual-font-p" href="#f">
                     {elem}
                   </a>
                 </li>

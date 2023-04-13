@@ -8,10 +8,14 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "browserslist": ["defaults"],
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use-measure": "^2.1.1",
     "sass": "^1.61.0"
   },
   "devDependencies": {
