@@ -3,39 +3,55 @@ import "./Slider.scss";
 
 //сделать бесконечный слайдер
 
-export function Slider({ children, obj, options = { margin: 0 } }) {
+export function Slider({
+  children,
+  obj,
+  options = { margin: 0 },
+  infinite = false,
+}) {
   const [itemWidth, setItemWidth] = React.useState(0);
   const [sliderPosition, setSliderPosition] = React.useState(0);
   const [sliderCount, setSliderCount] = React.useState(0);
-  const [transitionAllow, setTransitionAllow] = React.useState(false);
-  let transitionDuration = 400;
+  const [pages, setPages] = React.useState([]);
+  const [clonesCount, setClonesCount] = React.useState({ head: 0, tail: 0 });
+
+  const handleResize = () => {
+    setItemWidth(itemWidth);
+  };
 
   const moveBack = () => {
     if (sliderCount > 0) {
       setSliderCount(sliderCount - 1);
-      addTransition();
     }
   };
 
   const moveForward = () => {
     if (sliderCount != obj.length - 1) {
       setSliderCount(sliderCount + 1);
-      addTransition();
     }
   };
 
-  const addTransition = () => {
-    setTransitionAllow(true);
-    setTimeout(() => setTransitionAllow(false), transitionDuration);
-  };
+  React.useEffect(() => {
+    if (infinite) {
+      setPages([
+        React.cloneElement(children[React.Children.count(children) - 1]),
+        ...children,
+        React.cloneElement(children[0]),
+      ]);
+      setClonesCount({ head: 1, tail: 1 });
+      return;
+    }
+    setPages(children);
+  }, [children, infinite]);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [clonesCount, itemWidth]);
 
   React.useEffect(() => {
     setSliderPosition((itemWidth + options.margin) * sliderCount);
-  }, [sliderCount]);
-
-  React.useEffect(() => {
-    setSliderPosition((itemWidth + options.margin) * sliderCount);
-  }, [sliderPosition]);
+  }, [sliderCount, sliderPosition]);
 
   return (
     <div className="slider-swiper__box">
@@ -59,12 +75,9 @@ export function Slider({ children, obj, options = { margin: 0 } }) {
           style={{
             width: itemWidth != 0 ? itemWidth * obj.length + "px" : 100 + "%",
             transform: `translate3d(-${sliderPosition}px, 0, 0)`,
-            transition: transitionAllow
-              ? `transform ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`
-              : "",
           }}
         >
-          {React.Children.map(children, (child) => {
+          {React.Children.map(pages, (child) => {
             return React.cloneElement(child, {
               width: itemWidth,
               setWidth: setItemWidth,
