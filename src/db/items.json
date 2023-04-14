@@ -301,7 +301,7 @@
             ]
         },
         "rolls": {
-            "title": "Суши",
+            "title": "Роллы",
             "categories": [
                 {
                     "id": 1,
@@ -587,7 +587,7 @@
                     "disrc": "Рис, Нори, Креветка",
                     "sale": false,
                     "price": 130,
-                    "new": false,
+                    "new": true,
                     "category": "classic"
                 },
                 {
@@ -945,7 +945,7 @@
                     "disrc": "Суши Лосось, Суши Угорь, Суши Окунь, Снежный Краб, Огурец, Хрустик, Темпура окунь, Балдеж",
                     "sale": false,
                     "price": 1230,
-                    "new": false
+                    "new": true
                 },
                 {
                     "id": 2,
@@ -1029,7 +1029,7 @@
                     "disrc": "Сакура, Темпура Снежный краб, Нежный, Курбекон",
                     "sale": false,
                     "price": 1090,
-                    "new": false
+                    "new": true
                 },
                 {
                     "id": 9,
@@ -1185,6 +1185,11 @@
                 }
             ]
         },
-        "sales": {}
+        "sales": {
+            "title": "Aкции",
+            "categories": 0,
+            "sortby": false,
+            "items": []
+        }
     }
 ]
