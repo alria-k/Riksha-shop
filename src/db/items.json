@@ -10,7 +10,7 @@
                     "img": "4-sira.jpg",
                     "gramms": 390,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "4 сыра",
                     "disrc": "Тесто, белый соус, сыр моцарелла, сыр пармезан, сыр дор блю, сыр сливочный",
                     "sale": false,
@@ -22,99 +22,108 @@
                     "img": "belaya.jpg",
                     "gramms": 390,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Белая",
                     "disrc": "Тесто, белый соус, сыр моцарелла, сыр пармезан, сыр дор блю, сыр сливочный",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 3,
                     "img": "vetchina-i-gribi.jpg",
                     "gramms": 440,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Грибы с ветчиной",
                     "disrc": "Тесто, томатный соус, сыр моцарелла, ветчина, шампиньоны",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 4,
                     "img": "kalyari.jpg",
                     "gramms": 410,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Кальяриа",
                     "disrc": "Тесто, томатный соус, соус BBQ, сыр моцарелла, куриное филе, красный лук, ветчина, маринованный огурец",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 5,
                     "img": "kurica-ranch.jpg",
                     "gramms": 440,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Курица Ранч",
                     "disrc": "Тесто, ранч соус, сыр моцарелла, сыр пармезан, куриное филе, болгарский перец, красный лук, орегано",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 6,
                     "img": "margarita.jpg",
                     "gramms": 350,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Маргарита",
                     "disrc": "Тесто, томатный соус, сыр моцарелла, томаты.",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 7,
                     "img": "masnyaya.jpg",
                     "gramms": 430,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Мясная",
                     "disrc": "Тесто, томатный соус, сыр моцарелла, охотничьи колбаски, колбаски пепперони, перец болгарский, лук красный",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 8,
                     "img": "peperoni.jpg",
                     "gramms": 450,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Пепперони",
                     "disrc": "Тесто, томатный соус, сыр моцарелла, колбаски пеперони",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": true
                 },
                 {
                     "id": 9,
                     "img": "s-vetchinoy.jpg",
                     "gramms": 390,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "С ветчиной",
                     "disrc": "Тесто, томатный соус, сыр моцарелла, ветчина",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 },
                 {
                     "id": 10,
                     "img": "cezar.jpg",
                     "gramms": 460,
                     "calories": 0,
-                    "sizes": [{"cm": 30, "extra-pay": 0}, {"cm": 50, "extra-pay": 150}],
+                    "sizes": [{"cm": 30, "extraPay": 0}, {"cm": 50, "extraPay": 150}],
                     "text": "Цезарь",
                     "disrc": "Тесто, сливочный соус, соус Цезарь, сыр моцарелла, куриное филе, салат айсберг, томаты",
                     "sale": false,
-                    "price": 380
+                    "price": 380,
+                    "new": false
                 }
             ]
             },

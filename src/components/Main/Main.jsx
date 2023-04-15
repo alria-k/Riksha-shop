@@ -1,5 +1,7 @@
-import { Container, Slider } from "../index";
-import { Advantages, SliderMain } from "./index";
+import React from "react";
+import { Container, Slider, dataFetch } from "../index";
+import { Advantages, SliderMain, NewItems } from "./index";
+
 import "./Main.scss";
 
 export function Main() {
@@ -49,6 +51,9 @@ export function Main() {
       alt: "grocery-icon",
     },
   ];
+
+  let resource = dataFetch();
+
   return (
     <main className="main">
       <Container>
@@ -56,6 +61,9 @@ export function Main() {
           <SliderMain obj={saleImg} />
         </Slider>
         <Advantages obj={advantagesImg} />
+        <React.Suspense fallback={<div>hello</div>}>
+          <NewItems obj={resource} />
+        </React.Suspense>
       </Container>
     </main>
   );
