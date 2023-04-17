@@ -1,15 +1,15 @@
 import React from "react";
 import "./ItemCard.scss";
 
-// исправить изменение состояние чекбокса в клонированных элементах
-
 export function ItemCard({ obj, imgURL }) {
   const [extraPrice, setExtraPrice] = React.useState(0);
+  const [checked, setChecked] = React.useState(0);
   const [price, setPrice] = React.useState(obj.price);
 
-  function handleRadio(event, price) {
+  function handleChange(event, priceVal, i) {
     if (event.target.checked) {
-      setExtraPrice(price);
+      setChecked(i);
+      setExtraPrice(priceVal);
       setPrice(obj.price);
     }
     return;
@@ -41,16 +41,18 @@ export function ItemCard({ obj, imgURL }) {
               <div className="size-pizza__extra-pay">+{extraPrice} ₽</div>
               {obj.sizes.map((elem, index) => {
                 return (
-                  <label htmlFor="size-pizza" className="size-pizza__custom">
-                    {elem.cm} см
+                  <form key={index} className="size-pizza__box">
                     <input
-                      defaultChecked={index === 0}
-                      onChange={(e) => handleRadio(e, elem.extraPay)}
+                      checked={index == checked}
+                      onChange={(e) => handleChange(e, elem.extraPay, index)}
                       type="radio"
                       name="size-pizza"
                       className="size-pizza__radio"
                     />
-                  </label>
+                    <label htmlFor="size-pizza" className="size-pizza__custom">
+                      {elem.cm} см
+                    </label>
+                  </form>
                 );
               })}
             </div>
@@ -63,7 +65,14 @@ export function ItemCard({ obj, imgURL }) {
           <p className="discr__p">{obj.disrc}</p>
         </div>
         <div className="item-card__purchase">
-          <h2 className="purchase__price">{price} ₽</h2>
+          {obj.sale ? (
+            <h2 className="purchase__price">
+              <span className="purchase__old-price">{price} ₽</span>
+              {Math.round(price - (price / 100) * obj.sale)} ₽
+            </h2>
+          ) : (
+            <h2 className="purchase__price">{price} ₽</h2>
+          )}
           <button className="purchase__btn">Заказать</button>
         </div>
       </div>
