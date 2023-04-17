@@ -1,0 +1,10 @@
+.sale__container {
+  margin-bottom: 124px;
+}
+
+.sale__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}

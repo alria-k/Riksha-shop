@@ -1,0 +1,22 @@
+.sale-card{
+    &__item{
+        border-radius: 8px;
+        min-width: 392px;
+        max-width: 392px;
+        min-height: 280px;
+        max-height: 280px;
+        padding: 24px;
+    }
+    &__title{
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #1B1B1B;
+    }
+    &__text{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #1B1B1B;
+    }
+}

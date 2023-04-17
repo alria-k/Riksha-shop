@@ -2,7 +2,7 @@ import "./Advantages.scss";
 
 export function Advantages({ obj }) {
   return (
-    <div className="advantages__box">
+    <div className="advantages__container">
       <ul className="advantages__list">
         {obj.map((elem) => {
           return (

@@ -1,9 +1,11 @@
-import { getData } from "./fetchData";
+import { getData, getSale } from "./fetchData";
 
 export function dataFetch() {
   const itemsPromise = getData;
+  const salePromise = getSale;
   return {
     items: wrapPromise(itemsPromise),
+    sale: wrapPromise(salePromise),
   };
 }
 

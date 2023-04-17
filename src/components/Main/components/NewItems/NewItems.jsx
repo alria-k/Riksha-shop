@@ -28,9 +28,9 @@ export function NewItems({ obj }) {
 
   return (
     <div className="new-items__container">
-      <h1 className="new-items__title">Новинки</h1>
+      <h1 className="blocks__title">Новинки</h1>
       <div className="new-items__inner">
-        <Slider obj={newItems} options={{ margin: 24 }} infinite={true}>
+        <Slider obj={newItems} options={{ margin: 24 }}>
           {newItems.map((elem, index) => {
             return (
               <NewItemsSlider key={index}>
