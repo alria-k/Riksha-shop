@@ -1,0 +1,49 @@
+// @media (hover: hover) and (pointer: fine) {
+//     &:hover{
+//         svg{
+//             path{
+//                 fill: #C95C3F;
+//             }
+//         }
+//     }
+// }
+.switch-page{
+    &__box{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    &__arrow{
+        background: transparent;
+        outline: none;
+        border: none;
+    }
+}
+.number{
+    &__inner{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    &-page{
+        padding: 16px 22px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 25px;
+        color: #1B1B1B;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        transition: color .2s ease-in-out;
+        &--active{
+            font-weight: 500;
+            color: #C95C3F;
+            background-image: url('./src/assets/img/Active-page-category.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        &:hover{
+            color: #C95C3F;
+        }
+    }
+}

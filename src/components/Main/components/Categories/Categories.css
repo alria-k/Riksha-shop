@@ -46,4 +46,41 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.categories__pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categories__pages--end {
+  justify-content: flex-end;
+}
+
+.categories__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  color: #C95C3F;
+}
+
+.categories__link svg path {
+  transform: translate3d(10px, 0, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .categories__link:hover svg path {
+    transform: translate3d(0px, 0, 0);
+  }
+}
+
+.categories__empty {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 160%;
 }

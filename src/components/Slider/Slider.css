@@ -32,15 +32,10 @@
   }
 }
 
-.slider-arrow--right {
-  transform: rotate(180deg);
-  right: -40px;
-}
-
-.slider-arrow--left {
+.slider-arrow:nth-child(1) {
   left: -40px;
 }
 
-.slider-arrow svg path {
-  transition: fill 0.1s ease-in-out;
+.slider-arrow:nth-child(3) {
+  right: -40px;
 }
