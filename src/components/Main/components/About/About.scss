@@ -1,0 +1,23 @@
+.about{
+    &__container{
+        background-image: url('./src/assets/img/About-img-bg.png');
+        background-repeat: no-repeat;
+        background-position: center right 4%;
+    }
+    &__inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__text{
+        &-box{
+            max-width: 553px;
+        }
+    }
+    &__discr{
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 160%;
+        color: #1B1B1B;
+    }
+}
