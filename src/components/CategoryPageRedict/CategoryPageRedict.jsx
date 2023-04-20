@@ -5,7 +5,10 @@ export function CategoryPageRedict({ pages, activePage, setPage }) {
   return (
     <div className="switch-page__box">
       {activePage != 1 && (
-        <button className="switch-page__arrow">
+        <button
+          className="switch-page__arrow"
+          onClick={(e) => setPage(e, activePage - 1)}
+        >
           <svg
             width="33"
             height="12"
@@ -46,7 +49,10 @@ export function CategoryPageRedict({ pages, activePage, setPage }) {
         </ul>
       </div>
       {activePage != pages && (
-        <button className="switch-page__arrow">
+        <button
+          className="switch-page__arrow"
+          onClick={(e) => setPage(e, activePage + 1)}
+        >
           <svg
             width="33"
             height="12"

@@ -19,6 +19,12 @@ export function ItemCard({ obj, imgURL }) {
     setPrice(price + extraPrice);
   }, [extraPrice]);
 
+  React.useEffect(() => {
+    setPrice(obj.price);
+    setChecked(0);
+    setExtraPrice(0);
+  }, [obj.price]);
+
   return (
     <div className="item-card__inner">
       <img
