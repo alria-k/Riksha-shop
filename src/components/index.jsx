@@ -1,6 +1,10 @@
 export { Header } from "./Header/Header";
+export { Main } from "./Main/Main";
+export { Footer } from "./Footer/Footer";
 export { Container } from "./Container/Container";
 export { Slider } from "./Slider/Slider";
-export { Main } from "./Main/Main";
 export { ItemCard } from "./ItemCard/ItemCard";
+export { SaleCard } from "./SaleCard/SaleCard";
+export { CategoryPageRedict } from "./CategoryPageRedict/CategoryPageRedict";
+export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
 export { dataFetch } from "../utils/wrapPromise";

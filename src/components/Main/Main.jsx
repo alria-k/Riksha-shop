@@ -1,6 +1,14 @@
 import React from "react";
 import { Container, Slider, dataFetch } from "../index";
-import { Advantages, SliderMain, NewItems } from "./index";
+import {
+  Advantages,
+  SliderMain,
+  NewItems,
+  Sale,
+  Categories,
+  About,
+  SocialMedia,
+} from "./index";
 
 import "./Main.scss";
 
@@ -57,13 +65,25 @@ export function Main() {
   return (
     <main className="main">
       <Container>
-        <Slider obj={saleImg} options={{ margin: 30 }}>
-          <SliderMain obj={saleImg} />
-        </Slider>
+        <div className="sale-slider__container">
+          <Slider obj={saleImg} options={{ margin: 30 }}>
+            <SliderMain obj={saleImg} />
+          </Slider>
+        </div>
         <Advantages obj={advantagesImg} />
         <React.Suspense fallback={<div>hello</div>}>
           <NewItems obj={resource} />
         </React.Suspense>
+        <React.Suspense fallback={<div>hello</div>}>
+          <Sale obj={resource} />
+        </React.Suspense>
+        <React.Suspense fallback={<div>hello</div>}>
+          <Categories obj={resource} />
+        </React.Suspense>
+      </Container>
+      <About />
+      <Container>
+        <SocialMedia />
       </Container>
     </main>
   );

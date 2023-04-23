@@ -1,5 +1,5 @@
 body {
-  background-color: #FCFCFC;
+  background-color: #F5F9FA;
 }
 
 .usual-font-p {
@@ -7,4 +7,28 @@ body {
   font-size: 14px;
   line-height: 17px;
   color: #1B1B1B;
+}
+
+.blocks__title {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 60px;
+  color: #1B1B1B;
+  margin-bottom: 40px;
+}
+
+.blocks__title span {
+  color: #C95C3F;
+}
+
+.arrow--right {
+  transform: rotate(180deg);
+}
+
+.arrow--left {
+  transform: rotate(0deg);
+}
+
+.arrow-icon path {
+  transition: fill 0.1s ease-in-out, transform 0.1s ease-in-out;
 }

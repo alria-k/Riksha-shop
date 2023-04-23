@@ -1,7 +1,12 @@
 import classNames from "classnames";
 import "./CategoriesNav.scss";
 
-export function CategoriesNav({ swtch = false, handler, currCategory }) {
+export function CategoriesNav({
+  swtch = false,
+  handler,
+  currCategory,
+  imgAllow = true,
+}) {
   const categoriesItems = [
     {
       id: 1,
@@ -89,7 +94,9 @@ export function CategoriesNav({ swtch = false, handler, currCategory }) {
               onClick={(e) => handler(e, elem.key)}
               href="#f"
             >
-              <img className="categories-img" src={elem.img} alt={elem.alt} />
+              {imgAllow && (
+                <img className="categories-img" src={elem.img} alt={elem.alt} />
+              )}
               {elem.name}
             </a>
           </li>
