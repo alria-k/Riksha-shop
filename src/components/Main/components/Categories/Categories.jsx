@@ -11,11 +11,13 @@ import "./Categories.scss";
 export function Categories({ obj }) {
   const [category, setCategory] = React.useState("pizza");
   const [currPage, setCurrPage] = React.useState(1);
-  const amoutOfItems = 15;
-  let pages;
 
-  const items = obj.items.read();
-  const sale = obj.sale.read();
+  const [items] = obj.items.read();
+  const [sale] = obj.sale.read();
+
+  const itemsOnOnePage = 15;
+  const allItems = Object.assign(items, sale);
+  let pages = Math.floor(allItems[category].items.length / itemsOnOnePage);
 
   function handlerCategory(event, targetCategory) {
     event.preventDefault();
@@ -40,35 +42,30 @@ export function Categories({ obj }) {
         currCategory={category}
       />
       <div className="categories__list">
-        {[Object.assign(items[0], sale[0])].map((elem, index) => {
-          pages = Math.floor(elem[category].items.length / amoutOfItems);
-          if (elem[category].items.length == 0) {
+        {allItems[category].items.length == 0 && (
+          <div className="categories__empty">
+            В этой категории нету товаров.
+          </div>
+        )}
+        {[...Array(itemsOnOnePage * currPage).keys()].map((e, index) => {
+          if (category == "sale" && index < allItems[category].items.length) {
             return (
-              <div key={index} className="categories__empty">
-                В этой категории нету товаров.
-              </div>
+              <SaleCard
+                key={allItems[category].items[index].id}
+                obj={allItems[category].items[index]}
+                bgURL={category}
+              />
             );
           }
-          return [...Array(amoutOfItems * currPage).keys()].map((e, index) => {
-            if (category == "sale" && index < elem[category].items.length) {
-              return (
-                <SaleCard
-                  key={index}
-                  obj={elem[category].items[index]}
-                  bgURL={category}
-                />
-              );
-            }
-            if (index < elem[category].items.length) {
-              return (
-                <ItemCard
-                  key={index}
-                  obj={elem[category].items[index]}
-                  imgURL={category}
-                />
-              );
-            }
-          });
+          if (index < allItems[category].items.length) {
+            return (
+              <ItemCard
+                key={allItems[category].items[index].id}
+                obj={allItems[category].items[index]}
+                imgURL={category}
+              />
+            );
+          }
         })}
       </div>
       <div
