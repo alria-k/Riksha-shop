@@ -1,2 +1,2 @@
 export { Nav } from "./Nav/Nav";
-export { CategoriesNav } from "../index";
+export { CategoriesNav, Menu } from "../index";

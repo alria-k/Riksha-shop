@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import "./CategoriesNav.scss";
 
 export function CategoriesNav({
@@ -85,20 +86,20 @@ export function CategoriesNav({
       {categoriesItems.map((elem) => {
         return (
           <li key={elem.id} className="categories-item">
-            <a
+            <Link
               className={classNames({
                 "link-text": true,
                 "categories-link": true,
                 "categories-link--active": swtch && currCategory == elem.key,
               })}
-              onClick={(e) => handler(e, elem.key)}
-              href="#f"
+              onClick={(e) => swtch && handler(e, elem.key)}
+              to={elem.key}
             >
               {imgAllow && (
                 <img className="categories-img" src={elem.img} alt={elem.alt} />
               )}
               {elem.name}
-            </a>
+            </Link>
           </li>
         );
       })}

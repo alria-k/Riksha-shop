@@ -1,29 +1,12 @@
-import { CategoriesNav } from "../index";
+import { CategoriesNav, Menu } from "../index";
 import "./Nav.scss";
 
 export function Nav() {
-  const menuItems = [
-    "О нас",
-    "Доставка и оплата",
-    "Контакты",
-    "Бонусы",
-    "Вакансии",
-  ];
   return (
     <div className="header__nav">
       <div className="nav__box">
         <nav className="nav-menu">
-          <ul className="nav-flex nav-menu__links">
-            {menuItems.map((elem, index) => {
-              return (
-                <li key={index} className="menu-item">
-                  <a className="menu-link usual-font-p" href="#f">
-                    {elem}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          <Menu />
           <ul className="nav-flex nav-info__box">
             <li className="info-item">
               <a className="link-text info-link" href="tel:+74956171424">

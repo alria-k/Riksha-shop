@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import {
   CategoriesNav,
   ItemCard,
@@ -81,7 +82,7 @@ export function Categories({ obj }) {
             setPage={handlerPages}
           />
         ) : null}
-        <a className="categories__link" href="#f">
+        <Link to={category} className="categories__link">
           Перейти в каталог
           <svg
             width="33"
@@ -96,7 +97,7 @@ export function Categories({ obj }) {
               fill="#C95C3F"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

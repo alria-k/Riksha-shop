@@ -72,17 +72,6 @@
         border-right: 1px solid #F5F5F5;
     }
 }
-.menu{
-    &-link{
-        display: block;
-        padding: 8px 0;
-        @media (hover: hover) and (pointer: fine) {
-            &:hover{
-                text-decoration: underline;
-            }
-        }
-    }
-}
 .info{
     &-link{
         display: flex;

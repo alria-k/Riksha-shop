@@ -1,4 +1,4 @@
-import { Container, CategoriesNav } from "../index";
+import { Container, CategoriesNav, Menu } from "../index";
 import "./Footer.scss";
 
 export function Footer() {
@@ -7,46 +7,34 @@ export function Footer() {
       <Container>
         <div className="footer__inner">
           <img
-            className="logo-img"
+            className="logo-white-img"
             src="./src/assets/img/logo-white.svg"
             alt=""
           />
           <div className="footer__menu">
-            <div className="footer__menu-box">
-              <ul className="footer__menu-list">
-                <li className="footer__menu-item">
-                  <a className="footer__menu-link" href="#f">
-                    О нас
-                  </a>
-                </li>
-                <li className="footer__menu-item">
-                  <a className="footer__menu-link" href="#f">
-                    Доставка и оплата
-                  </a>
-                </li>
-                <li className="footer__menu-item">
-                  <a className="footer__menu-link" href="#f">
-                    Контакты
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <Menu />
             <div className="footer__social-media">
-              <img
-                className="social-media-img"
-                src="./src/assets/img/social/facebook.svg"
-                alt="social-media-icon"
-              />
-              <img
-                className="social-media-img"
-                src="./src/assets/img/social/inst.svg"
-                alt="social-media-icon"
-              />
-              <img
-                className="social-media-img"
-                src="./src/assets/img/social/vk.svg"
-                alt="social-media-icon"
-              />
+              <a className="footer__social-link" href="">
+                <img
+                  className="social-media-img"
+                  src="./src/assets/img/social/facebook.svg"
+                  alt="facebook-icon"
+                />
+              </a>
+              <a className="footer__social-link" href="">
+                <img
+                  className="social-media-img"
+                  src="./src/assets/img/social/inst.svg"
+                  alt="instagram-icon"
+                />
+              </a>
+              <a className="footer__social-link" href="">
+                <img
+                  className="social-media-img"
+                  src="./src/assets/img/social/vk.svg"
+                  alt="vk-icon"
+                />
+              </a>
             </div>
           </div>
           <div className="footer__nav">

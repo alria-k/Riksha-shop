@@ -1,4 +1,4 @@
-import { Container } from "../../../index";
+import { Container } from "../../index";
 import "./About.scss";
 
 export function About() {

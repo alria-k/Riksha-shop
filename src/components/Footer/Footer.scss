@@ -13,11 +13,22 @@
         line-height: 17px;
     }
     .nav-categories__links{
+        max-width: 400px;
         flex-wrap: wrap;
         column-gap: 40px;
         row-gap: 20px;
         justify-content: flex-start;
-        max-width: 400px;
+        margin-bottom: 26px;
+    }
+    .nav-menu__links{
+        max-width: 300px;
+        flex-wrap: wrap;
+        row-gap: 0px;
+        column-gap: 40px;
+        margin-bottom: 12px;
+    }
+    .menu-link{
+        color: #FFFFFF;
     }
     &__inner{
         align-items: flex-end;
@@ -42,6 +53,7 @@
     &__social{
         &-media{
             display: flex;
+            align-items: center;
             gap: 14px;
         }
     }
@@ -50,6 +62,7 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 18px;
+        margin-bottom: 26px;
     }
     &__phone-number{
         font-weight: 700;
@@ -68,4 +81,7 @@
         font-size: 12px;
         line-height: 15px;
     }
+}
+.logo-white-img{
+    margin-bottom: 40px;
 }
