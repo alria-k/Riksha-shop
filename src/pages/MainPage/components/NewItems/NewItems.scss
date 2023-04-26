@@ -1,7 +1,9 @@
 .new-items{
-    &__slider{
-        min-width: 392px;
-        width: 100%;
-        margin-right: 24px;
+    &__container{
+        .slider-wrapper{
+            min-width: 392px;
+            width: 100%;
+            margin-right: 24px;
+        }
     }
 }

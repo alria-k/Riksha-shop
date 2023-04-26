@@ -1,6 +1,6 @@
 import React from "react";
 
-export function NewItemsSlider({ children, width, setWidth }) {
+export function SliderWrapper({ children, width, setWidth }) {
   const ref = React.useRef(null);
 
   const handleResize = () => {
@@ -20,11 +20,7 @@ export function NewItemsSlider({ children, width, setWidth }) {
   });
 
   return (
-    <div
-      className="new-items__slider"
-      ref={ref}
-      style={{ width: width + "px" }}
-    >
+    <div className="slider-wrapper" ref={ref} style={{ width: width + "px" }}>
       {children}
     </div>
   );
