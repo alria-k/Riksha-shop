@@ -14,6 +14,12 @@ export function Sortby({ handler }) {
       onChange={(option) => handler(option.value)}
       isSearchable={false}
       defaultValue={[{ value: "default", label: "По умолчанию" }]}
+      styles={{
+        container: (baseStyles) => ({
+          ...baseStyles,
+          width: "20%",
+        }),
+      }}
     />
   );
 }

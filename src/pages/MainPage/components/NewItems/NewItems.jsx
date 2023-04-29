@@ -10,7 +10,7 @@ export function NewItems({ obj }) {
     let newItemsArr = [];
     for (let key in items) {
       items[key].items.map((e) => {
-        if (e.new == true) {
+        if (e.new) {
           newItemsArr.push({
             category: key,
             items: e,

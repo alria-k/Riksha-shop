@@ -1,10 +1,11 @@
 import React from "react";
+import { LazyImg } from "../../../../components";
 import "./SliderMain.scss";
 
 export function SliderMain({ obj, width, setWidth }) {
   const ref = React.useRef(null);
 
-  const resizeLol = () => {
+  const resizeBox = () => {
     setWidth(ref.current.offsetWidth);
     return width;
   };
@@ -13,12 +14,12 @@ export function SliderMain({ obj, width, setWidth }) {
     if (!ref.current) {
       return;
     }
-    resizeLol();
+    resizeBox();
   }, [ref.current]);
 
   React.useLayoutEffect(() => {
-    window.addEventListener("resize", resizeLol);
-    return () => window.removeEventListener("resize", resizeLol);
+    window.addEventListener("resize", resizeBox);
+    return () => window.removeEventListener("resize", resizeBox);
   });
 
   return obj.map((elem) => {
@@ -33,7 +34,7 @@ export function SliderMain({ obj, width, setWidth }) {
           <h1 className="sale-slider__title">{elem.text}</h1>
           <p className="sale-slider__disrc">{elem.discr}</p>
         </div>
-        <img className="sale-slider-img" src={elem.src} alt={elem.alt} />
+        <LazyImg src={elem.src} alt={elem.alt} clsName={"lol"} />
         <div className="sale-slider__btn">
           <a className="sale-slider__link" href="#f">
             Подробнее

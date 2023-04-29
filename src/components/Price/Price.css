@@ -2,7 +2,7 @@
   user-select: none;
   padding: 13px 59px;
   background-color: #E07153;
-  background-image: url("./src/assets/img/bg-btns.svg");
+  background-image: url("/src/assets/img/bg-btns.svg");
   background-repeat: no-repeat;
   background-size: cover;
   outline: none;

@@ -10,7 +10,7 @@ export function SocialMedia() {
         <a className="social__link purchase__btn " href="#f">
           <img
             className="inst-icon"
-            src="./src/assets/img/social/inst.svg"
+            src="/src/assets/img/social/inst.svg"
             alt="inst-icon"
           />
           <p>@riksha_sushi</p>
@@ -19,32 +19,32 @@ export function SocialMedia() {
       <div className="social__img-box">
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/1.png"
+          src="/src/assets/img/reviewIMG/1.png"
           alt="review-img"
         />
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/2.png"
+          src="/src/assets/img/reviewIMG/2.png"
           alt="review-img"
         />
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/3.png"
+          src="/src/assets/img/reviewIMG/3.png"
           alt="review-img"
         />
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/4.png"
+          src="/src/assets/img/reviewIMG/4.png"
           alt="review-img"
         />
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/5.png"
+          src="/src/assets/img/reviewIMG/5.png"
           alt="review-img"
         />
         <img
           className="social-img"
-          src="./src/assets/img/reviewIMG/6.png"
+          src="/src/assets/img/reviewIMG/6.png"
           alt="review-img"
         />
       </div>

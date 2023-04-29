@@ -1,26 +1,36 @@
-import React, { Children } from "react";
+import React from "react";
 import "./Slider.scss";
 
 //сделать бесконечный слайдер
 
-//сделать бесконечный слайдер
-
-export function Slider({ children, obj, options = { margin: 0 } }) {
+export function Slider({
+  children,
+  obj,
+  options = { margin: 0 },
+  single = false,
+}) {
   const [itemWidth, setItemWidth] = React.useState(0);
   const [sliderPosition, setSliderPosition] = React.useState(0);
   const [sliderCount, setSliderCount] = React.useState(0);
 
-  const moveBack = () => {
+  function widthSetter() {
+    if (single) {
+      return itemWidth;
+    }
+    return itemWidth * obj.length;
+  }
+
+  function moveBack() {
     if (sliderCount > 0) {
       setSliderCount(sliderCount - 1);
     }
-  };
+  }
 
-  const moveForward = () => {
+  function moveForward() {
     if (sliderCount != obj.length - 1) {
       setSliderCount(sliderCount + 1);
     }
-  };
+  }
 
   React.useEffect(
     () => setSliderPosition((itemWidth + options.margin) * sliderCount),
@@ -53,7 +63,7 @@ export function Slider({ children, obj, options = { margin: 0 } }) {
         <div
           className="slider-swiper"
           style={{
-            width: itemWidth != 0 ? itemWidth * obj.length + "px" : 100 + "%",
+            width: itemWidth != 0 ? widthSetter() + "px" : 100 + "%",
             transform: `translate3d(-${sliderPosition}px, 0, 0)`,
           }}
         >

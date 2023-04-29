@@ -8,7 +8,7 @@ export function Footer() {
         <div className="footer__inner">
           <img
             className="logo-white-img"
-            src="./src/assets/img/logo-white.svg"
+            src="/src/assets/img/logo-white.svg"
             alt=""
           />
           <div className="footer__menu">
@@ -17,21 +17,21 @@ export function Footer() {
               <a className="footer__social-link" href="">
                 <img
                   className="social-media-img"
-                  src="./src/assets/img/social/facebook.svg"
+                  src="/src/assets/img/social/facebook.svg"
                   alt="facebook-icon"
                 />
               </a>
               <a className="footer__social-link" href="">
                 <img
                   className="social-media-img"
-                  src="./src/assets/img/social/inst.svg"
+                  src="/src/assets/img/social/inst.svg"
                   alt="instagram-icon"
                 />
               </a>
               <a className="footer__social-link" href="">
                 <img
                   className="social-media-img"
-                  src="./src/assets/img/social/vk.svg"
+                  src="/src/assets/img/social/vk.svg"
                   alt="vk-icon"
                 />
               </a>

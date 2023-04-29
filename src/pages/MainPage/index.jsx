@@ -9,7 +9,10 @@ export {
   Container,
   ItemCard,
   Slider,
+  SliderWrapper,
   SaleCard,
   CategoriesNav,
   CategoryPageRedict,
+  CategoriesList,
+  Price,
 } from "../index";

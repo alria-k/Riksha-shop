@@ -1,13 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import classNames from "classnames";
-import {
-  ItemCard,
-  CategoryPageRedict,
-  Container,
-  Sortby,
-  CategoriesList,
-} from "../index";
+import { Container, Sortby, CategoriesList } from "../index";
 
 import "./Catalog.scss";
 
@@ -54,7 +48,7 @@ export function Catalog({ data }) {
                     >
                       <img
                         className="catalog-categories__img"
-                        src={`./src/assets/img/categories-icons/${elem.icon}`}
+                        src={`/src/assets/img/categories-icons/${elem.icon}`}
                         alt=""
                       />
                       {elem.text}

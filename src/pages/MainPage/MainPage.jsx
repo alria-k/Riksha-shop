@@ -17,14 +17,14 @@ export function MainPage({ data }) {
       id: "1",
       text: `Вкуснейшие сеты от`,
       discr: "700 ₽",
-      src: "./src/assets/img/slider/1.jpg",
+      src: "/src/assets/img/slider/1.jpg",
       alt: "first-sale",
     },
     {
       id: "2",
       text: `Калифорния в подарок при первом заказе`,
       discr: "от 1500 ₽",
-      src: "./src/assets/img/slider/2.jpg",
+      src: "/src/assets/img/slider/2.jpg",
       alt: "second-sale",
     },
   ];
@@ -33,28 +33,28 @@ export function MainPage({ data }) {
       id: 1,
       title: "доставка",
       text: "при заказе от 600 ₽",
-      img: "./src/assets/img/advantages/1.svg",
+      img: "/src/assets/img/advantages/1.svg",
       alt: "delivery-icon",
     },
     {
       id: 2,
       title: "за 60 мин",
       text: "или проморол за опоздание",
-      img: "./src/assets/img/advantages/2.svg",
+      img: "/src/assets/img/advantages/2.svg",
       alt: "one-min-icon",
     },
     {
       id: 3,
       title: "бонусы",
       text: "бонусная система 1 ₽ = 1 бонус",
-      img: "./src/assets/img/advantages/3.svg",
+      img: "/src/assets/img/advantages/3.svg",
       alt: "bonus-icon",
     },
     {
       id: 4,
       title: "продукты",
       text: "Никаких заготовок!",
-      img: "./src/assets/img/advantages/4.svg",
+      img: "/src/assets/img/advantages/4.svg",
       alt: "grocery-icon",
     },
   ];
@@ -68,15 +68,11 @@ export function MainPage({ data }) {
           </Slider>
         </div>
         <Advantages obj={advantagesImg} />
-        <React.Suspense fallback={<div>hello</div>}>
+        {/* <React.Suspense fallback={<div>hello</div>}>
           <NewItems obj={data} />
-        </React.Suspense>
-        <React.Suspense fallback={<div>hello</div>}>
-          <Sale obj={data} />
-        </React.Suspense>
-        <React.Suspense fallback={<div>hello</div>}>
-          <Categories obj={data} />
-        </React.Suspense>
+        </React.Suspense> */}
+        <Sale obj={data} />
+        <Categories obj={data} />
       </Container>
       <About />
       <Container>

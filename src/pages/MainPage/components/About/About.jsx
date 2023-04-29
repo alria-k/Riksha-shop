@@ -22,7 +22,7 @@ export function About() {
           </div>
           <img
             className="about-img"
-            src="./src/assets/img/About-img.png"
+            src="/src/assets/img/About-img.png"
             alt="about"
           />
         </div>

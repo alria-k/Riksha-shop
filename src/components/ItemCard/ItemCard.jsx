@@ -1,84 +1,52 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Price } from "../Price/Price";
+import { Sizes } from "../Sizes/Sizes";
 import "./ItemCard.scss";
 
-export function ItemCard({ obj, imgURL }) {
-  const [extraPrice, setExtraPrice] = React.useState(0);
-  const [checked, setChecked] = React.useState(0);
-  const [price, setPrice] = React.useState(obj.price);
+export function ItemCard({ obj, category, i }) {
+  const [items] = obj.items.read();
 
-  function handleChange(event, priceVal, i) {
-    if (event.target.checked) {
-      setChecked(i);
-      setExtraPrice(priceVal);
-      setPrice(obj.price);
-    }
-    return;
-  }
+  let currentItem = items[category].items[i];
 
-  React.useEffect(() => {
-    setPrice(price + extraPrice);
-  }, [extraPrice]);
+  const [price, setPrice] = React.useState(currentItem.price);
 
-  React.useEffect(() => {
-    setPrice(obj.price);
-    setChecked(0);
-    setExtraPrice(0);
-  }, [obj.price]);
+  React.useEffect(() => setPrice(currentItem.price), [currentItem.price]);
 
-  return (
-    <div className="item-card__inner">
+  return items[category].items.length == 0 ? (
+    <div className="categories__empty">В этой категории нету товаров.</div>
+  ) : (
+    <div key={currentItem.id} className="item-card__inner">
       <img
         className="item-card-img"
-        src={`./src/assets/img/categories/${imgURL}/${obj.img}`}
+        src={`/src/assets/img/categories/${category}/${currentItem.img}`}
         alt=""
       />
       <div className="item-card">
         <div className="item-card__info">
           <div className="info-text__box">
-            <p className="item-card__info-text">{obj.gramms} грамм</p>
-            {obj.calories ? (
-              <p className="item-card__info-text">{obj.calories} каллорий</p>
+            <p className="item-card__info-text">{currentItem.gramms} грамм</p>
+            {currentItem.organic ? (
+              <p className="item-card__info-text">
+                {currentItem.organic.calories} каллорий
+              </p>
             ) : (
               ""
             )}
           </div>
-          {obj.sizes ? (
-            <div className="info-options__box">
-              <div className="size-pizza__extra-pay">+{extraPrice} ₽</div>
-              {obj.sizes.map((elem, index) => {
-                return (
-                  <form key={index} className="size-pizza__box">
-                    <input
-                      checked={index == checked}
-                      onChange={(e) => handleChange(e, elem.extraPay, index)}
-                      type="radio"
-                      name="size-pizza"
-                      className="size-pizza__radio"
-                    />
-                    <label htmlFor="size-pizza" className="size-pizza__custom">
-                      {elem.cm} см
-                    </label>
-                  </form>
-                );
-              })}
-            </div>
-          ) : (
-            ""
-          )}
+          <Sizes item={currentItem} price={price} priceSetter={setPrice} />
         </div>
         <div className="item-card__discr">
-          <h1 className="discr__title">{obj.text}</h1>
-          <p className="discr__p">{obj.disrc}</p>
+          <Link
+            className="item-card__link"
+            to={`/${category}/${currentItem.id}`}
+          >
+            <h1 className="discr__title">{currentItem.text}</h1>
+          </Link>
+          <p className="discr__p">{currentItem.disrc}</p>
         </div>
         <div className="item-card__purchase">
-          {obj.sale ? (
-            <h2 className="purchase__price">
-              <span className="purchase__old-price">{price} ₽</span>
-              {Math.round(price - (price / 100) * obj.sale)} ₽
-            </h2>
-          ) : (
-            <h2 className="purchase__price">{price} ₽</h2>
-          )}
+          <Price item={currentItem} price={price} />
           <button className="purchase__btn">Заказать</button>
         </div>
       </div>

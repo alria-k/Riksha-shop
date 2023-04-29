@@ -12,7 +12,7 @@ export function Nav() {
               <a className="link-text info-link" href="tel:+74956171424">
                 <img
                   className="tel-img"
-                  src="./src/assets/img/phone.svg"
+                  src="/src/assets/img/phone.svg"
                   alt="phone-number"
                 />
                 +7 (495) 617-14-24
@@ -33,7 +33,7 @@ export function Nav() {
                   <div className="user-interface-cart__count">0</div>
                   <img
                     className="user-img"
-                    src="./src/assets/img/cart.svg"
+                    src="/src/assets/img/cart.svg"
                     alt="cart"
                   />
                 </a>
@@ -43,7 +43,7 @@ export function Nav() {
               <a className="user-interface__link" href="#f">
                 <img
                   className="user-img"
-                  src="./src/assets/img/user.svg"
+                  src="/src/assets/img/user.svg"
                   alt="user-icon"
                 />
               </a>

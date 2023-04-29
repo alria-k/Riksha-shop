@@ -30,10 +30,13 @@
 
 .number-page--active {
   font-weight: 500;
-  color: #C95C3F;
-  background-image: url("./src/assets/img/Active-page-category.svg");
+  background-image: url("/src/assets/img/Active-page-category.svg");
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.number-page--active .number-page {
+  color: #C95C3F;
 }
 
 .number-page:hover {
