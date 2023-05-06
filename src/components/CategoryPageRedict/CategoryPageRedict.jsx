@@ -2,12 +2,17 @@ import classNames from "classnames";
 import "./CategoryPageRedict.scss";
 
 export function CategoryPageRedict({ pages, activePage, setPage }) {
+  function handlerPages(event, page) {
+    event.preventDefault();
+    setPage(page);
+  }
+
   return (
     <div className="switch-page__box">
       {activePage != 1 && (
         <button
           className="switch-page__arrow"
-          onClick={(e) => setPage(e, activePage - 1)}
+          onClick={(e) => handlerPages(e, activePage - 1)}
         >
           <svg
             width="33"
@@ -39,7 +44,7 @@ export function CategoryPageRedict({ pages, activePage, setPage }) {
                 <button
                   className="number-page"
                   type="button"
-                  onClick={(e) => setPage(e, elemsP)}
+                  onClick={(e) => handlerPages(e, elemsP)}
                 >
                   {elemsP}
                 </button>
@@ -51,7 +56,7 @@ export function CategoryPageRedict({ pages, activePage, setPage }) {
       {activePage != pages && (
         <button
           className="switch-page__arrow"
-          onClick={(e) => setPage(e, activePage + 1)}
+          onClick={(e) => handlerPages(e, activePage + 1)}
         >
           <svg
             width="33"

@@ -4,18 +4,19 @@ import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
 import "./ItemCard.scss";
 
-export function ItemCard({ obj, category, i }) {
+export function ItemCard({ obj, category, i, setquantity }) {
   const [items] = obj.items.read();
 
   let currentItem = items[category].items[i];
 
   const [price, setPrice] = React.useState(currentItem.price);
 
-  React.useEffect(() => setPrice(currentItem.price), [currentItem.price]);
+  React.useEffect(() => {
+    setPrice(currentItem.price);
+    setquantity(items[category].items.length);
+  }, [currentItem.price]);
 
-  return items[category].items.length == 0 ? (
-    <div className="categories__empty">В этой категории нету товаров.</div>
-  ) : (
+  return items[category].items.length > i ? (
     <div key={currentItem.id} className="item-card__inner">
       <img
         className="item-card-img"
@@ -51,5 +52,7 @@ export function ItemCard({ obj, category, i }) {
         </div>
       </div>
     </div>
+  ) : (
+    <div className="categories__empty">В этой категории нету товаров.</div>
   );
 }
