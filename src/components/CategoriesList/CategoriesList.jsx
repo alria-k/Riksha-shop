@@ -1,54 +1,51 @@
 import React from "react";
-import classNames from "classnames";
+import { useSelector } from "react-redux";
 import { ItemCard, SaleCard, CategoryPageRedict } from "../index";
 
-export function CategoriesList({ obj, category }) {
-  const [currPage, setCurrPage] = React.useState(1);
-  const [quantityOfItems, setQuantityOfItems] = React.useState(null);
-  const itemsOnOnePage = 10;
+export function CategoriesList({ obj }) {
+  const categories = useSelector((state) => state.category.category);
 
-  let pages = Math.floor(quantityOfItems / itemsOnOnePage);
+  const [currPage, setCurrPage] = React.useState(1);
+  const [quantityOfItems, setQuantityOfItems] = React.useState(1);
+  const itemsOnOnePage = 15;
 
   React.useEffect(() => {
     setCurrPage(1);
-  }, [category]);
+  }, [categories]);
 
   return (
     <>
       <div className="categories__list">
-        {category == "sale" ? (
-          <React.Suspense fallback={<div>lol</div>}>
-            <SaleCard obj={obj} />
-          </React.Suspense>
-        ) : (
+        {categories &&
           [...Array(itemsOnOnePage * currPage).keys()].map((_, index) => {
-            return (
-              <React.Suspense key={index} fallback={<div>lol</div>}>
-                <ItemCard
-                  obj={obj}
-                  category={category}
-                  i={index}
-                  setquantity={setQuantityOfItems}
-                />
-              </React.Suspense>
-            );
-          })
-        )}
-      </div>
-      {pages != 1 && (
-        <div
-          className={classNames({
-            categories__pages: true,
-            "categories__pages--end": !pages,
+            if (quantityOfItems > index) {
+              return (
+                <>
+                  <React.Suspense fallback={<div>lol</div>}>
+                    <SaleCard
+                      obj={obj}
+                      i={index}
+                      setquantity={setQuantityOfItems}
+                    />
+                  </React.Suspense>
+                  <React.Suspense fallback={<div>lol</div>}>
+                    <ItemCard
+                      obj={obj}
+                      i={index}
+                      setquantity={setQuantityOfItems}
+                    />
+                  </React.Suspense>
+                </>
+              );
+            }
           })}
-        >
-          <CategoryPageRedict
-            pages={pages}
-            activePage={currPage}
-            setPage={setCurrPage}
-          />
-        </div>
-      )}
+      </div>
+      <CategoryPageRedict
+        allItems={quantityOfItems}
+        activePage={currPage}
+        setPage={setCurrPage}
+        visibleItems={itemsOnOnePage}
+      />
     </>
   );
 }

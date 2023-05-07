@@ -1,26 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { CategoriesNav, CategoriesList } from "../../index";
 import "./Categories.scss";
 
 export function Categories({ obj }) {
-  const [category, setCategory] = React.useState("pizza");
-
-  function handlerCategory(event, targetCategory) {
-    event.preventDefault();
-    setCategory(targetCategory);
-  }
+  const categories = useSelector((state) => state.category.category);
 
   return (
     <div className="categories__container">
       <h1 className="blocks__title">Категории</h1>
-      <CategoriesNav
-        swtch={true}
-        handler={handlerCategory}
-        currCategory={category}
-      />
-      <CategoriesList obj={obj} category={category} />
-      <Link to={category} className="categories__link">
+      <CategoriesNav swtch={true} />
+      <CategoriesList obj={obj} />
+      <Link to={categories} className="categories__link">
         Перейти в каталог
         <svg
           width="33"

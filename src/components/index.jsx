@@ -16,3 +16,4 @@ export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
 export { Menu } from "./Menu/Menu";
 export { dataFetch } from "../utils/wrapPromise";
 export { MainPage, Catalog, ItemPage } from "../pages/index";
+export { changeCategory } from "../redux";

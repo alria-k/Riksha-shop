@@ -1,13 +1,18 @@
+import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
+import { changeCategory } from "../index";
 import { Link } from "react-router-dom";
 import "./CategoriesNav.scss";
 
-export function CategoriesNav({
-  swtch = false,
-  handler,
-  currCategory,
-  imgAllow = true,
-}) {
+export function CategoriesNav({ swtch = false, imgAllow = true }) {
+  const categories = useSelector((state) => state.category.category);
+  const dispatch = useDispatch();
+
+  function handleCategory(event, currCategory) {
+    event.preventDefault();
+    dispatch(changeCategory(currCategory));
+  }
+
   const categoriesItems = [
     {
       id: 1,
@@ -90,9 +95,9 @@ export function CategoriesNav({
               className={classNames({
                 "link-text": true,
                 "categories-link": true,
-                "categories-link--active": swtch && currCategory == elem.key,
+                "categories-link--active": swtch && categories == elem.key,
               })}
-              onClick={(e) => swtch && handler(e, elem.key)}
+              onClick={(e) => swtch && handleCategory(e, elem.key)}
               to={elem.key}
             >
               {imgAllow && (

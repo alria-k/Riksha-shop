@@ -3,13 +3,27 @@ import { SaleCard } from "../../index";
 import "./Sale.scss";
 
 export function Sale({ obj }) {
+  const [quantityOfItems, setQuantityOfItems] = React.useState(1);
+
   return (
     <div className="sale__container">
       <h1 className="blocks__title">Акции</h1>
       <div className="sale__list">
-        <React.Suspense fallback={<div>hello</div>}>
-          <SaleCard obj={obj} />
-        </React.Suspense>
+        {quantityOfItems &&
+          [...Array(quantityOfItems).keys()].map((_, index) => {
+            if (quantityOfItems > index) {
+              return (
+                <React.Suspense key={index} fallback={<div>hello</div>}>
+                  <SaleCard
+                    obj={obj}
+                    category={"sale"}
+                    i={index}
+                    setquantity={setQuantityOfItems}
+                  />
+                </React.Suspense>
+              );
+            }
+          })}
       </div>
     </div>
   );
