@@ -68,10 +68,12 @@ export function MainPage({ data }) {
           </Slider>
         </div>
         <Advantages obj={advantagesImg} />
-        {/* <React.Suspense fallback={<div>hello</div>}>
+        <React.Suspense fallback={<div>hello</div>}>
           <NewItems obj={data} />
-        </React.Suspense> */}
-        <Sale obj={data} />
+        </React.Suspense>
+        <React.Suspense fallback={<div>hello</div>}>
+          <Sale obj={data} />
+        </React.Suspense>
         <Categories obj={data} />
       </Container>
       <About />

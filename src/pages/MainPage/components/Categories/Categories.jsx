@@ -11,7 +11,9 @@ export function Categories({ obj }) {
     <div className="categories__container">
       <h1 className="blocks__title">Категории</h1>
       <CategoriesNav swtch={true} />
-      <CategoriesList obj={obj} />
+      <React.Suspense fallback={<div>lol</div>}>
+        <CategoriesList obj={obj} />
+      </React.Suspense>
       <Link to={categories} className="categories__link">
         Перейти в каталог
         <svg

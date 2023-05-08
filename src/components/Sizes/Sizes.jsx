@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sizes.scss";
 
-export function Sizes({ item, price, priceSetter }) {
+export function Sizes({ item, price, setPrice }) {
   const [extraPrice, setExtraPrice] = React.useState(0);
   const [checked, setChecked] = React.useState(0);
 
@@ -9,13 +9,13 @@ export function Sizes({ item, price, priceSetter }) {
     if (event.target.checked) {
       setChecked(i);
       setExtraPrice(priceVal);
-      priceSetter(item.price);
+      setPrice(item.price);
     }
     return;
   }
 
   React.useEffect(() => {
-    priceSetter(price + extraPrice);
+    setPrice(price + extraPrice);
   }, [extraPrice]);
 
   React.useEffect(() => {

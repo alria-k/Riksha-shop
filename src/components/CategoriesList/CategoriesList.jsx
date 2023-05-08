@@ -5,8 +5,10 @@ import { ItemCard, SaleCard, CategoryPageRedict } from "../index";
 export function CategoriesList({ obj }) {
   const categories = useSelector((state) => state.category.category);
 
+  const [items] = obj.items.read();
+  const [sale] = obj.sale.read();
+
   const [currPage, setCurrPage] = React.useState(1);
-  const [quantityOfItems, setQuantityOfItems] = React.useState(1);
   const itemsOnOnePage = 15;
 
   React.useEffect(() => {
@@ -16,36 +18,19 @@ export function CategoriesList({ obj }) {
   return (
     <>
       <div className="categories__list">
-        {categories &&
-          [...Array(itemsOnOnePage * currPage).keys()].map((_, index) => {
-            if (quantityOfItems > index) {
-              return (
-                <>
-                  <React.Suspense fallback={<div>lol</div>}>
-                    <SaleCard
-                      obj={obj}
-                      i={index}
-                      setquantity={setQuantityOfItems}
-                    />
-                  </React.Suspense>
-                  <React.Suspense fallback={<div>lol</div>}>
-                    <ItemCard
-                      obj={obj}
-                      i={index}
-                      setquantity={setQuantityOfItems}
-                    />
-                  </React.Suspense>
-                </>
-              );
-            }
-          })}
+        {[...Array(itemsOnOnePage).keys()].map((_, index) => {
+          return categories == "sale" ? (
+            <SaleCard key={index} obj={sale} i={index} />
+          ) : (
+            <ItemCard key={index} obj={items} i={index} />
+          );
+        })}
       </div>
-      <CategoryPageRedict
-        allItems={quantityOfItems}
+      {/* <CategoryPageRedict
         activePage={currPage}
         setPage={setCurrPage}
         visibleItems={itemsOnOnePage}
-      />
+      /> */}
     </>
   );
 }
