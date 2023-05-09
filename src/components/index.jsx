@@ -13,6 +13,7 @@ export { LazyImg } from "./LazyImg/LazyImg";
 export { CategoriesList } from "./CategoriesList/CategoriesList";
 export { CategoryPageRedict } from "./CategoryPageRedict/CategoryPageRedict";
 export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
+export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
 export { dataFetch } from "../utils/wrapPromise";
 export { MainPage, Catalog, ItemPage } from "../pages/index";

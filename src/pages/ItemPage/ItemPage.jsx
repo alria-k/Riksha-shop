@@ -52,7 +52,7 @@ export function ItemPage({ data }) {
         <div className="itempage__inner">
           <div className="itempage__info-box">
             <Slider obj={[0, 1, 2]} options={{ margin: 50 }} single={true}>
-              {[...Array(3).keys()].map((elem, id) => {
+              {[...Array(3).keys()].map((_, id) => {
                 return (
                   <SliderWrapper key={id}>
                     <img
@@ -126,14 +126,15 @@ export function ItemPage({ data }) {
               </div>
               <div className="itempage__size">
                 <h6 className="itempage__title size__title">Размеры</h6>
-                <Sizes
-                  item={currentItem}
-                  price={price}
-                  priceSetter={setPrice}
-                />
+                <Sizes item={currentItem} price={price} setPrice={setPrice} />
               </div>
               <div className="itempage__price">
-                <Price item={currentItem} price={price} quantity={quantity} />
+                <Price
+                  item={currentItem}
+                  price={price}
+                  setPrice={setPrice}
+                  quantity={quantity}
+                />
                 <div className="itempage__quantity">
                   <button
                     className="quantity-setter quantity-decrease"

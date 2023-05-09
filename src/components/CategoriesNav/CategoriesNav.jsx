@@ -9,7 +9,9 @@ export function CategoriesNav({ swtch = false, imgAllow = true }) {
   const dispatch = useDispatch();
 
   function handleCategory(event, currCategory) {
-    event.preventDefault();
+    if (swtch) {
+      event.preventDefault();
+    }
     dispatch(changeCategory(currCategory));
   }
 
@@ -97,7 +99,7 @@ export function CategoriesNav({ swtch = false, imgAllow = true }) {
                 "categories-link": true,
                 "categories-link--active": swtch && categories == elem.key,
               })}
-              onClick={(e) => swtch && handleCategory(e, elem.key)}
+              onClick={(e) => handleCategory(e, elem.key)}
               to={elem.key}
             >
               {imgAllow && (

@@ -6,41 +6,6 @@
   margin-bottom: 21px;
 }
 
-.catalog-categories {
-  margin-bottom: 14px;
-}
-
-.catalog-categories__list {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.catalog-categories__btn {
-  outline: none;
-  border: 1px solid #E8E8E8;
-  border-radius: 8px;
-  background-color: #fff;
-  display: inline-flex;
-  gap: 8px;
-  padding: 12px 20px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: #1B1B1B;
-  align-items: center;
-}
-
-.catalog-categories__btn--active {
-  color: #E07153;
-  border-color: #E07153;
-}
-
-.catalog-categories__img {
-  width: 24px;
-  height: 24px;
-}
-
 .catalog-sortby {
   margin-bottom: 24px;
 }
