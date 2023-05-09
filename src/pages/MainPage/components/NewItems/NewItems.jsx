@@ -7,21 +7,20 @@ export function NewItems({ obj }) {
   let [items] = obj.items.read();
 
   function getNewItems() {
-    let newItemsObj = {};
+    let newItemsObj = [];
     for (let key in items) {
       items[key].items.filter((e) => {
         if (e.new) {
-          newItemsObj = {
-            ...newItemsObj,
+          newItemsObj.push({
             [key]: {
               ...items[key],
               items: [e],
             },
-          };
+          });
         }
       });
     }
-    return [newItemsObj];
+    return newItemsObj;
   }
 
   let newItems = getNewItems();
@@ -34,7 +33,7 @@ export function NewItems({ obj }) {
           {newItems.map((elem, index) => {
             return (
               <SliderWrapper key={index}>
-                <ItemCard obj={elem} i={index} />
+                <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
               </SliderWrapper>
             );
           })}

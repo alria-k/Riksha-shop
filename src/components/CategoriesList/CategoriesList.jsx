@@ -22,7 +22,7 @@ export function CategoriesList({ obj }) {
           return categories == "sale" ? (
             <SaleCard key={index} obj={sale} i={index} />
           ) : (
-            <ItemCard key={index} obj={items} i={index} />
+            <ItemCard key={index} obj={items} i={index} category={categories} />
           );
         })}
       </div>

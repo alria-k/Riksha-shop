@@ -1,23 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
 import "./ItemCard.scss";
 
-export function ItemCard({ obj, i }) {
-  const categories = useSelector((state) => state.category.category);
-
+export function ItemCard({ obj, i, category }) {
   const [price, setPrice] = React.useState(0);
 
-  let currentItem = obj[categories].items[i];
+  let currentItem = obj[category].items[i];
 
   return (
-    i < obj[categories].items.length && (
+    i < obj[category].items.length && (
       <div className="item-card__inner">
         <img
           className="item-card-img"
-          src={`/src/assets/img/categories/${categories}/${currentItem.img}`}
+          src={`/src/assets/img/categories/${category}/${currentItem.img}`}
           alt=""
         />
         <div className="item-card">
@@ -37,7 +34,7 @@ export function ItemCard({ obj, i }) {
           <div className="item-card__discr">
             <Link
               className="item-card__link"
-              to={`/${categories}/${currentItem.id}`}
+              to={`/${category}/${currentItem.id}`}
             >
               <h1 className="discr__title">{currentItem.text}</h1>
             </Link>
