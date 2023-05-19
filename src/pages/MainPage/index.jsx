@@ -15,4 +15,6 @@ export {
   CategoryPageRedict,
   CategoriesList,
   Price,
+  getGoods,
+  getSale,
 } from "../index";

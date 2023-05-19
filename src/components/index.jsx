@@ -15,6 +15,6 @@ export { CategoryPageRedict } from "./CategoryPageRedict/CategoryPageRedict";
 export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
 export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
-export { dataFetch } from "../utils/wrapPromise";
+export { getGoods, getSale } from "../utils/fetchData";
 export { MainPage, Catalog, ItemPage } from "../pages/index";
 export { changeCategory } from "../redux";

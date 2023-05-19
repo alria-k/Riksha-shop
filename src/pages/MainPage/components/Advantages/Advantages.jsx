@@ -1,10 +1,10 @@
 import "./Advantages.scss";
 
-export function Advantages({ obj }) {
+export function Advantages({ imageArr }) {
   return (
     <div className="advantages__container">
       <ul className="advantages__list">
-        {obj.map((elem) => {
+        {imageArr.map((elem) => {
           return (
             <li key={elem.id} className="advantages__list-item">
               <img className="advantages-img" src={elem.img} alt={elem.alt} />

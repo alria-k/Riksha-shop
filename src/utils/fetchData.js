@@ -1,9 +1,12 @@
 import axios from "axios";
+import { wrapPromise } from "./wrapPromise";
 
-export async function getData() {
-  return axios.get("/src/db/items.json").then(({ data }) => data);
+export function getGoods() {
+  const promise = axios.get("/src/db/items.json").then(({ data }) => data);
+  return wrapPromise(promise);
 }
 
-export async function getSale() {
-  return axios.get("/src/db/sale.json").then(({ data }) => data);
+export function getSale() {
+  const promise = axios.get("/src/db/sale.json").then(({ data }) => data);
+  return wrapPromise(promise);
 }

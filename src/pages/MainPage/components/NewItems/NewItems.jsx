@@ -1,10 +1,11 @@
-import { Slider, SliderWrapper } from "../../../index";
-import { ItemCard } from "../../index";
+import { Slider, SliderWrapper, ItemCard, getGoods } from "../../index";
 
 import "./NewItems.scss";
 
-export function NewItems({ obj }) {
-  let [items] = obj.items.read();
+export function NewItems() {
+  const [items] = getGoods().read();
+
+  console.log(items);
 
   function getNewItems() {
     let newItemsObj = [];

@@ -1,9 +1,10 @@
-import React from "react";
-import { SaleCard } from "../../index";
+import { SaleCard, getSale } from "../../index";
 import "./Sale.scss";
 
-export function Sale({ obj }) {
-  const [sale] = obj.sale.read();
+export function Sale() {
+  const [sale] = getSale().read();
+
+  console.log(sale);
 
   const itemsOnOnePage = 3;
 

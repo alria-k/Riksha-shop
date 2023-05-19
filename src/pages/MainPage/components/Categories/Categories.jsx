@@ -4,16 +4,18 @@ import { useSelector } from "react-redux";
 import { CategoriesNav, CategoriesList } from "../../index";
 import "./Categories.scss";
 
-export function Categories({ obj }) {
+export function Categories() {
   const categories = useSelector((state) => state.category.category);
 
   return (
     <div className="categories__container">
       <h1 className="blocks__title">Категории</h1>
       <CategoriesNav swtch={true} />
-      <React.Suspense fallback={<div>lol</div>}>
-        <CategoriesList obj={obj} />
+
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <CategoriesList />
       </React.Suspense>
+
       <Link to={categories} className="categories__link">
         Перейти в каталог
         <svg
