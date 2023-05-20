@@ -1,10 +1,8 @@
-import { SaleCard, getSale } from "../../index";
+import { SaleCard } from "../../index";
 import "./Sale.scss";
 
-export function Sale() {
-  const [sale] = getSale().read();
-
-  console.log(sale);
+export function Sale({ saleData }) {
+  const [sale] = saleData.read();
 
   const itemsOnOnePage = 3;
 

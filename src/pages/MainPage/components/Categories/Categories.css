@@ -45,14 +45,6 @@
   justify-content: center;
 }
 
-.categories__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: flex-start;
-  margin-bottom: 50px;
-}
-
 .categories__pages {
   display: flex;
   align-items: center;

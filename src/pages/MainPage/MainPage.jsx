@@ -7,6 +7,8 @@ import {
   Categories,
   About,
   SocialMedia,
+  getGoods,
+  getSale,
 } from "./index";
 import { Slider, Container } from "../index";
 
@@ -57,6 +59,9 @@ const advantagesImg = [
   },
 ];
 
+const goodsPromise = getGoods();
+const salePromise = getSale();
+
 export function MainPage() {
   return (
     <>
@@ -68,12 +73,12 @@ export function MainPage() {
         </div>
         <Advantages imageArr={advantagesImg} />
         <React.Suspense fallback={<div>Loading...</div>}>
-          <NewItems />
+          <NewItems goodsData={goodsPromise} />
         </React.Suspense>
         <React.Suspense fallback={<div>Loading...</div>}>
-          <Sale />
+          <Sale saleData={salePromise} />
         </React.Suspense>
-        <Categories />
+        <Categories saleData={salePromise} goodsData={goodsPromise} />
       </Container>
       <About />
       <Container>
