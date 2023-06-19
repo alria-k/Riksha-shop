@@ -1,19 +1,48 @@
-import "./Advantages.scss";
+import styled from "styled-components";
+
+import { ParagraphFont } from "../../../../style/styling/styling";
+
+const AdvantagesWrapper = styled.div`
+  margin-bottom: 145px;
+`;
+const AdvantagesList = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+const AdvantagesListItem = styled.li`
+  text-align: center;
+`;
+const AdvantagesImg = styled.img`
+  margin: 0 auto;
+  margin-bottom: 12px;
+`;
+const AdvantagesTitle = styled.h6`
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1b1b1b;
+  margin-bottom: 2px;
+`;
+const AdvantagesText = styled.p`
+  ${ParagraphFont}
+`;
 
 export function Advantages({ imageArr }) {
   return (
-    <div className="advantages__container">
-      <ul className="advantages__list">
+    <AdvantagesWrapper>
+      <AdvantagesList>
         {imageArr.map((elem) => {
           return (
-            <li key={elem.id} className="advantages__list-item">
-              <img className="advantages-img" src={elem.img} alt={elem.alt} />
-              <h6 className="advantages__title">{elem.title}</h6>
-              <p className="advantages__text usual-font-p">{elem.text}</p>
-            </li>
+            <AdvantagesListItem key={elem.id}>
+              <AdvantagesImg src={elem.img} alt={elem.alt} />
+              <AdvantagesTitle>{elem.title}</AdvantagesTitle>
+              <AdvantagesText>{elem.text}</AdvantagesText>
+            </AdvantagesListItem>
           );
         })}
-      </ul>
-    </div>
+      </AdvantagesList>
+    </AdvantagesWrapper>
   );
 }

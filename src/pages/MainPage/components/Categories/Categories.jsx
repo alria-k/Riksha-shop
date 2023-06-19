@@ -2,20 +2,50 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import { CategoriesNav, CategoriesList } from "../../index";
-import "./Categories.scss";
+import { TitleFont } from "../../../../style/styling/styling";
+
+const CategoriesWrapper = styled.div`
+  margin-bottom: 116px;
+`;
+const CategoriesLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  max-width: 260px;
+  margin: 0 0 0 auto;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  color: #c95c3f;
+  svg {
+    path {
+      transform: translate3d(10px, 0, 0);
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      svg {
+        path {
+          transform: translate3d(0px, 0, 0);
+        }
+      }
+    }
+  }
+`;
 
 export function Categories({ saleData, goodsData }) {
   const categories = useSelector((state) => state.category.category);
 
   return (
-    <div className="categories__container">
-      <h1 className="blocks__title">Категории</h1>
+    <CategoriesWrapper>
+      <TitleFont>Категории</TitleFont>
       <CategoriesNav swtch={true} categoriesStyles={true} />
       <React.Suspense fallback={<div>Loading...</div>}>
         <CategoriesList saleData={saleData} goodsData={goodsData} />
       </React.Suspense>
-      <Link to={categories} className="categories__link">
+      <CategoriesLink to={categories}>
         Перейти в каталог
         <svg
           width="33"
@@ -30,7 +60,7 @@ export function Categories({ saleData, goodsData }) {
             fill="#C95C3F"
           />
         </svg>
-      </Link>
-    </div>
+      </CategoriesLink>
+    </CategoriesWrapper>
   );
 }

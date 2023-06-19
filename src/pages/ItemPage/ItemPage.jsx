@@ -1,7 +1,84 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import styled from "styled-components";
+
 import { Container, Slider, SliderWrapper, Price, Sizes } from "../index";
-import "./ItemPage.scss";
+import { CatalogTitle, ParagraphFont } from "../../style/styling/styling";
+
+const ItemText = styled(({ weight = false, ...props }) => <p {...props} />)`
+  ${({ weight }) => weight && `margin-bottom: 8px;`}
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1b1b1b;
+  span {
+    font-weight: 400;
+  }
+`;
+const ItemInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 82px;
+`;
+const ItemStepBackWrapper = styled.div`
+  padding-bottom: 24px;
+  margin-bottom: 57px;
+  border-bottom: 1px solid #e2e1e1;
+`;
+const ItemStepBackLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+const ItemImg = styled.img`
+  border: 1px solid #e2e1e1;
+  width: 570px;
+`;
+const ItemCatalogTitle = styled.h1`
+  ${CatalogTitle}
+`;
+const ItemDeliveryWrapper = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 23px;
+`;
+const ItemDeliveryText = styled.p`
+  ${ParagraphFont}
+  font-weight: 500;
+`;
+const ItemCompositionText = styled.p`
+  ${ParagraphFont}
+`;
+const ItemDeliveryLink = styled(Link)`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: underline;
+  color: #c95c3f;
+`;
+const ItemCompositionWrapper = styled.div`
+  margin-bottom: 38px;
+`;
+const ItemSizeWrapper = styled.div`
+  margin-bottom: 38px;
+`;
+const ItemSizeTitle = styled(ItemText)`
+  margin-bottom: 12px;
+`;
+const ItemPriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+const ItemPageQuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid #e2e1e1;
+  border-radius: 8px;
+  gap: 24px;
+`;
 
 export function ItemPage({ data }) {
   const [items] = data.items.read();
@@ -32,8 +109,8 @@ export function ItemPage({ data }) {
   return (
     <div className="itempage__container">
       <Container>
-        <div className="itempage__step-back">
-          <Link to={`/${category}`} className="step-back__link">
+        <ItemStepBackWrapper>
+          <ItemStepBackLink to={`/${category}`}>
             <svg
               width="33"
               height="12"
@@ -46,29 +123,26 @@ export function ItemPage({ data }) {
                 fill="#E07153"
               />
             </svg>
-            <p className="step-back__text">Назад в каталог</p>
-          </Link>
-        </div>
-        <div className="itempage__inner">
-          <div className="itempage__info-box">
+            <p>Назад в каталог</p>
+          </ItemStepBackLink>
+        </ItemStepBackWrapper>
+        <div>
+          <ItemInfoWrapper>
             <Slider obj={[0, 1, 2]} options={{ margin: 50 }} single={true}>
-              {[...Array(3).keys()].map((_, id) => {
-                return (
-                  <SliderWrapper key={id}>
-                    <img
-                      className="item-img"
-                      src={`/src/assets/img/categories/${category}/${currentItem.img}`}
-                      alt={`${category}-img`}
-                    />
-                  </SliderWrapper>
-                );
-              })}
+              {[...Array(3).keys()].map((_, id) => (
+                <SliderWrapper key={id}>
+                  <ItemImg
+                    src={`/src/assets/img/categories/${category}/${currentItem.img}`}
+                    alt={`${category}-img`}
+                  />
+                </SliderWrapper>
+              ))}
             </Slider>
-            <div className="itempage__info">
-              <h1 className="catalog__title">{currentItem.text}</h1>
-              <p className="itempage__title itempage__weight">
+            <div>
+              <ItemCatalogTitle>{currentItem.text}</ItemCatalogTitle>
+              <ItemText weight={true}>
                 Вес: <span>{currentItem.gramms} грамм</span>
-              </p>
+              </ItemText>
               {currentItem.organic ? (
                 <div className="itempage__organic">
                   <table className="itempage__organic-table">
@@ -109,33 +183,32 @@ export function ItemPage({ data }) {
               ) : (
                 ""
               )}
-              <div className="itempage__delivery">
+              <ItemDeliveryWrapper>
                 <img
-                  className="delivery-icon"
                   src="/src/assets/img/delivery-icon.svg"
                   alt="delivery-icon"
                 />
-                <p className="usual-font-p">Доставим за 40 мин</p>
-                <Link to="/delivery-payment" className="delivery__link">
+                <ItemDeliveryText>Доставим за 40 мин</ItemDeliveryText>
+                <ItemDeliveryLink to={"/delivery-payment"}>
                   Условия доставки
-                </Link>
-              </div>
-              <div className="itempage__сomposition">
-                <h4 className="itempage__title">Состав:</h4>
-                <p className="usual-font-p">{currentItem.disrc}</p>
-              </div>
-              <div className="itempage__size">
-                <h6 className="itempage__title size__title">Размеры</h6>
+                </ItemDeliveryLink>
+              </ItemDeliveryWrapper>
+              <ItemCompositionWrapper>
+                <ItemText>Состав:</ItemText>
+                <ItemCompositionText>{currentItem.disrc}</ItemCompositionText>
+              </ItemCompositionWrapper>
+              <ItemSizeWrapper>
+                <ItemSizeTitle>Размеры</ItemSizeTitle>
                 <Sizes item={currentItem} price={price} setPrice={setPrice} />
-              </div>
-              <div className="itempage__price">
+              </ItemSizeWrapper>
+              <ItemPriceWrapper>
                 <Price
                   item={currentItem}
                   price={price}
                   setPrice={setPrice}
                   quantity={quantity}
                 />
-                <div className="itempage__quantity">
+                <ItemPageQuantityWrapper>
                   <button
                     className="quantity-setter quantity-decrease"
                     onClick={handlerQuantityMinus}
@@ -149,13 +222,13 @@ export function ItemPage({ data }) {
                   >
                     +
                   </button>
-                </div>
+                </ItemPageQuantityWrapper>
                 <button className="itempage__btn purchase__btn">
                   Заказать
                 </button>
-              </div>
+              </ItemPriceWrapper>
             </div>
-          </div>
+          </ItemInfoWrapper>
           <div className="itempage__buy-with-box"></div>
           <div className="itempage__recomendation-box"></div>
           {/* Component with feedback */}

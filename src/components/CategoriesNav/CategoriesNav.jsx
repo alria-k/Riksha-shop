@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { changeCategory } from "../index";
 import { NavFlex } from "../../style/styling/styling";
-import "./CategoriesNav.scss";
 
 const categoriesItems = [
   {
@@ -107,7 +106,9 @@ const CategoryImg = styled.img`
   transition: filter 0.2s ease-in-out;
 `;
 
-const CategoryLink = styled(Link)`
+const CategoryLink = styled(
+  ({ categoriesStyles, positionFooter, ...props }) => <Link {...props} />
+)`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -117,7 +118,7 @@ const CategoryLink = styled(Link)`
       text-decoration: underline;
     }
   }
-  ${({ categoriesStyles, key, category, switchAvaliable }) =>
+  ${({ categoriesStyles }) =>
     categoriesStyles &&
     `display: flex;
       align-items: center;
@@ -171,9 +172,6 @@ export function CategoriesNav({
             <CategoryLink
               categoriesStyles={categoriesStyles}
               positionFooter={positionFooter}
-              switchAvaliable={swtch}
-              key={elem.key}
-              category={categories}
               onClick={(e) => handleCategory(e, elem.key)}
               to={elem.key}
             >

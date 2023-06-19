@@ -1,26 +1,15 @@
 .social{
     &__text{
         &-box{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+
         }
     }
     &__link{
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 120%;
-        color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        gap: 20px;
+
     }
     &__img{
         &-box{
-            display: grid;
-            gap: 12px;
-            grid-template-columns: 300px 300px 300px 300px;
-            grid-template-rows: 254px 254px;
+
             :nth-child(6){
                 grid-column: 4 / 5;
                 grid-row: 1 / 3;

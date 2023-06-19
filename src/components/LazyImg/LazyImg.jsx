@@ -1,7 +1,11 @@
 import React from "react";
-import { Blurhash } from "react-blurhash";
-import { encode } from "blurhash";
-import "./LazyImg.scss";
+import styled from "styled-components";
+
+const ImgLazy = styled.img`
+  user-select: none;
+  pointer-events: none;
+  border-radius: 16px;
+`;
 
 export function LazyImg({ src, alt, clsName }) {
   // const loadImage = async (src) =>
@@ -31,5 +35,5 @@ export function LazyImg({ src, alt, clsName }) {
   //   console.log(encodeImage(src));
   // }, src);
 
-  return <img src={src} alt={alt} className={clsName} />;
+  return <ImgLazy src={src} alt={alt} className={clsName} />;
 }

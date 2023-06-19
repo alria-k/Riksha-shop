@@ -1,5 +1,17 @@
+import styled from "styled-components";
+
+import { TitleFont } from "../../../../style/styling/styling";
 import { SaleCard } from "../../index";
-import "./Sale.scss";
+
+const SaleWrapper = styled.div`
+  margin-bottom: 124px;
+`;
+const SaleList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+`;
 
 export function Sale({ saleData }) {
   const [sale] = saleData.read();
@@ -7,13 +19,15 @@ export function Sale({ saleData }) {
   const itemsOnOnePage = 3;
 
   return (
-    <div className="sale__container">
-      <h1 className="blocks__title">Акции</h1>
-      <div className="sale__list">
-        {[...Array(itemsOnOnePage).keys()].map((_, index) => {
-          return <SaleCard key={index} obj={sale} i={index} />;
-        })}
-      </div>
-    </div>
+    <SaleWrapper>
+      <TitleFont>Акции</TitleFont>
+      <SaleList>
+        {[...Array(itemsOnOnePage).keys()].map((_, index) => (
+          <li key={index}>
+            <SaleCard obj={sale} i={index} />
+          </li>
+        ))}
+      </SaleList>
+    </SaleWrapper>
   );
 }

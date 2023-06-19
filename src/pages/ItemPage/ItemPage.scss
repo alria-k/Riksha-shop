@@ -27,39 +27,20 @@
         }
     }
     &__title{
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 18px;
-        color: #1B1B1B;
-        span{
-            font-weight: 400;
-        }
     }
     &__step-back{
-        padding-bottom: 24px;
-        margin-bottom: 57px;
-        border-bottom: 1px solid #E2E1E1;
+
     }
     &__info{
         &-box{
-            display: flex;
-            align-items: center;
-            gap: 82px;
+
         }
     }
-    &__weight{
-        margin-bottom: 8px;
-    }
     &__сomposition{
-        margin-bottom: 38px;
     }
     &__delivery{
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        margin-bottom: 23px;
+
         .usual-font-p{
-            font-weight: 500;
         }
     }
     &__organic-table{
@@ -69,31 +50,21 @@
         margin-bottom: 24px;
     }
     &__price{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
     }
     &__quantity{
-        display: flex;
-        align-items: center;
-        padding: 9px 10px;
-        border: 1px solid #E2E1E1;
-        border-radius: 8px;
-        gap: 24px;
+
     }
     &__size{
         margin-bottom: 15px;
     }
 }
 .item-img{
-    border: 1px solid #E2E1E1;
-    width: 570px;
+
 }
 .step-back{
     &__link{
-        display: flex;
-        align-items: center;
-        gap: 16px;
+
     }
 }
 .organic-table{
@@ -131,11 +102,7 @@
 }
 .delivery{
     &__link{
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-        text-decoration-line: underline;
-        color: #C95C3F;
+
     }
 }
 .size{
@@ -148,6 +115,5 @@
         }
     }
     &__title{
-        margin-bottom: 12px;
     }
 }

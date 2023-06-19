@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { UsualPFont } from "../../style/styling/styling";
+import { ParagraphFont } from "../../style/styling/styling";
 
 const menuItems = [
   {
@@ -30,11 +30,13 @@ const menuItems = [
   },
 ];
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(({ positionFooter, ...props }) => (
+  <Link {...props} />
+))`
   display: block;
   padding: 8px 0;
   ${({ positionFooter }) =>
-    positionFooter ? `${UsualPFont}{color: #FFFFFF;}` : `${UsualPFont}`}
+    positionFooter ? `${ParagraphFont}{color: #FFFFFF;}` : `${ParagraphFont}`}
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       text-decoration: underline;
@@ -42,7 +44,9 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const NavMenuLinks = styled.ul`
+const NavMenuLinks = styled(({ positionFooter, ...props }) => (
+  <ul {...props} />
+))`
   display: flex;
   align-items: center;
   column-gap: 48px;

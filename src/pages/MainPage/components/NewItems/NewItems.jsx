@@ -1,6 +1,15 @@
+import styled from "styled-components";
+
+import { TitleFont } from "../../../../style/styling/styling";
 import { Slider, SliderWrapper, ItemCard } from "../../index";
 
-import "./NewItems.scss";
+const NewItemsWrapper = styled.div`
+  .slider-wrapper {
+    min-width: 392px;
+    width: 100%;
+    margin-right: 24px;
+  }
+`;
 
 export function NewItems({ goodsData }) {
   const [items] = goodsData.read();
@@ -25,19 +34,17 @@ export function NewItems({ goodsData }) {
   let newItems = getNewItems();
 
   return (
-    <div className="new-items__container">
-      <h1 className="blocks__title">Новинки</h1>
-      <div className="new-items__inner">
+    <NewItemsWrapper>
+      <TitleFont>Новинки</TitleFont>
+      <div>
         <Slider obj={newItems} options={{ margin: 24 }}>
-          {newItems.map((elem, index) => {
-            return (
-              <SliderWrapper key={index}>
-                <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
-              </SliderWrapper>
-            );
-          })}
+          {newItems.map((elem, index) => (
+            <SliderWrapper key={index}>
+              <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
+            </SliderWrapper>
+          ))}
         </Slider>
       </div>
-    </div>
+    </NewItemsWrapper>
   );
 }

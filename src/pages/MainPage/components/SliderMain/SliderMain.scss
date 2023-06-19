@@ -1,55 +1,22 @@
 .sale-slider{
     &__container{
-        margin-bottom: 64px;
     }
     &__text{
-        position: absolute;
-        transform: translateX(60px);
-        top: 117px;
-        max-width: 470px;
-        width: 100%;
-        user-select: none;
+
     }
     &__title{
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 51px;
-        color: #1B1B1B;
+
     }
     &__discr{
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: #1B1B1B;
-    }
-    &__item{
-        min-width: 100%;
-        width: 100%;
-        position: relative;
-        &:not(:last-child){
-            margin-right: 30px;
-        }
+
     }
     &-img{
-        user-select: none;
-        pointer-events: none;
-        border-radius: 16px;
+
     }
     &__btn{
-        position: absolute;
-        z-index: 5;
-        bottom: 10px;
-        transform: translate3d(100px, 0, 0);
-        user-select: none;
+
     }
     &__link{
-        padding: 74px 36px;
-        background: #E07153;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 23px;
-        color: #FFFFFF;
-        border-radius: 100%;
-        background-image: url('/src/assets/img/bg-btns.svg');
+
     }
 }

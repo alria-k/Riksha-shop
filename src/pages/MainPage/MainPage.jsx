@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+
 import {
   Advantages,
   SliderMain,
@@ -11,6 +13,10 @@ import {
   getSale,
 } from "./index";
 import { Slider, Container } from "../index";
+
+const SaleSliderWrapper = styled.div`
+  margin-bottom: 64px;
+`;
 
 const saleImg = [
   {
@@ -66,11 +72,11 @@ export function MainPage() {
   return (
     <>
       <Container>
-        <div className="sale-slider__container">
+        <SaleSliderWrapper>
           <Slider obj={saleImg} options={{ margin: 30 }}>
             <SliderMain obj={saleImg} />
           </Slider>
-        </div>
+        </SaleSliderWrapper>
         <Advantages imageArr={advantagesImg} />
         <React.Suspense fallback={<div>Loading...</div>}>
           <NewItems goodsData={goodsPromise} />

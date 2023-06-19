@@ -1,14 +1,37 @@
+import styled from "styled-components";
+
+import { TitleFont } from "../../../../style/styling/styling";
 import { Container } from "../../index";
-import "./About.scss";
+
+const AboutWrapper = styled.div`
+  margin-bottom: 148px;
+  background-image: url("/src/assets/img/About-img-bg.png");
+  background-repeat: no-repeat;
+  background-position: center right 4%;
+`;
+const AboutInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+const AboutTextBox = styled.div`
+  max-width: 553px;
+`;
+const AboutText = styled.p`
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 160%;
+  color: #1b1b1b;
+`;
 
 export function About() {
   return (
-    <div className="about__container">
+    <AboutWrapper>
       <Container>
-        <div className="about__inner">
-          <div className="about__text-box">
-            <h1 className="blocks__title">О компании</h1>
-            <p className="about__discr">
+        <AboutInner>
+          <AboutTextBox>
+            <TitleFont>О компании</TitleFont>
+            <AboutText>
               Вкусная доставка Рикша подарит Вам незабываемые вкусовые
               впечатления, украсит любой ваш стол и не заставит себя долго
               ждать. С нами вы сможете забыть о готовке, легко сделать приятное
@@ -18,15 +41,11 @@ export function About() {
               позиция из Нашего Меню может оказаться у Вас на столе максимум
               через 60 минут! У вас есть возможность сделать предварительный
               заказ на определенный день и время.
-            </p>
-          </div>
-          <img
-            className="about-img"
-            src="/src/assets/img/About-img.png"
-            alt="about"
-          />
-        </div>
+            </AboutText>
+          </AboutTextBox>
+          <img src="/src/assets/img/About-img.png" alt="about" />
+        </AboutInner>
       </Container>
-    </div>
+    </AboutWrapper>
   );
 }
