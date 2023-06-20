@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import { LazyImg } from "../../../../components";
-import "./SliderMain.scss";
 
 const SliderItem = styled(({ width, ...props }) => <div {...props} />)`
   min-width: 100%;

@@ -1,7 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+
 import { Container, Sortby, CategoriesList, Filterby } from "../index";
-import "./Catalog.scss";
+import { CatalogTitle } from "../../style/styling/styling";
+
+const Title = styled.h1`
+  ${CatalogTitle}
+`;
 
 export function Catalog({ data }) {
   const categories = useSelector((state) => state.category.category);
@@ -9,9 +15,9 @@ export function Catalog({ data }) {
   const [items] = data.items.read();
 
   return (
-    <div className="catalog__container">
+    <div>
       <Container>
-        <div className="catalog__title">{items[categories].title}</div>
+        <Title>{items[categories].title}</Title>
         {/* add bread crumbs */}
         <React.Suspense fallback={<div>hello</div>}>
           <Filterby obj={data} />

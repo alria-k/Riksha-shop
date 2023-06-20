@@ -74,10 +74,3 @@
   line-height: 30px;
   color: #1B1B1B;
 }
-
-.size-btns__box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-}

@@ -1,7 +1,18 @@
 import React from "react";
 import Select from "react-select";
 import { useSelector } from "react-redux";
-import "./Sortby.scss";
+import styled from "styled-components";
+
+const SortWrapper = styled.div`
+  margin-bottom: 24px;
+`;
+const SortText = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #b7b7b7;
+  margin-bottom: 8px;
+`;
 
 export function Sortby({ obj }) {
   const categories = useSelector((state) => state.category.category);
@@ -15,8 +26,8 @@ export function Sortby({ obj }) {
 
   return (
     items[categories].sortby && (
-      <div className="catalog-sortby">
-        <p className="catalog-sortby__text">Сортировка</p>
+      <SortWrapper>
+        <SortText>Сортировка</SortText>
         <Select
           options={[
             { value: "default", label: "По умолчанию" },
@@ -35,7 +46,7 @@ export function Sortby({ obj }) {
             }),
           }}
         />
-      </div>
+      </SortWrapper>
     )
   );
 }

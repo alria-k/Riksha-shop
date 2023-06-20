@@ -1,5 +1,23 @@
 import React from "react";
-import "./Price.scss";
+import styled from "styled-components";
+
+const PriceTitle = styled.h2`
+  position: relative;
+  user-select: none;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  color: #1b1b1b;
+`;
+const OldPrice = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: line-through;
+  color: #b7b7b7;
+  position: absolute;
+  top: -15px;
+`;
 
 export function Price({ item, price, setPrice, quantity = 1 }) {
   React.useEffect(() => {
@@ -7,11 +25,11 @@ export function Price({ item, price, setPrice, quantity = 1 }) {
   }, [item]);
 
   return item.sale ? (
-    <h2 className="purchase__price">
-      <span className="purchase__old-price">{price * quantity} ₽</span>
+    <PriceTitle>
+      <OldPrice>{price * quantity} ₽</OldPrice>
       {Math.round(quantity * price - (price / 100) * item.sale)} ₽
-    </h2>
+    </PriceTitle>
   ) : (
-    <h2 className="purchase__price">{price * quantity} ₽</h2>
+    <PriceTitle>{price * quantity} ₽</PriceTitle>
   );
 }
