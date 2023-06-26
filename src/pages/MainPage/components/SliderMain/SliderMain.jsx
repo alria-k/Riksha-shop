@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { Slider } from "../../../../components";
 import { LazyImg } from "../../../../components";
 
-const SliderItem = styled(({ width, ...props }) => <div {...props} />)`
+const SliderItem = styled.div`
   min-width: 100%;
   width: 100%;
   position: relative;
@@ -49,36 +50,48 @@ const SliderLink = styled.a`
   background-image: url("/src/assets/img/bg-btns.svg");
 `;
 
-export function SliderMain({ obj, width, setWidth }) {
-  const ref = React.useRef(null);
+const saleImg = [
+  {
+    id: "1",
+    text: `Вкуснейшие сеты от`,
+    discr: "700 ₽",
+    src: "/src/assets/img/slider/1.jpg",
+    alt: "first-sale",
+  },
+  {
+    id: "2",
+    text: `Калифорния в подарок при первом заказе`,
+    discr: "от 1500 ₽",
+    src: "/src/assets/img/slider/2.jpg",
+    alt: "second-sale",
+  },
+];
 
-  const resizeBox = () => {
-    setWidth(ref.current.offsetWidth);
-    return width;
-  };
+export function SliderMain() {
+  const ref = useRef(null);
+  const [itemWidth, setItemWidth] = useState(0);
 
-  React.useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-    resizeBox();
-  }, [ref.current]);
+  useEffect(
+    () => setItemWidth(ref.current.getBoundingClientRect().width),
+    [ref.current]
+  );
 
-  React.useLayoutEffect(() => {
-    window.addEventListener("resize", resizeBox);
-    return () => window.removeEventListener("resize", resizeBox);
-  });
-
-  return obj.map((elem) => (
-    <SliderItem key={elem.id} ref={ref} style={{ width: width + "px" }}>
-      <SliderTextWrapper>
-        <SliderTitle>{elem.text}</SliderTitle>
-        <SliderText>{elem.discr}</SliderText>
-      </SliderTextWrapper>
-      <LazyImg src={elem.src} alt={elem.alt} clsName={"lol"} />
-      <SliderLinkWrapper>
-        <SliderLink href="#f">Подробнее</SliderLink>
-      </SliderLinkWrapper>
-    </SliderItem>
-  ));
+  return (
+    <>
+      <Slider>
+        {saleImg.map((saleImage) => (
+          <SliderItem key={saleImage.id} ref={ref} style={{ width: itemWidth }}>
+            <SliderTextWrapper>
+              <SliderTitle>{saleImage.text}</SliderTitle>
+              <SliderText>{saleImage.discr}</SliderText>
+            </SliderTextWrapper>
+            <LazyImg src={saleImage.src} alt={saleImage.alt} />
+            <SliderLinkWrapper>
+              <SliderLink href="#f">Подробнее</SliderLink>
+            </SliderLinkWrapper>
+          </SliderItem>
+        ))}
+      </Slider>
+    </>
+  );
 }

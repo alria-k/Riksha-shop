@@ -7,7 +7,7 @@ const ImgLazy = styled.img`
   border-radius: 16px;
 `;
 
-export function LazyImg({ src, alt, clsName }) {
+export function LazyImg({ src, alt }) {
   // const loadImage = async (src) =>
   //   new Promise((resolve, reject) => {
   //     const img = new Image();
@@ -35,5 +35,5 @@ export function LazyImg({ src, alt, clsName }) {
   //   console.log(encodeImage(src));
   // }, src);
 
-  return <ImgLazy src={src} alt={alt} className={clsName} />;
+  return <ImgLazy src={src} alt={alt} />;
 }
