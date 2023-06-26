@@ -1,7 +1,41 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import classNames from "classnames";
-import "./Filterby.scss";
+import styled from "styled-components";
+
+const FilterByWrapper = styled.div`
+  margin-bottom: 14px;
+`;
+const FilterByList = styled.ul`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+`;
+const FilterByBtn = styled(({ category, key, ...props }) => (
+  <button {...props} />
+))`
+  ${({ category, key }) =>
+    category == key &&
+    `
+    color: #E07153;
+    border-color: #E07153;
+  `}
+  outline: none;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background-color: #fff;
+  display: inline-flex;
+  gap: 8px;
+  padding: 12px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1b1b1b;
+  align-items: center;
+`;
+const FilterByImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
 
 export function Filterby({ obj }) {
   const categories = useSelector((state) => state.category.category);
@@ -20,30 +54,23 @@ export function Filterby({ obj }) {
 
   return (
     items[categories].categories.length && (
-      <div className="catalog-categories">
-        <ul className="catalog-categories__list">
+      <FilterByWrapper>
+        <FilterByList>
           {items[categories].categories.map((elem) => {
             return (
-              <li key={elem.id} className="catalog-categories__item">
-                <button
-                  onClick={(e) => handlerCategory(e, elem.key)}
-                  className={classNames({
-                    "catalog-categories__btn": true,
-                    "catalog-categories__btn--active": currCategory == elem.key,
-                  })}
-                >
-                  <img
-                    className="catalog-categories__img"
+              <li key={elem.id}>
+                <FilterByBtn onClick={(e) => handlerCategory(e, elem.key)}>
+                  <FilterByImg
                     src={`/src/assets/img/categories-icons/${elem.icon}`}
-                    alt=""
+                    alt="filter-icon"
                   />
                   {elem.text}
-                </button>
+                </FilterByBtn>
               </li>
             );
           })}
-        </ul>
-      </div>
+        </FilterByList>
+      </FilterByWrapper>
     )
   );
 }

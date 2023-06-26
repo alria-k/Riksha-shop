@@ -1,11 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import styled from "styled-components";
+
 import { MainPage, Catalog, ItemPage } from "../index";
-import "./Main.scss";
+
+const MainWrapper = styled.main`
+  margin-bottom: 187px;
+`;
 
 export function Main() {
   return (
-    <main className="main">
+    <MainWrapper>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<MainPage />} />
@@ -16,6 +21,6 @@ export function Main() {
         <Route path="/:category" element={<Catalog />} />
         <Route path="/:category/:item" element={<ItemPage />} />
       </Routes>
-    </main>
+    </MainWrapper>
   );
 }

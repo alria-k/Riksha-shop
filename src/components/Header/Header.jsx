@@ -1,16 +1,32 @@
+import styled from "styled-components";
+
 import { Container } from "../index";
 import { Nav } from "./";
-import "./Header.scss";
+
+const HeaderWrapper = styled.header`
+  background: linear-gradient(#f5f5f5, #f5f5f5);
+  background-size: auto 52%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-bottom: 5px;
+  margin-bottom: 48px;
+`;
+const HeaderInner = styled.div`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+`;
 
 export function Header() {
   return (
-    <header className="header">
+    <HeaderWrapper>
       <Container>
-        <div className="header__inner">
-          <img className="logo-img" src="/src/assets/img/logo.svg" alt="" />
+        <HeaderInner>
+          <img src="/src/assets/img/logo.svg" alt="logo-icon" />
           <Nav />
-        </div>
+        </HeaderInner>
       </Container>
-    </header>
+    </HeaderWrapper>
   );
 }

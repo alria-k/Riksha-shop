@@ -1,5 +1,6 @@
-import classNames from "classnames";
-import "./CategoryPageRedict.scss";
+import styled from "styled-components";
+
+const CategoriesWrapper = styled.div``;
 
 export function CategoryPageRedict({
   allItems,
