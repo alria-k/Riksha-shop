@@ -1,17 +1,18 @@
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import { TitleFont } from "../../../../style/styling/styling";
-import { Slider, SliderWrapper, ItemCard } from "../../index";
+import { Slider, ItemCard } from "../../index";
 
-const NewItemsWrapper = styled.div`
-  .slider-wrapper {
-    min-width: 392px;
-    width: 100%;
-    margin-right: 24px;
-  }
+const NewItemsSlider = styled.div`
+  min-width: 392px;
+  width: 100%;
+  margin-right: 24px;
 `;
 
 export function NewItems({ goodsData }) {
+  const ref = useRef(null);
+  const [itemWidth, setItemWidth] = useState(0);
   const [items] = goodsData.read();
 
   function getNewItems() {
@@ -33,18 +34,23 @@ export function NewItems({ goodsData }) {
 
   let newItems = getNewItems();
 
+  useEffect(
+    () => setItemWidth(ref.current.getBoundingClientRect().width),
+    [ref.current]
+  );
+
   return (
-    <NewItemsWrapper>
+    <div>
       <TitleFont>Новинки</TitleFont>
       <div>
-        <Slider obj={newItems} options={{ margin: 24 }}>
+        <Slider itemWidth={itemWidth} options={{ margin: 24 }}>
           {newItems.map((elem, index) => (
-            <SliderWrapper key={index}>
+            <NewItemsSlider key={index} ref={ref} style={{ width: itemWidth }}>
               <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
-            </SliderWrapper>
+            </NewItemsSlider>
           ))}
         </Slider>
       </div>
-    </NewItemsWrapper>
+    </div>
   );
 }

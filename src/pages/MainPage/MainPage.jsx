@@ -17,23 +17,10 @@ import { Slider, Container } from "../index";
 const SaleSliderWrapper = styled.div`
   margin-bottom: 64px;
 `;
+const MainWrapper = styled.main`
+  margin-bottom: 187px;
+`;
 
-const saleImg = [
-  {
-    id: "1",
-    text: `Вкуснейшие сеты от`,
-    discr: "700 ₽",
-    src: "/src/assets/img/slider/1.jpg",
-    alt: "first-sale",
-  },
-  {
-    id: "2",
-    text: `Калифорния в подарок при первом заказе`,
-    discr: "от 1500 ₽",
-    src: "/src/assets/img/slider/2.jpg",
-    alt: "second-sale",
-  },
-];
 const advantagesImg = [
   {
     id: 1,
@@ -70,13 +57,9 @@ const salePromise = getSale();
 
 export function MainPage() {
   return (
-    <>
+    <MainWrapper>
       <Container>
-        <SaleSliderWrapper>
-          <Slider obj={saleImg} options={{ margin: 30 }}>
-            <SliderMain obj={saleImg} />
-          </Slider>
-        </SaleSliderWrapper>
+        <SliderMain />
         <Advantages imageArr={advantagesImg} />
         <React.Suspense fallback={<div>Loading...</div>}>
           <NewItems goodsData={goodsPromise} />
@@ -90,6 +73,6 @@ export function MainPage() {
       <Container>
         <SocialMedia />
       </Container>
-    </>
+    </MainWrapper>
   );
 }

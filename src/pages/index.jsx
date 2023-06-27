@@ -7,7 +7,6 @@ export {
   CategoryPageRedict,
   Sortby,
   CategoriesList,
-  SliderWrapper,
   Price,
   Sizes,
   LazyImg,

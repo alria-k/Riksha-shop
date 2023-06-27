@@ -9,7 +9,6 @@ export {
   Container,
   ItemCard,
   Slider,
-  SliderWrapper,
   SaleCard,
   CategoriesNav,
   CategoryPageRedict,

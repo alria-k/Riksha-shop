@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container, Slider, SliderWrapper, Price, Sizes } from "../index";
+import { Container, Slider, Price, Sizes } from "../index";
 import { CatalogTitle, ParagraphFont } from "../../style/styling/styling";
 
 const ItemText = styled(({ weight = false, ...props }) => <p {...props} />)`
@@ -128,14 +128,12 @@ export function ItemPage({ data }) {
         </ItemStepBackWrapper>
         <div>
           <ItemInfoWrapper>
-            <Slider obj={[0, 1, 2]} options={{ margin: 50 }} single={true}>
+            <Slider obj={[0, 1, 2]} options={{ margin: 50 }}>
               {[...Array(3).keys()].map((_, id) => (
-                <SliderWrapper key={id}>
-                  <ItemImg
-                    src={`/src/assets/img/categories/${category}/${currentItem.img}`}
-                    alt={`${category}-img`}
-                  />
-                </SliderWrapper>
+                <ItemImg
+                  src={`/src/assets/img/categories/${category}/${currentItem.img}`}
+                  alt={`${category}-img`}
+                />
               ))}
             </Slider>
             <div>

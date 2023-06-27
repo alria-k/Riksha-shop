@@ -77,21 +77,19 @@ export function SliderMain() {
   );
 
   return (
-    <>
-      <Slider>
-        {saleImg.map((saleImage) => (
-          <SliderItem key={saleImage.id} ref={ref} style={{ width: itemWidth }}>
-            <SliderTextWrapper>
-              <SliderTitle>{saleImage.text}</SliderTitle>
-              <SliderText>{saleImage.discr}</SliderText>
-            </SliderTextWrapper>
-            <LazyImg src={saleImage.src} alt={saleImage.alt} />
-            <SliderLinkWrapper>
-              <SliderLink href="#f">Подробнее</SliderLink>
-            </SliderLinkWrapper>
-          </SliderItem>
-        ))}
-      </Slider>
-    </>
+    <Slider itemWidth={itemWidth} options={{ margin: 30 }}>
+      {saleImg.map((saleImage) => (
+        <SliderItem key={saleImage.id} ref={ref} style={{ width: itemWidth }}>
+          <SliderTextWrapper>
+            <SliderTitle>{saleImage.text}</SliderTitle>
+            <SliderText>{saleImage.discr}</SliderText>
+          </SliderTextWrapper>
+          <LazyImg src={saleImage.src} alt={saleImage.alt} />
+          <SliderLinkWrapper>
+            <SliderLink href="#f">Подробнее</SliderLink>
+          </SliderLinkWrapper>
+        </SliderItem>
+      ))}
+    </Slider>
   );
 }

@@ -1,9 +1,7 @@
 export { Header } from "./Header/Header";
-export { Main } from "./Main/Main";
 export { Footer } from "./Footer/Footer";
 export { Container } from "./Container/Container";
 export { Slider } from "./Slider/Slider";
-export { SliderWrapper } from "./Slider/SliderWrapper";
 export { ItemCard } from "./ItemCard/ItemCard";
 export { SaleCard } from "./SaleCard/SaleCard";
 export { Sortby } from "./Sortby/Sortby";
