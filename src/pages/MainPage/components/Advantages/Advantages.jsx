@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ParagraphFont } from "../../../../style/styling/styling";
+import { paragraphFont } from "../../../../style/styling/styling";
 
 const AdvantagesWrapper = styled.div`
   margin-bottom: 145px;
@@ -26,7 +26,7 @@ const AdvantagesTitle = styled.h6`
   margin-bottom: 2px;
 `;
 const AdvantagesText = styled.p`
-  ${ParagraphFont}
+  ${paragraphFont}
 `;
 
 export function Advantages({ imageArr }) {

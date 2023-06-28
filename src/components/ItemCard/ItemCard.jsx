@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { BtnStyles } from "../../style/styling/styling";
+import { btnStyles } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
 
@@ -59,7 +59,7 @@ const PurchaseWrapper = styled.div`
   align-items: center;
 `;
 const PurchaseButton = styled.button`
-  ${BtnStyles}
+  ${btnStyles}
 `;
 
 export function ItemCard({ obj, i, category }) {

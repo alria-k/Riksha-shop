@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { TitleFont, BtnStyles } from "../../../../style/styling/styling";
+import { TitleFont, btnStyles } from "../../../../style/styling/styling";
 
 const SocialTextWrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const SocialTextWrapper = styled.div`
   justify-content: space-between;
 `;
 const SocialLink = styled.a`
-  ${BtnStyles}
+  ${btnStyles}
   font-weight: 700;
   font-size: 24px;
   line-height: 120%;

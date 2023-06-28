@@ -3,7 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Container, Slider, Price, Sizes } from "../index";
-import { CatalogTitle, ParagraphFont } from "../../style/styling/styling";
+import {
+  catalogTitle,
+  paragraphFont,
+  btnStyles,
+} from "../../style/styling/styling";
 
 const ItemText = styled(({ weight = false, ...props }) => <p {...props} />)`
   ${({ weight }) => weight && `margin-bottom: 8px;`}
@@ -34,8 +38,8 @@ const ItemImg = styled.img`
   border: 1px solid #e2e1e1;
   width: 570px;
 `;
-const ItemCatalogTitle = styled.h1`
-  ${CatalogTitle}
+const ItemcatalogTitle = styled.h1`
+  ${catalogTitle}
 `;
 const ItemDeliveryWrapper = styled.div`
   display: flex;
@@ -44,11 +48,11 @@ const ItemDeliveryWrapper = styled.div`
   margin-bottom: 23px;
 `;
 const ItemDeliveryText = styled.p`
-  ${ParagraphFont}
+  ${paragraphFont}
   font-weight: 500;
 `;
 const ItemCompositionText = styled.p`
-  ${ParagraphFont}
+  ${paragraphFont}
 `;
 const ItemDeliveryLink = styled(Link)`
   font-weight: 500;
@@ -78,6 +82,45 @@ const ItemPageQuantityWrapper = styled.div`
   border: 1px solid #e2e1e1;
   border-radius: 8px;
   gap: 24px;
+`;
+const OrganicTableWrapper = styled.table`
+  text-align: center;
+  padding: 9.5px 0;
+  border: 1px solid #e2e1e1;
+  margin-bottom: 24px;
+`;
+const OrganicTitle = styled.th`
+  ${paragraphFont}
+  min-width: 132px;
+  :not(:last-child) {
+    border-right: 1px solid #e2e1e1;
+  }
+`;
+const OrganicDiscr = styled.td`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  :not(:last-child) {
+    border-right: 1px solid #e2e1e1;
+  }
+`;
+const QuantitySetter = styled.button`
+  font-weight: 200;
+  font-size: 28px;
+  line-height: 34px;
+  color: #e07153;
+  border: none;
+  outline: none;
+  background-color: transparent;
+`;
+const QuantityText = styled.p`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  color: #1b1b1b;
+`;
+const OrderBtn = styled.button`
+  ${btnStyles}
 `;
 
 export function ItemPage({ data }) {
@@ -137,46 +180,34 @@ export function ItemPage({ data }) {
               ))}
             </Slider>
             <div>
-              <ItemCatalogTitle>{currentItem.text}</ItemCatalogTitle>
+              <ItemcatalogTitle>{currentItem.text}</ItemcatalogTitle>
               <ItemText weight={true}>
                 Вес: <span>{currentItem.gramms} грамм</span>
               </ItemText>
               {currentItem.organic ? (
-                <div className="itempage__organic">
-                  <table className="itempage__organic-table">
+                <div>
+                  <OrganicTableWrapper>
                     <thead>
-                      <tr className="organic-table__header">
-                        <th className="organic-table__title usual-font-p">
-                          Белки
-                        </th>
-                        <th className="organic-table__title usual-font-p">
-                          Углеводы
-                        </th>
-                        <th className="organic-table__title usual-font-p">
-                          Жиры
-                        </th>
-                        <th className="organic-table__title usual-font-p">
-                          Каллорийность
-                        </th>
+                      <tr>
+                        <OrganicTitle>Белки</OrganicTitle>
+                        <OrganicTitle>Углеводы</OrganicTitle>
+                        <OrganicTitle>Жиры</OrganicTitle>
+                        <OrganicTitle>Каллорийность</OrganicTitle>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="organic-table__body">
-                        <td className="organic-table__discr">
+                      <tr>
+                        <OrganicDiscr>
                           {currentItem.organic.protein}
-                        </td>
-                        <td className="organic-table__discr">
-                          {currentItem.organic.carbs}
-                        </td>
-                        <td className="organic-table__discr">
-                          {currentItem.organic.fats}
-                        </td>
-                        <td className="organic-table__discr">
+                        </OrganicDiscr>
+                        <OrganicDiscr>{currentItem.organic.carbs}</OrganicDiscr>
+                        <OrganicDiscr>{currentItem.organic.fats}</OrganicDiscr>
+                        <OrganicDiscr>
                           {currentItem.organic.calories}
-                        </td>
+                        </OrganicDiscr>
                       </tr>
                     </tbody>
-                  </table>
+                  </OrganicTableWrapper>
                 </div>
               ) : (
                 ""
@@ -207,23 +238,15 @@ export function ItemPage({ data }) {
                   quantity={quantity}
                 />
                 <ItemPageQuantityWrapper>
-                  <button
-                    className="quantity-setter quantity-decrease"
-                    onClick={handlerQuantityMinus}
-                  >
+                  <QuantitySetter onClick={handlerQuantityMinus}>
                     -
-                  </button>
-                  <p className="quantity-text">{quantity}</p>
-                  <button
-                    className="quantity-setter quantity-increase"
-                    onClick={handlerQuantityPlus}
-                  >
+                  </QuantitySetter>
+                  <QuantityText>{quantity}</QuantityText>
+                  <QuantitySetter onClick={handlerQuantityPlus}>
                     +
-                  </button>
+                  </QuantitySetter>
                 </ItemPageQuantityWrapper>
-                <button className="itempage__btn purchase__btn">
-                  Заказать
-                </button>
+                <OrderBtn>Заказать</OrderBtn>
               </ItemPriceWrapper>
             </div>
           </ItemInfoWrapper>

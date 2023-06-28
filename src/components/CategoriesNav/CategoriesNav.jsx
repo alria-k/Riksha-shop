@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { changeCategory } from "../index";
-import { NavFlex } from "../../style/styling/styling";
+import { navFlex } from "../../style/styling/styling";
 
 const categoriesItems = [
   {
@@ -79,7 +79,7 @@ const categoriesItems = [
 
 const NavigationList = styled.ul`
   justify-content: space-between;
-  ${NavFlex}
+  ${navFlex}
   ${({ categoriesStyles }) =>
     categoriesStyles &&
     `flex-wrap: wrap;

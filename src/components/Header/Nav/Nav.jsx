@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { CategoriesNav, Menu, PhoneNumber, UserInteface } from "../index";
-import { NavFlex } from "../../../style/styling/styling";
+import { navFlex } from "../../../style/styling/styling";
 
 const HeaderNavBox = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ const NavBox = styled.div`
 `;
 
 const NavMenu = styled.nav`
-  ${NavFlex}
+  ${navFlex}
   justify-content: space-between;
 `;
 

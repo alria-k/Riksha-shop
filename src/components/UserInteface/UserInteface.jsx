@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { NavFlex } from "../../style/styling/styling";
+import { navFlex } from "../../style/styling/styling";
 
 const UserIntefaceBox = styled.ul`
-  ${NavFlex}
+  ${navFlex}
   gap: 24px;
 `;
 

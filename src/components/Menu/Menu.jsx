@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ParagraphFont } from "../../style/styling/styling";
+import { paragraphFont } from "../../style/styling/styling";
 
 const menuItems = [
   {
@@ -36,7 +36,7 @@ const StyledLink = styled(({ positionFooter, ...props }) => (
   display: block;
   padding: 8px 0;
   ${({ positionFooter }) =>
-    positionFooter ? `${ParagraphFont}{color: #FFFFFF;}` : `${ParagraphFont}`}
+    positionFooter ? `${paragraphFont}{color: #FFFFFF;}` : `${paragraphFont}`}
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       text-decoration: underline;

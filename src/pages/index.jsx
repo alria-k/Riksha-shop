@@ -11,8 +11,6 @@ export {
   Sizes,
   LazyImg,
   Filterby,
-  getGoods,
-  getSale,
 } from "../components";
 export { MainPage } from "./MainPage/MainPage";
 export { Catalog } from "./Catalog/Catalog";

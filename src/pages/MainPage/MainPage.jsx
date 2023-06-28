@@ -9,14 +9,9 @@ import {
   Categories,
   About,
   SocialMedia,
-  getGoods,
-  getSale,
 } from "./index";
-import { Slider, Container } from "../index";
+import { Container } from "../index";
 
-const SaleSliderWrapper = styled.div`
-  margin-bottom: 64px;
-`;
 const MainWrapper = styled.main`
   margin-bottom: 187px;
 `;
@@ -51,9 +46,6 @@ const advantagesImg = [
     alt: "grocery-icon",
   },
 ];
-
-const goodsPromise = getGoods();
-const salePromise = getSale();
 
 export function MainPage() {
   return (

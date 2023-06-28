@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 
 import { MainPage, Catalog, ItemPage } from "./components";
 import { Header, Footer } from "./components";
-import "./App.scss";
 
 function App() {
   return (

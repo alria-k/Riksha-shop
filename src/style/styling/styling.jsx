@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 
-export const NavFlex = css`
+export const navFlex = css`
   display: flex;
   align-items: center;
 `;
 
-export const ParagraphFont = css`
+export const paragraphFont = css`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #1b1b1b;
 `;
 
-export const BtnStyles = css`
+export const btnStyles = css`
   user-select: none;
   padding: 13px 59px;
   background-color: #e07153;
@@ -39,7 +39,7 @@ export const TitleFont = styled.h1`
   }
 `;
 
-export const CatalogTitle = css`
+export const catalogTitle = css`
   font-weight: 600;
   font-size: 40px;
   line-height: 50px;

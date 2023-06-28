@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Container, Sortby, CategoriesList, Filterby } from "../index";
-import { CatalogTitle } from "../../style/styling/styling";
+import { catalogTitle } from "../../style/styling/styling";
 
 const Title = styled.h1`
-  ${CatalogTitle}
+  ${catalogTitle}
 `;
 
 export function Catalog({ data }) {

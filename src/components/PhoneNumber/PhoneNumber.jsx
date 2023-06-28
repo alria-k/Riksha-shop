@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { NavFlex } from "../../style/styling/styling";
+import { navFlex } from "../../style/styling/styling";
 
 const PhoneNumberBox = styled.ul`
-  ${NavFlex}
+  ${navFlex}
   flex-direction: column;
   align-items: flex-end;
   gap: 3px;
