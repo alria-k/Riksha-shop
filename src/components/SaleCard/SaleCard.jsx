@@ -30,7 +30,7 @@ const CardText = styled.p`
 `;
 
 export function SaleCard({ obj, i }) {
-  let currentItem = obj.sale.items[i];
+  const currentItem = obj.sale.items[i];
 
   return (
     i < obj.sale.items.length && (

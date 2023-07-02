@@ -11,14 +11,12 @@ const CategoriesBox = styled.div`
   margin-bottom: 50px;
 `;
 
+const itemsOnOnePage = 15;
+
 export function CategoriesList({ saleData, goodsData }) {
   const categories = useSelector((state) => state.category.category);
 
   const [currPage, setCurrPage] = React.useState(1);
-  const itemsOnOnePage = 15;
-
-  const [sale] = saleData.read();
-  const [items] = goodsData.read();
 
   React.useEffect(() => {
     setCurrPage(1);
@@ -29,9 +27,14 @@ export function CategoriesList({ saleData, goodsData }) {
       <CategoriesBox>
         {[...Array(itemsOnOnePage).keys()].map((_, index) => {
           return categories == "sale" ? (
-            <SaleCard key={index} obj={sale} i={index} />
+            <SaleCard key={index} obj={saleData} i={index} />
           ) : (
-            <ItemCard key={index} obj={items} i={index} category={categories} />
+            <ItemCard
+              key={index}
+              obj={goodsData}
+              i={index}
+              category={categories}
+            />
           );
         })}
       </CategoriesBox>

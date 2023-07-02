@@ -29,11 +29,42 @@ const AdvantagesText = styled.p`
   ${paragraphFont}
 `;
 
-export function Advantages({ imageArr }) {
+const advantagesImg = [
+  {
+    id: 1,
+    title: "доставка",
+    text: "при заказе от 600 ₽",
+    img: "/src/assets/img/advantages/1.svg",
+    alt: "delivery-icon",
+  },
+  {
+    id: 2,
+    title: "за 60 мин",
+    text: "или проморол за опоздание",
+    img: "/src/assets/img/advantages/2.svg",
+    alt: "one-min-icon",
+  },
+  {
+    id: 3,
+    title: "бонусы",
+    text: "бонусная система 1 ₽ = 1 бонус",
+    img: "/src/assets/img/advantages/3.svg",
+    alt: "bonus-icon",
+  },
+  {
+    id: 4,
+    title: "продукты",
+    text: "Никаких заготовок!",
+    img: "/src/assets/img/advantages/4.svg",
+    alt: "grocery-icon",
+  },
+];
+
+export function Advantages() {
   return (
     <AdvantagesWrapper>
       <AdvantagesList>
-        {imageArr.map((elem) => {
+        {advantagesImg.map((elem) => {
           return (
             <AdvantagesListItem key={elem.id}>
               <AdvantagesImg src={elem.img} alt={elem.alt} />

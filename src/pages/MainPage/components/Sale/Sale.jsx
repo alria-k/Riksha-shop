@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { TitleFont } from "../../../../style/styling/styling";
@@ -13,20 +14,27 @@ const SaleList = styled.ul`
   gap: 16px;
 `;
 
-export function Sale({ saleData }) {
-  const [sale] = saleData.read();
+const itemsOnOnePage = 3;
 
-  const itemsOnOnePage = 3;
+export function Sale({ saleData }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    saleData && setLoading(false);
+  }, [saleData]);
 
   return (
     <SaleWrapper>
       <TitleFont>Акции</TitleFont>
       <SaleList>
-        {[...Array(itemsOnOnePage).keys()].map((_, index) => (
-          <li key={index}>
-            <SaleCard obj={sale} i={index} />
-          </li>
-        ))}
+        {[...Array(itemsOnOnePage).keys()].map(
+          (_, index) =>
+            !loading && (
+              <li key={index}>
+                <SaleCard obj={saleData} i={index} />
+              </li>
+            )
+        )}
       </SaleList>
     </SaleWrapper>
   );

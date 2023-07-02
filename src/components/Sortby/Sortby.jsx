@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const SortWrapper = styled.div`
@@ -14,18 +13,15 @@ const SortText = styled.p`
   margin-bottom: 8px;
 `;
 
-export function Sortby({ obj }) {
-  const categories = useSelector((state) => state.category.category);
-  const [sort, setSort] = React.useState("default");
-
-  const [items] = obj.items.read();
+export function Sortby({ data }) {
+  const [sort, setSort] = useState("default");
 
   function handlerSortBy(sort) {
     setSort(sort);
   }
 
   return (
-    items[categories].sortby && (
+    data.sortby && (
       <SortWrapper>
         <SortText>Сортировка</SortText>
         <Select

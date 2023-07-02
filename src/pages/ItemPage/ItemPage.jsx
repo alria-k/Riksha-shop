@@ -123,9 +123,7 @@ const OrderBtn = styled.button`
   ${btnStyles}
 `;
 
-export function ItemPage({ data }) {
-  const [items] = data.items.read();
-
+export function ItemPage() {
   const { category, item } = useParams();
 
   const indexOfItem = item - 1;

@@ -17,4 +17,4 @@ export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
 export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
 export { MainPage, Catalog, ItemPage } from "../pages/index";
-export { changeCategory } from "../redux";
+export { changeCategory, setClickedCategory } from "../redux";

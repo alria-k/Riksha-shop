@@ -63,9 +63,8 @@ const PurchaseButton = styled.button`
 `;
 
 export function ItemCard({ obj, i, category }) {
+  const currentItem = obj[category].items[i];
   const [price, setPrice] = React.useState(0);
-
-  let currentItem = obj[category].items[i];
 
   return (
     i < obj[category].items.length && (

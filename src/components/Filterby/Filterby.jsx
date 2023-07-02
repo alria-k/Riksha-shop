@@ -37,11 +37,8 @@ const FilterByImg = styled.img`
   height: 24px;
 `;
 
-export function Filterby({ obj }) {
-  const categories = useSelector((state) => state.category.category);
+export function Filterby({ data }) {
   const [currCategory, setCurrCategory] = React.useState(null);
-
-  const [items] = obj.items.read();
 
   function handlerCategory(event, category) {
     event.preventDefault();
@@ -53,10 +50,10 @@ export function Filterby({ obj }) {
   }
 
   return (
-    items[categories].categories.length && (
+    data.categories.length && (
       <FilterByWrapper>
         <FilterByList>
-          {items[categories].categories.map((elem) => {
+          {data.categories.map((elem) => {
             return (
               <li key={elem.id}>
                 <FilterByBtn onClick={(e) => handlerCategory(e, elem.key)}>

@@ -15,3 +15,4 @@ export {
 export { MainPage } from "./MainPage/MainPage";
 export { Catalog } from "./Catalog/Catalog";
 export { ItemPage } from "./ItemPage/ItemPage";
+export { setClickedCategory } from "../redux";

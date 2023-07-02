@@ -4,6 +4,89 @@ import { Link } from "react-router-dom";
 import { changeCategory } from "../index";
 import { navFlex } from "../../style/styling/styling";
 
+const NavigationList = styled(
+  ({ positionFooter, categoriesStyles, ...props }) => <ul {...props} />
+)`
+  justify-content: space-between;
+  ${navFlex}
+  ${({ categoriesStyles }) =>
+    categoriesStyles &&
+    `flex-wrap: wrap;
+    justify-content: center;
+    padding: 18px 12px;
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 31px;`}
+  ${({ positionFooter }) =>
+    positionFooter &&
+    `row-gap: 20px;
+    column-gap: 40px;
+    flex-wrap: wrap;
+    max-width: 410px;
+    justify-content: flex-start;`}
+`;
+
+const CategoryImg = styled.img`
+  margin: 0 auto;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  transition: filter 0.2s ease-in-out;
+`;
+
+const CategoryLink = styled(
+  ({ categoriesStyles, positionFooter, activeLink, ...props }) => (
+    <Link {...props} />
+  )
+)`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1b1b1b;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ${({ categoriesStyles, activeLink }) =>
+    categoriesStyles &&
+    `display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 20px;
+      border-radius: 12px;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      ${
+        activeLink &&
+        `
+          background: #E07153;
+          box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+          color: white;
+          ${CategoryImg}{
+            filter: grayscale(100%) brightness(180%);
+          }
+        `
+      }}
+      &:hover{
+        background: #E07153;
+        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+        color: white;
+          ${CategoryImg}{
+            filter: grayscale(100%) brightness(180%);
+          }
+      }
+      `}
+  ${({ positionFooter }) =>
+    positionFooter &&
+    `color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    `}
+`;
+
 const categoriesItems = [
   {
     id: 1,
@@ -77,74 +160,6 @@ const categoriesItems = [
   },
 ];
 
-const NavigationList = styled.ul`
-  justify-content: space-between;
-  ${navFlex}
-  ${({ categoriesStyles }) =>
-    categoriesStyles &&
-    `flex-wrap: wrap;
-    justify-content: center;
-    padding: 18px 12px;
-    background: #fff;
-    border-radius: 16px;
-    margin-bottom: 31px;`}
-  ${({ positionFooter }) =>
-    positionFooter &&
-    `row-gap: 20px;
-    column-gap: 40px;
-    flex-wrap: wrap;
-    max-width: 410px;
-    justify-content: flex-start;`}
-`;
-
-const CategoryImg = styled.img`
-  margin: 0 auto;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  transition: filter 0.2s ease-in-out;
-`;
-
-const CategoryLink = styled(
-  ({ categoriesStyles, positionFooter, ...props }) => <Link {...props} />
-)`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1b1b1b;
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  ${({ categoriesStyles }) =>
-    categoriesStyles &&
-    `display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 20px;
-      border-radius: 12px;
-      transition: all 0.2s ease-in-out;
-      text-decoration: none;
-      &:hover{
-        background: #E07153;
-        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
-        color: white;
-          ${CategoryImg}{
-            filter: grayscale(100%) brightness(180%);
-          }
-      }
-      `}
-  ${({ positionFooter }) =>
-    positionFooter &&
-    `color: #FFFFFF;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    `}
-`;
-
 export function CategoriesNav({
   swtch = false,
   imgAllow = true,
@@ -172,6 +187,7 @@ export function CategoriesNav({
             <CategoryLink
               categoriesStyles={categoriesStyles}
               positionFooter={positionFooter}
+              activeLink={elem.key == categories}
               onClick={(e) => handleCategory(e, elem.key)}
               to={elem.key}
             >

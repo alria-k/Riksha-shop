@@ -29,21 +29,20 @@ const PageNumber = styled.button`
     color: #c95c3f;
   }
 `;
-const NumberItem =
-  styled.li <
-  { $activePage, $page } >
-  `
-  ${({ $activePage, $page }) =>
-    $activePage == $page &&
+const NumberItem = styled(({ activePage, page, ...props }) => (
+  <li {...props} />
+))`
+  ${({ activePage, page }) =>
+    activePage == page &&
     `
-      font-weight: 500;
-      background-image: url('/src/assets/img/Active-page-category.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      ${PageNumber}{
-        color: #C95C3F;
-      }
-  `}
+        font-weight: 500;
+        background-image: url('/src/assets/img/Active-page-category.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        ${PageNumber}{
+          color: #C95C3F;
+        }
+    `}
 `;
 
 export function CategoryPageRedict({

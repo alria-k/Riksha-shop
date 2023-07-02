@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import {
   Advantages,
@@ -16,50 +17,28 @@ const MainWrapper = styled.main`
   margin-bottom: 187px;
 `;
 
-const advantagesImg = [
-  {
-    id: 1,
-    title: "доставка",
-    text: "при заказе от 600 ₽",
-    img: "/src/assets/img/advantages/1.svg",
-    alt: "delivery-icon",
-  },
-  {
-    id: 2,
-    title: "за 60 мин",
-    text: "или проморол за опоздание",
-    img: "/src/assets/img/advantages/2.svg",
-    alt: "one-min-icon",
-  },
-  {
-    id: 3,
-    title: "бонусы",
-    text: "бонусная система 1 ₽ = 1 бонус",
-    img: "/src/assets/img/advantages/3.svg",
-    alt: "bonus-icon",
-  },
-  {
-    id: 4,
-    title: "продукты",
-    text: "Никаких заготовок!",
-    img: "/src/assets/img/advantages/4.svg",
-    alt: "grocery-icon",
-  },
-];
-
 export function MainPage() {
+  const [goods, setGoods] = useState([]);
+  const [sale, setSale] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("/src/db/items.json"),
+      axios.get("/src/db/sale.json"),
+    ]).then((dataArray) => {
+      setGoods(dataArray[0].data);
+      setSale(dataArray[1].data);
+    });
+  }, []);
+
   return (
     <MainWrapper>
       <Container>
         <SliderMain />
-        <Advantages imageArr={advantagesImg} />
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <NewItems goodsData={goodsPromise} />
-        </React.Suspense>
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <Sale saleData={salePromise} />
-        </React.Suspense>
-        <Categories saleData={salePromise} goodsData={goodsPromise} />
+        <Advantages />
+        <NewItems goodsData={goods[0]} />
+        <Sale saleData={sale[0]} />
+        <Categories goodsData={goods[0]} saleData={sale[0]} />
       </Container>
       <About />
       <Container>

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-
 import { CategoriesNav, CategoriesList } from "../../index";
 import { TitleFont } from "../../../../style/styling/styling";
 
@@ -37,14 +36,17 @@ const CategoriesLink = styled(Link)`
 
 export function Categories({ saleData, goodsData }) {
   const categories = useSelector((state) => state.category.category);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    saleData && goodsData && setLoading(false);
+  }, [saleData, goodsData]);
 
   return (
     <CategoriesWrapper>
       <TitleFont>Категории</TitleFont>
       <CategoriesNav swtch={true} categoriesStyles={true} />
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <CategoriesList saleData={saleData} goodsData={goodsData} />
-      </React.Suspense>
+      {!loading && <CategoriesList saleData={saleData} goodsData={goodsData} />}
       <CategoriesLink to={categories}>
         Перейти в каталог
         <svg

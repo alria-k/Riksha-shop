@@ -9,25 +9,20 @@ const Title = styled.h1`
   ${catalogTitle}
 `;
 
-export function Catalog({ data }) {
-  const categories = useSelector((state) => state.category.category);
-
-  const [items] = data.items.read();
+export function Catalog() {
+  const [categories, data] = useSelector((state) => [
+    state.category.category,
+    state.clickedCategory.clickedCategory,
+  ]);
 
   return (
     <div>
       <Container>
-        <Title>{items[categories].title}</Title>
+        <Title>{data.title}</Title>
         {/* add bread crumbs */}
-        <React.Suspense fallback={<div>hello</div>}>
-          <Filterby obj={data} />
-        </React.Suspense>
-        <React.Suspense fallback={<div>hello</div>}>
-          <Sortby obj={data} />
-        </React.Suspense>
-        <React.Suspense fallback={<div>hello</div>}>
-          <CategoriesList obj={data} />
-        </React.Suspense>
+        <Filterby data={data} />
+        <Sortby data={data} />
+        {/* <CategoriesList/> */}
         {/* add 'about' component */}
       </Container>
     </div>

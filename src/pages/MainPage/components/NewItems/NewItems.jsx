@@ -10,45 +10,53 @@ const NewItemsSlider = styled.div`
   margin-right: 24px;
 `;
 
+function getNewItems(arr, data) {
+  for (let key in data) {
+    data[key].items.filter((e) => {
+      if (e.new) {
+        arr.push({
+          [key]: {
+            ...data[key],
+            items: [e],
+          },
+        });
+      }
+    });
+  }
+  return arr;
+}
+
 export function NewItems({ goodsData }) {
   const ref = useRef(null);
   const [itemWidth, setItemWidth] = useState(0);
-  const [items] = goodsData.read();
+  const [loading, setLoading] = useState(true);
+  const newItems = [];
 
-  function getNewItems() {
-    let newItemsObj = [];
-    for (let key in items) {
-      items[key].items.filter((e) => {
-        if (e.new) {
-          newItemsObj.push({
-            [key]: {
-              ...items[key],
-              items: [e],
-            },
-          });
-        }
-      });
+  useEffect(() => {
+    if (goodsData) {
+      setLoading(false);
     }
-    return newItemsObj;
-  }
+  }, [goodsData]);
 
-  let newItems = getNewItems();
-
-  useEffect(
-    () => setItemWidth(ref.current.getBoundingClientRect().width),
-    [ref.current]
-  );
+  useEffect(() => {
+    ref.current && setItemWidth(ref.current.getBoundingClientRect().width);
+  }, [ref.current]);
 
   return (
     <div>
       <TitleFont>Новинки</TitleFont>
       <div>
         <Slider itemWidth={itemWidth} options={{ margin: 24 }}>
-          {newItems.map((elem, index) => (
-            <NewItemsSlider key={index} ref={ref} style={{ width: itemWidth }}>
-              <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
-            </NewItemsSlider>
-          ))}
+          {!loading &&
+            getNewItems(newItems, goodsData).map((elem, index) => (
+              <NewItemsSlider
+                key={index}
+                ref={ref}
+                style={{ width: itemWidth }}
+              >
+                <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
+              </NewItemsSlider>
+            ))}
         </Slider>
       </div>
     </div>
