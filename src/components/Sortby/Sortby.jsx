@@ -16,8 +16,8 @@ const SortText = styled.p`
 export function Sortby({ data }) {
   const [sort, setSort] = useState("default");
 
-  function handlerSortBy(sort) {
-    setSort(sort);
+  function handlerSortBy(value) {
+    setSort(value);
   }
 
   return (

@@ -1,15 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchData = createAsyncThunk("items/fetchData", async () => {
+  return await Promise.all([
+    axios.get("/src/db/items.json"),
+    axios.get("/src/db/sale.json"),
+  ]).then(([goods, sale]) => {
+    const [goodsData] = goods.data;
+    const [saleData] = sale.data;
+    return { goodsData, saleData };
+  });
+});
 
 const initialState = {
-  clickedCategory: {},
+  data: {
+    items: null,
+    sale: null,
+  },
+  loading: true,
+  error: null,
 };
 
 const currentCategorySlice = createSlice({
-  name: "clicked-category",
+  name: "items",
   initialState,
-  reducers: {
-    setClickedCategory(state, action) {
-      state.clickedCategory = action.payload;
+  reducers: {},
+  extraReducers: {
+    [fetchData.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchData.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.data.items = action.payload.goodsData;
+      state.data.sale = action.payload.saleData;
+    },
+    [fetchData.rejected]: (state, action) => {
+      console.log(action);
     },
   },
 });

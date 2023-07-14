@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
 import { btnStyles } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
+import { pickItem } from "../";
 
 const ItemCardWrapper = styled.div`
   background: #ffffff;
@@ -65,10 +67,17 @@ const PurchaseButton = styled.button`
 export function ItemCard({ obj, i, category }) {
   const currentItem = obj[category].items[i];
   const [price, setPrice] = React.useState(0);
+  const dispatch = useDispatch();
+
+  const handleItemPicker = (e, item) => {
+    dispatch(pickItem(item));
+  };
 
   return (
     i < obj[category].items.length && (
-      <ItemCardWrapper>
+      <ItemCardWrapper
+        onClick={(e) => handleItemPicker(e, obj[category].items[i])}
+      >
         <ItemCardImg
           src={`/src/assets/img/categories/${category}/${currentItem.img}`}
           alt="item"
@@ -77,12 +86,10 @@ export function ItemCard({ obj, i, category }) {
           <ItemCardInfo>
             <InfoWrapper>
               <ItemInfoText>{currentItem.gramms} грамм</ItemInfoText>
-              {currentItem.organic ? (
+              {currentItem.organic != 0 && (
                 <ItemInfoText>
                   {currentItem.organic.calories} каллорий
                 </ItemInfoText>
-              ) : (
-                ""
               )}
             </InfoWrapper>
             <Sizes item={currentItem} price={price} setPrice={setPrice} />

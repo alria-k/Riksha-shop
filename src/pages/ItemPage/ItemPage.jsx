@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import { Container, Slider, Price, Sizes } from "../index";
 import {
@@ -124,12 +125,10 @@ const OrderBtn = styled.button`
 `;
 
 export function ItemPage() {
-  const { category, item } = useParams();
+  const { category } = useParams();
+  const { item } = useSelector((state) => state.item);
 
-  const indexOfItem = item - 1;
-  const currentItem = items[category].items[indexOfItem];
-
-  const [price, setPrice] = React.useState(currentItem.price);
+  const [price, setPrice] = React.useState(0);
   const [quantity, setQuantity] = React.useState(1);
 
   function handlerQuantityPlus(e) {
@@ -145,10 +144,10 @@ export function ItemPage() {
     }
   }
 
-  React.useEffect(() => setPrice(currentItem.price), [currentItem.price]);
+  React.useEffect(() => setPrice(item.price), [item.price]);
 
   return (
-    <div className="itempage__container">
+    <div>
       <Container>
         <ItemStepBackWrapper>
           <ItemStepBackLink to={`/${category}`}>
@@ -172,17 +171,18 @@ export function ItemPage() {
             <Slider obj={[0, 1, 2]} options={{ margin: 50 }}>
               {[...Array(3).keys()].map((_, id) => (
                 <ItemImg
-                  src={`/src/assets/img/categories/${category}/${currentItem.img}`}
+                  key={id}
+                  src={`/src/assets/img/categories/${category}/${item.img}`}
                   alt={`${category}-img`}
                 />
               ))}
             </Slider>
             <div>
-              <ItemcatalogTitle>{currentItem.text}</ItemcatalogTitle>
+              <ItemcatalogTitle>{item.text}</ItemcatalogTitle>
               <ItemText weight={true}>
-                Вес: <span>{currentItem.gramms} грамм</span>
+                Вес: <span>{item.gramms} грамм</span>
               </ItemText>
-              {currentItem.organic ? (
+              {item.organic ? (
                 <div>
                   <OrganicTableWrapper>
                     <thead>
@@ -195,14 +195,10 @@ export function ItemPage() {
                     </thead>
                     <tbody>
                       <tr>
-                        <OrganicDiscr>
-                          {currentItem.organic.protein}
-                        </OrganicDiscr>
-                        <OrganicDiscr>{currentItem.organic.carbs}</OrganicDiscr>
-                        <OrganicDiscr>{currentItem.organic.fats}</OrganicDiscr>
-                        <OrganicDiscr>
-                          {currentItem.organic.calories}
-                        </OrganicDiscr>
+                        <OrganicDiscr>{item.organic.protein}</OrganicDiscr>
+                        <OrganicDiscr>{item.organic.carbs}</OrganicDiscr>
+                        <OrganicDiscr>{item.organic.fats}</OrganicDiscr>
+                        <OrganicDiscr>{item.organic.calories}</OrganicDiscr>
                       </tr>
                     </tbody>
                   </OrganicTableWrapper>
@@ -222,15 +218,15 @@ export function ItemPage() {
               </ItemDeliveryWrapper>
               <ItemCompositionWrapper>
                 <ItemText>Состав:</ItemText>
-                <ItemCompositionText>{currentItem.disrc}</ItemCompositionText>
+                <ItemCompositionText>{item.disrc}</ItemCompositionText>
               </ItemCompositionWrapper>
               <ItemSizeWrapper>
                 <ItemSizeTitle>Размеры</ItemSizeTitle>
-                <Sizes item={currentItem} price={price} setPrice={setPrice} />
+                <Sizes item={item} price={price} setPrice={setPrice} />
               </ItemSizeWrapper>
               <ItemPriceWrapper>
                 <Price
-                  item={currentItem}
+                  item={item}
                   price={price}
                   setPrice={setPrice}
                   quantity={quantity}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { TitleFont } from "../../../../style/styling/styling";
@@ -26,17 +27,11 @@ function getNewItems(arr, data) {
   return arr;
 }
 
-export function NewItems({ goodsData }) {
+export function NewItems() {
   const ref = useRef(null);
+  const { items } = useSelector((state) => state.clickedCategory.data);
   const [itemWidth, setItemWidth] = useState(0);
-  const [loading, setLoading] = useState(true);
   const newItems = [];
-
-  useEffect(() => {
-    if (goodsData) {
-      setLoading(false);
-    }
-  }, [goodsData]);
 
   useEffect(() => {
     ref.current && setItemWidth(ref.current.getBoundingClientRect().width);
@@ -47,16 +42,11 @@ export function NewItems({ goodsData }) {
       <TitleFont>Новинки</TitleFont>
       <div>
         <Slider itemWidth={itemWidth} options={{ margin: 24 }}>
-          {!loading &&
-            getNewItems(newItems, goodsData).map((elem, index) => (
-              <NewItemsSlider
-                key={index}
-                ref={ref}
-                style={{ width: itemWidth }}
-              >
-                <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
-              </NewItemsSlider>
-            ))}
+          {getNewItems(newItems, items).map((elem, index) => (
+            <NewItemsSlider key={index} ref={ref} style={{ width: itemWidth }}>
+              <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />
+            </NewItemsSlider>
+          ))}
         </Slider>
       </div>
     </div>

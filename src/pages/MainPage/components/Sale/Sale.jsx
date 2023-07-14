@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { TitleFont } from "../../../../style/styling/styling";
@@ -16,25 +17,19 @@ const SaleList = styled.ul`
 
 const itemsOnOnePage = 3;
 
-export function Sale({ saleData }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    saleData && setLoading(false);
-  }, [saleData]);
+export function Sale() {
+  const { sale } = useSelector((state) => state.clickedCategory.data);
 
   return (
     <SaleWrapper>
       <TitleFont>Акции</TitleFont>
       <SaleList>
-        {[...Array(itemsOnOnePage).keys()].map(
-          (_, index) =>
-            !loading && (
-              <li key={index}>
-                <SaleCard obj={saleData} i={index} />
-              </li>
-            )
-        )}
+        {sale &&
+          [...Array(itemsOnOnePage).keys()].map((_, index) => (
+            <li key={index}>
+              <SaleCard obj={sale} i={index} />
+            </li>
+          ))}
       </SaleList>
     </SaleWrapper>
   );

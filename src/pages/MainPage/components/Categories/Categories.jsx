@@ -34,19 +34,14 @@ const CategoriesLink = styled(Link)`
   }
 `;
 
-export function Categories({ saleData, goodsData }) {
+export function Categories() {
   const categories = useSelector((state) => state.category.category);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    saleData && goodsData && setLoading(false);
-  }, [saleData, goodsData]);
 
   return (
     <CategoriesWrapper>
       <TitleFont>Категории</TitleFont>
       <CategoriesNav swtch={true} categoriesStyles={true} />
-      {!loading && <CategoriesList saleData={saleData} goodsData={goodsData} />}
+      <CategoriesList />
       <CategoriesLink to={categories}>
         Перейти в каталог
         <svg

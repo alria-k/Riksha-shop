@@ -14,5 +14,4 @@ export {
   CategoryPageRedict,
   CategoriesList,
   Price,
-  setClickedCategory,
 } from "../index";

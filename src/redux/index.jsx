@@ -1,2 +1,3 @@
 export { changeCategory } from "./slieces/categories/categorySlice";
-export { setClickedCategory } from "./slieces/currentCategory/currentCategorySlice";
+export { fetchData } from "./slieces/currentCategory/currentCategorySlice";
+export { pickItem } from "./slieces/itemPick/itemPickSlice";

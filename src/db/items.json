@@ -2,7 +2,7 @@
     {
         "pizza": {
             "title": "Пицца",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": [
                 {
@@ -1231,7 +1231,7 @@
         },
         "sets": {
             "title": "Сеты",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": [
                 {
@@ -1382,7 +1382,7 @@
         },
         "wok": {
             "title": "Вок",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": [
                 {
@@ -1457,25 +1457,25 @@
         },
         "soups": {
             "title": "Супы",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": []
         },
         "salads": {
             "title": "Салаты",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": []
         },
         "deserts": {
             "title": "Десерты",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": []
         },
         "drinks": {
             "title": "Напитки",
-            "categories": 0,
+            "categories": false,
             "sortby": false,
             "items": [
                 {
@@ -1501,29 +1501,6 @@
                     "sale": 0,
                     "price": 150,
                     "new": false
-                }
-            ]
-        },
-        "sale": {
-            "title": "Акции",
-            "items": [
-                {
-                    "id": 1,
-                    "title": "Празднуй день рождения вместе с нами",
-                    "text": "Скидка 15% при заказе в день рождения",
-                    "bg": "1.png"
-                },
-                {
-                    "id": 2,
-                    "title": "Доставим заказ за 60 мин",
-                    "text": "или проморол за опоздание",
-                    "bg": "2.png"
-                },
-                {
-                    "id": 3,
-                    "title": "Приведи друга",
-                    "text": "и получи 250 ₽ на бонусный счет",
-                    "bg": "3.png"
                 }
             ]
         }
