@@ -181,22 +181,20 @@ export function CategoriesNav({
       categoriesStyles={categoriesStyles}
       positionFooter={positionFooter}
     >
-      {categoriesItems.map((elem) => {
-        return (
-          <li key={elem.id}>
-            <CategoryLink
-              categoriesStyles={categoriesStyles}
-              positionFooter={positionFooter}
-              activeLink={elem.key == categories}
-              onClick={(e) => handleCategory(e, elem.key)}
-              to={elem.key}
-            >
-              {imgAllow && <CategoryImg src={elem.img} alt={elem.alt} />}
-              {elem.name}
-            </CategoryLink>
-          </li>
-        );
-      })}
+      {categoriesItems.map((elem) => (
+        <li key={elem.id}>
+          <CategoryLink
+            categoriesStyles={categoriesStyles}
+            positionFooter={positionFooter}
+            activeLink={elem.key == categories}
+            onClick={(e) => handleCategory(e, elem.key)}
+            to={elem.key}
+          >
+            {imgAllow && <CategoryImg src={elem.img} alt={elem.alt} />}
+            {elem.name}
+          </CategoryLink>
+        </li>
+      ))}
     </NavigationList>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -123,9 +123,19 @@ const QuantityText = styled.p`
 const OrderBtn = styled.button`
   ${btnStyles}
 `;
+const ImgWrapper = styled.div`
+  min-width: 570px;
+  width: 100%;
+  margin-right: 50px;
+`;
+const ImageBox = styled.div`
+  overflow-x: hidden;
+`;
 
 export function ItemPage() {
   const { category } = useParams();
+  const ref = useRef();
+  const [itemWidth, setItemWidth] = useState(0);
   const { item } = useSelector((state) => state.item);
 
   const [price, setPrice] = React.useState(0);
@@ -144,7 +154,11 @@ export function ItemPage() {
     }
   }
 
-  React.useEffect(() => setPrice(item.price), [item.price]);
+  useEffect(() => setPrice(item.price), [item.price]);
+  useEffect(
+    () => setItemWidth(ref.current.getBoundingClientRect().width),
+    [ref.current]
+  );
 
   return (
     <div>
@@ -168,13 +182,18 @@ export function ItemPage() {
         </ItemStepBackWrapper>
         <div>
           <ItemInfoWrapper>
-            <Slider obj={[0, 1, 2]} options={{ margin: 50 }}>
+            <Slider
+              itemWidth={itemWidth}
+              options={{ margin: 50 }}
+              singlePhotoSlider={true}
+            >
               {[...Array(3).keys()].map((_, id) => (
-                <ItemImg
-                  key={id}
-                  src={`/src/assets/img/categories/${category}/${item.img}`}
-                  alt={`${category}-img`}
-                />
+                <ImgWrapper ref={ref} key={id} style={{ width: itemWidth }}>
+                  <ItemImg
+                    src={`/src/assets/img/categories/${category}/${item.img}`}
+                    alt={`${category}-img`}
+                  />
+                </ImgWrapper>
               ))}
             </Slider>
             <div>
@@ -203,9 +222,7 @@ export function ItemPage() {
                     </tbody>
                   </OrganicTableWrapper>
                 </div>
-              ) : (
-                ""
-              )}
+              ) : null}
               <ItemDeliveryWrapper>
                 <img
                   src="/src/assets/img/delivery-icon.svg"

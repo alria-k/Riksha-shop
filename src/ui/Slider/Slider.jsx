@@ -55,12 +55,20 @@ const LeftArrow = styled.svg`
 
 //сделать бесконечный слайдер
 
-export function Slider({ children, itemWidth, options = { margin: 0 } }) {
+export function Slider({
+  children,
+  itemWidth,
+  options = { margin: 0 },
+  singlePhotoSlider = false,
+}) {
   const [sliderCount, setSliderCount] = React.useState(0);
 
   function widthSetter() {
     if (!itemWidth) {
       return "100%";
+    }
+    if (singlePhotoSlider) {
+      return itemWidth;
     }
     return itemWidth * children.length + options.margin;
   }

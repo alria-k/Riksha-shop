@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SizeButtonsWrapper = styled.div`
@@ -57,8 +57,8 @@ const SizeWrapper = styled.form`
 `;
 
 export function Sizes({ item, price, setPrice }) {
-  const [extraPrice, setExtraPrice] = React.useState(0);
-  const [checked, setChecked] = React.useState(0);
+  const [extraPrice, setExtraPrice] = useState(0);
+  const [checked, setChecked] = useState(0);
 
   function handleChange(event, priceVal, i) {
     if (event.target.checked) {
@@ -69,11 +69,11 @@ export function Sizes({ item, price, setPrice }) {
     return;
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setPrice(price + extraPrice);
   }, [extraPrice]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setChecked(0);
     setExtraPrice(0);
   }, [item.price]);
@@ -93,7 +93,5 @@ export function Sizes({ item, price, setPrice }) {
         </SizeWrapper>
       ))}
     </SizeButtonsWrapper>
-  ) : (
-    ""
-  );
+  ) : null;
 }

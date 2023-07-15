@@ -57,15 +57,13 @@ const NavMenuLinks = styled(({ positionFooter, ...props }) => (
 export function Menu({ positionFooter = false }) {
   return (
     <NavMenuLinks positionFooter={positionFooter}>
-      {menuItems.map((elem) => {
-        return (
-          <li key={elem.id}>
-            <StyledLink positionFooter={positionFooter} to={elem.href}>
-              {elem.text}
-            </StyledLink>
-          </li>
-        );
-      })}
+      {menuItems.map((elem) => (
+        <li key={elem.id}>
+          <StyledLink positionFooter={positionFooter} to={elem.href}>
+            {elem.text}
+          </StyledLink>
+        </li>
+      ))}
     </NavMenuLinks>
   );
 }

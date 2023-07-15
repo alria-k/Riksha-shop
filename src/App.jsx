@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { MainPage, Catalog, ItemPage } from "./components";
-import { Header, Footer } from "./components";
+import { MainPage, Catalog, ItemPage } from "./ui";
+import { Header, Footer } from "./ui";
 
-import { fetchData } from "./components";
+import { fetchData } from "./ui";
 
 function App() {
   const dispatch = useDispatch();

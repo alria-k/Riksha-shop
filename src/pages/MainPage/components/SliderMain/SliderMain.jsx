@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { Slider } from "../../../../components";
-import { LazyImg } from "../../../../components";
+import { Slider } from "../../../../ui";
+import { LazyImg } from "../../../../ui";
 
 const SliderItem = styled.div`
   min-width: 100%;
