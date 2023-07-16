@@ -128,15 +128,13 @@ const ImgWrapper = styled.div`
   width: 100%;
   margin-right: 50px;
 `;
-const ImageBox = styled.div`
-  overflow-x: hidden;
-`;
 
 export function ItemPage() {
-  const { category } = useParams();
+  const { category, id } = useParams();
   const ref = useRef();
   const [itemWidth, setItemWidth] = useState(0);
-  const { item } = useSelector((state) => state.item);
+  const [currentItem, setItem] = useState(null);
+  const { items } = useSelector((state) => state.clickedCategory.data);
 
   const [price, setPrice] = React.useState(0);
   const [quantity, setQuantity] = React.useState(1);
@@ -154,117 +152,141 @@ export function ItemPage() {
     }
   }
 
-  useEffect(() => setPrice(item.price), [item.price]);
-  useEffect(
-    () => setItemWidth(ref.current.getBoundingClientRect().width),
-    [ref.current]
-  );
+  useEffect(() => {
+    if (items) {
+      setPrice(items[category].items[id].price);
+      setItem(items[category].items[id]);
+    }
+  }, [items]);
+  useEffect(() => {
+    if (currentItem) {
+      setItemWidth(ref.current.getBoundingClientRect().width);
+    }
+  }, [ref.current, currentItem]);
 
   return (
     <div>
       <Container>
-        <ItemStepBackWrapper>
-          <ItemStepBackLink to={`/${category}`}>
-            <svg
-              width="33"
-              height="12"
-              viewBox="0 0 33 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.469669 5.46967C0.176777 5.76256 0.176777 6.23744 0.469669 6.53033L5.24264 11.3033C5.53553 11.5962 6.01041 11.5962 6.3033 11.3033C6.59619 11.0104 6.59619 10.5355 6.3033 10.2426L2.06066 6L6.3033 1.75736C6.59619 1.46447 6.59619 0.989593 6.3033 0.696699C6.01041 0.403806 5.53553 0.403806 5.24264 0.696699L0.469669 5.46967ZM33 5.25L1 5.25V6.75L33 6.75V5.25Z"
-                fill="#E07153"
-              />
-            </svg>
-            <p>Назад в каталог</p>
-          </ItemStepBackLink>
-        </ItemStepBackWrapper>
-        <div>
-          <ItemInfoWrapper>
-            <Slider
-              itemWidth={itemWidth}
-              options={{ margin: 50 }}
-              singlePhotoSlider={true}
-            >
-              {[...Array(3).keys()].map((_, id) => (
-                <ImgWrapper ref={ref} key={id} style={{ width: itemWidth }}>
-                  <ItemImg
-                    src={`/src/assets/img/categories/${category}/${item.img}`}
-                    alt={`${category}-img`}
+        {currentItem && (
+          <>
+            <ItemStepBackWrapper>
+              <ItemStepBackLink to={`/${category}`}>
+                <svg
+                  width="33"
+                  height="12"
+                  viewBox="0 0 33 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.469669 5.46967C0.176777 5.76256 0.176777 6.23744 0.469669 6.53033L5.24264 11.3033C5.53553 11.5962 6.01041 11.5962 6.3033 11.3033C6.59619 11.0104 6.59619 10.5355 6.3033 10.2426L2.06066 6L6.3033 1.75736C6.59619 1.46447 6.59619 0.989593 6.3033 0.696699C6.01041 0.403806 5.53553 0.403806 5.24264 0.696699L0.469669 5.46967ZM33 5.25L1 5.25V6.75L33 6.75V5.25Z"
+                    fill="#E07153"
                   />
-                </ImgWrapper>
-              ))}
-            </Slider>
+                </svg>
+                <p>Назад в каталог</p>
+              </ItemStepBackLink>
+            </ItemStepBackWrapper>
             <div>
-              <ItemcatalogTitle>{item.text}</ItemcatalogTitle>
-              <ItemText weight={true}>
-                Вес: <span>{item.gramms} грамм</span>
-              </ItemText>
-              {item.organic ? (
+              <ItemInfoWrapper>
+                <Slider
+                  itemWidth={itemWidth}
+                  options={{ margin: 50 }}
+                  singlePhotoSlider={true}
+                >
+                  {[...Array(3).keys()].map((_, id) => (
+                    <ImgWrapper ref={ref} key={id} style={{ width: itemWidth }}>
+                      <ItemImg
+                        src={`/src/assets/img/categories/${category}/${currentItem.img}`}
+                        alt={`${category}-img`}
+                      />
+                    </ImgWrapper>
+                  ))}
+                </Slider>
                 <div>
-                  <OrganicTableWrapper>
-                    <thead>
-                      <tr>
-                        <OrganicTitle>Белки</OrganicTitle>
-                        <OrganicTitle>Углеводы</OrganicTitle>
-                        <OrganicTitle>Жиры</OrganicTitle>
-                        <OrganicTitle>Каллорийность</OrganicTitle>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <OrganicDiscr>{item.organic.protein}</OrganicDiscr>
-                        <OrganicDiscr>{item.organic.carbs}</OrganicDiscr>
-                        <OrganicDiscr>{item.organic.fats}</OrganicDiscr>
-                        <OrganicDiscr>{item.organic.calories}</OrganicDiscr>
-                      </tr>
-                    </tbody>
-                  </OrganicTableWrapper>
+                  <ItemcatalogTitle>{currentItem.text}</ItemcatalogTitle>
+                  <ItemText weight={true}>
+                    Вес: <span>{currentItem.gramms} грамм</span>
+                  </ItemText>
+                  {currentItem.organic ? (
+                    <div>
+                      <OrganicTableWrapper>
+                        <thead>
+                          <tr>
+                            <OrganicTitle>Белки</OrganicTitle>
+                            <OrganicTitle>Углеводы</OrganicTitle>
+                            <OrganicTitle>Жиры</OrganicTitle>
+                            <OrganicTitle>Каллорийность</OrganicTitle>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <OrganicDiscr>
+                              {currentItem.organic.protein}
+                            </OrganicDiscr>
+                            <OrganicDiscr>
+                              {currentItem.organic.carbs}
+                            </OrganicDiscr>
+                            <OrganicDiscr>
+                              {currentItem.organic.fats}
+                            </OrganicDiscr>
+                            <OrganicDiscr>
+                              {currentItem.organic.calories}
+                            </OrganicDiscr>
+                          </tr>
+                        </tbody>
+                      </OrganicTableWrapper>
+                    </div>
+                  ) : null}
+                  <ItemDeliveryWrapper>
+                    <img
+                      src="/src/assets/img/delivery-icon.svg"
+                      alt="delivery-icon"
+                    />
+                    <ItemDeliveryText>Доставим за 40 мин</ItemDeliveryText>
+                    <ItemDeliveryLink to={"/delivery-payment"}>
+                      Условия доставки
+                    </ItemDeliveryLink>
+                  </ItemDeliveryWrapper>
+                  <ItemCompositionWrapper>
+                    <ItemText>Состав:</ItemText>
+                    <ItemCompositionText>
+                      {currentItem.disrc}
+                    </ItemCompositionText>
+                  </ItemCompositionWrapper>
+                  <ItemSizeWrapper>
+                    <ItemSizeTitle>Размеры</ItemSizeTitle>
+                    <Sizes
+                      item={currentItem}
+                      price={price}
+                      setPrice={setPrice}
+                    />
+                  </ItemSizeWrapper>
+                  <ItemPriceWrapper>
+                    <Price
+                      item={currentItem}
+                      price={price}
+                      setPrice={setPrice}
+                      quantity={quantity}
+                    />
+                    <ItemPageQuantityWrapper>
+                      <QuantitySetter onClick={handlerQuantityMinus}>
+                        -
+                      </QuantitySetter>
+                      <QuantityText>{quantity}</QuantityText>
+                      <QuantitySetter onClick={handlerQuantityPlus}>
+                        +
+                      </QuantitySetter>
+                    </ItemPageQuantityWrapper>
+                    <OrderBtn>Заказать</OrderBtn>
+                  </ItemPriceWrapper>
                 </div>
-              ) : null}
-              <ItemDeliveryWrapper>
-                <img
-                  src="/src/assets/img/delivery-icon.svg"
-                  alt="delivery-icon"
-                />
-                <ItemDeliveryText>Доставим за 40 мин</ItemDeliveryText>
-                <ItemDeliveryLink to={"/delivery-payment"}>
-                  Условия доставки
-                </ItemDeliveryLink>
-              </ItemDeliveryWrapper>
-              <ItemCompositionWrapper>
-                <ItemText>Состав:</ItemText>
-                <ItemCompositionText>{item.disrc}</ItemCompositionText>
-              </ItemCompositionWrapper>
-              <ItemSizeWrapper>
-                <ItemSizeTitle>Размеры</ItemSizeTitle>
-                <Sizes item={item} price={price} setPrice={setPrice} />
-              </ItemSizeWrapper>
-              <ItemPriceWrapper>
-                <Price
-                  item={item}
-                  price={price}
-                  setPrice={setPrice}
-                  quantity={quantity}
-                />
-                <ItemPageQuantityWrapper>
-                  <QuantitySetter onClick={handlerQuantityMinus}>
-                    -
-                  </QuantitySetter>
-                  <QuantityText>{quantity}</QuantityText>
-                  <QuantitySetter onClick={handlerQuantityPlus}>
-                    +
-                  </QuantitySetter>
-                </ItemPageQuantityWrapper>
-                <OrderBtn>Заказать</OrderBtn>
-              </ItemPriceWrapper>
+              </ItemInfoWrapper>
+              <div className="itempage__buy-with-box"></div>
+              <div className="itempage__recomendation-box"></div>
+              {/* Component with feedback */}
             </div>
-          </ItemInfoWrapper>
-          <div className="itempage__buy-with-box"></div>
-          <div className="itempage__recomendation-box"></div>
-          {/* Component with feedback */}
-        </div>
+          </>
+        )}
       </Container>
     </div>
   );

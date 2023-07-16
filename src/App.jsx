@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { MainPage, Catalog, ItemPage } from "./ui";
-import { Header, Footer } from "./ui";
-
-import { fetchData } from "./ui";
+import { MainPage, Catalog, ItemPage, fetchData, Header, Footer } from "./ui";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +28,7 @@ function App() {
         <Route path="/vacancy" element={<MainPage />} />
 
         <Route path="/:category" element={<Catalog />} />
-        <Route path="/:category/:item" element={<ItemPage />} />
+        <Route path="/:category/:id" element={<ItemPage />} />
       </Routes>
       <Footer />
     </>
