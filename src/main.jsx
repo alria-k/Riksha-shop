@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createGlobalStyle } from "styled-components";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 import { mainStore } from "./redux/store";
 import App from "./App";
@@ -123,12 +124,14 @@ const ResetCss = createGlobalStyle`
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={mainStore}>
-      <BrowserRouter>
-        <FontFamily />
-        <BodyStyles />
-        <ResetCss />
-        <App />
-      </BrowserRouter>
+      <SkeletonTheme baseColor="#eda794" highlightColor="#eb7d5f">
+        <BrowserRouter>
+          <FontFamily />
+          <BodyStyles />
+          <ResetCss />
+          <App />
+        </BrowserRouter>
+      </SkeletonTheme>
     </Provider>
   </React.StrictMode>
 );

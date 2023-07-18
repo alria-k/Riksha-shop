@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -6,10 +6,7 @@ import { MainPage, Catalog, ItemPage, fetchData, Header, Footer } from "./ui";
 
 function App() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchData());
-  }, []);
+  dispatch(fetchData());
 
   return (
     <>

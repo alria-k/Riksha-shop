@@ -4,8 +4,14 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { changeCategory } from "../";
-import { Container, Sortby, CategoriesList, Filterby } from "../index";
+import {
+  changeCategory,
+  Container,
+  Sortby,
+  CategoriesList,
+  Filterby,
+  CardSkeleton,
+} from "../";
 import { catalogTitle } from "../../style/styling/styling";
 
 const Title = styled.h1`
@@ -14,8 +20,12 @@ const Title = styled.h1`
 
 export function Catalog() {
   const { category } = useParams();
-  const { items, sale } = useSelector((state) => state.clickedCategory.data);
   const dispatch = useDispatch();
+
+  const {
+    data: { items, sale },
+    loading,
+  } = useSelector((state) => state.clickedCategory);
 
   const data = { ...items, ...sale };
 
@@ -26,11 +36,12 @@ export function Catalog() {
   return (
     <div>
       <Container>
-        {items && sale && (
+        {loading && <CardSkeleton />}
+        {!loading && (
           <>
             <Title>{data[category] && data[category].title}</Title>
             {/* /* add bread crumbs */}
-            {data[category].category && <Filterby data={data[category]} />}
+            {data[category].categories && <Filterby data={data[category]} />}
             {data[category].sortby && <Sortby data={data[category]} />}
             <CategoriesList />
             {/* /* add 'about' component */}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-import { btnStyles } from "../../style/styling/styling";
+import { btnStyles, paragraphFont } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
 import { pickItem } from "../";
@@ -18,10 +18,10 @@ const ItemCardImg = styled.img`
 `;
 const ItemCardInner = styled.div`
   padding: 25px;
-  min-height: 256px;
+  min-height: 190px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
 `;
 const ItemCardInfo = styled.div`
   display: flex;
@@ -63,6 +63,15 @@ const PurchaseWrapper = styled.div`
 const PurchaseButton = styled.button`
   ${btnStyles}
 `;
+const TitleItem = styled.h1`
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+const DiscrItem = styled.p`
+  ${paragraphFont}
+`;
 
 export function ItemCard({ obj, i, category }) {
   const currentItem = obj[category].items[i];
@@ -96,9 +105,9 @@ export function ItemCard({ obj, i, category }) {
           </ItemCardInfo>
           <InfoCardDiscr>
             <Link to={`/${category}/${currentItem.id}`}>
-              <h1>{currentItem.text}</h1>
+              <TitleItem>{currentItem.text}</TitleItem>
             </Link>
-            <p>{currentItem.disrc}</p>
+            <DiscrItem>{currentItem.disrc}</DiscrItem>
           </InfoCardDiscr>
           <PurchaseWrapper>
             <Price item={currentItem} price={price} setPrice={setPrice} />
