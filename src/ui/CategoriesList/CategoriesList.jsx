@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { ItemCard, SaleCard, CategoryPageRedict } from "../index";
+import { ItemCard, SaleCard, CategoryPageRedict, CardSkeleton } from "../";
 
 const CategoriesBox = styled.div`
   display: flex;
@@ -15,7 +15,10 @@ const itemsOnOnePage = 15;
 
 export function CategoriesList() {
   const categories = useSelector((state) => state.category.category);
-  const { items, sale } = useSelector((state) => state.clickedCategory.data);
+  const {
+    data: { items, sale },
+    loading,
+  } = useSelector((state) => state.clickedCategory);
 
   const [currPage, setCurrPage] = React.useState(1);
 
@@ -26,9 +29,13 @@ export function CategoriesList() {
   return (
     <>
       <CategoriesBox>
-        {(items || sale) &&
-          [...Array(itemsOnOnePage).keys()].map((_, index) => {
-            return categories == "sale" ? (
+        {loading &&
+          [...Array(itemsOnOnePage).keys()].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        {!loading &&
+          [...Array(itemsOnOnePage).keys()].map((_, index) =>
+            categories == "sale" ? (
               <SaleCard key={index} obj={sale} i={index} />
             ) : (
               <ItemCard
@@ -37,8 +44,8 @@ export function CategoriesList() {
                 i={index}
                 category={categories}
               />
-            );
-          })}
+            )
+          )}
       </CategoriesBox>
       {/* <CategoryPageRedict
         activePage={currPage}

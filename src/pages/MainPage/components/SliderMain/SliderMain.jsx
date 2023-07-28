@@ -8,6 +8,7 @@ const SliderItem = styled.div`
   min-width: 100%;
   width: 100%;
   position: relative;
+  height: 430px;
   &:not(:last-child) {
     margin-right: 30px;
   }

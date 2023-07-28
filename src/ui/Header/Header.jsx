@@ -17,13 +17,17 @@ const HeaderInner = styled.div`
   align-items: center;
   gap: 48px;
 `;
+const StyledImage = styled.img`
+  height: 156px;
+  width: 135px;
+`;
 
 export function Header() {
   return (
     <HeaderWrapper>
       <Container>
         <HeaderInner>
-          <img src="/src/assets/img/logo.svg" alt="logo-icon" />
+          <StyledImage src="/src/assets/img/logo.svg" alt="logo-icon" />
           <Nav />
         </HeaderInner>
       </Container>

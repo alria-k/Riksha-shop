@@ -14,4 +14,5 @@ export {
   CategoryPageRedict,
   CategoriesList,
   Price,
+  CardSkeleton,
 } from "../index";

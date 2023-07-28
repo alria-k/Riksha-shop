@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 
 import {
   changeCategory,
@@ -10,12 +11,14 @@ import {
   Sortby,
   CategoriesList,
   Filterby,
-  CardSkeleton,
 } from "../";
 import { catalogTitle } from "../../style/styling/styling";
 
 const Title = styled.h1`
   ${catalogTitle}
+`;
+const StyledSkeletonTitile = styled(Skeleton)`
+  margin-bottom: 50px;
 `;
 
 export function Catalog() {
@@ -36,17 +39,21 @@ export function Catalog() {
   return (
     <div>
       <Container>
-        {loading && <CardSkeleton />}
+        {loading && (
+          <>
+            <StyledSkeletonTitile height={50} width={300} />
+          </>
+        )}
         {!loading && (
           <>
-            <Title>{data[category] && data[category].title}</Title>
+            <Title>{data[category].title}</Title>
             {/* /* add bread crumbs */}
             {data[category].categories && <Filterby data={data[category]} />}
             {data[category].sortby && <Sortby data={data[category]} />}
-            <CategoriesList />
             {/* /* add 'about' component */}
           </>
         )}
+        <CategoriesList />
       </Container>
     </div>
   );
