@@ -1,6 +1,8 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import { ItemCard, SaleCard, CategoryPageRedict, CardSkeleton } from "../";
 
 const CategoriesBox = styled.div`
@@ -30,9 +32,13 @@ export function CategoriesList() {
     <>
       <CategoriesBox>
         {loading &&
-          [...Array(itemsOnOnePage).keys()].map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
+          [...Array(itemsOnOnePage).keys()].map((_, index) =>
+            categories == "sale" ? (
+              <Skeleton key={index} width={392} height={280} />
+            ) : (
+              <CardSkeleton key={index} />
+            )
+          )}
         {!loading &&
           [...Array(itemsOnOnePage).keys()].map((_, index) =>
             categories == "sale" ? (
