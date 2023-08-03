@@ -15,6 +15,8 @@ const AdvantagesListItem = styled.li`
   text-align: center;
 `;
 const AdvantagesImg = styled.img`
+  width: 180px;
+  height: 132px;
   margin: 0 auto;
   margin-bottom: 12px;
 `;

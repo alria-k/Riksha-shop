@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -18,13 +19,22 @@ const SaleList = styled.ul`
 const itemsOnOnePage = 3;
 
 export function Sale() {
-  const { sale } = useSelector((state) => state.clickedCategory.data);
+  const {
+    data: { sale },
+    loading,
+  } = useSelector((state) => state.clickedCategory);
 
   return (
     <SaleWrapper>
       <TitleFont>Акции</TitleFont>
       <SaleList>
-        {sale &&
+        {loading &&
+          [...Array(itemsOnOnePage).keys()].map((_, index) => (
+            <li key={index}>
+              <Skeleton width={392} height={280} />
+            </li>
+          ))}
+        {!loading &&
           [...Array(itemsOnOnePage).keys()].map((_, index) => (
             <li key={index}>
               <SaleCard obj={sale} i={index} />

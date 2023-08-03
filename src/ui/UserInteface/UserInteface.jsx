@@ -42,6 +42,14 @@ const PriceText = styled.p`
   color: #1b1b1b;
   border-right: 1px solid #fff;
 `;
+const CardImg = styled.img`
+  width: 18px;
+  height: 21px;
+`;
+const UserImg = styled.img`
+  width: 16px;
+  height: 21px;
+`;
 
 export function UserInteface() {
   return (
@@ -51,21 +59,13 @@ export function UserInteface() {
           <Cart href="#f">
             <PriceText href="#f">0 ₽</PriceText>
             <CartCount>0</CartCount>
-            <img
-              className="cart-img"
-              src="/src/assets/img/cart.svg"
-              alt="cart"
-            />
+            <CardImg src="/src/assets/img/cart.svg" alt="cart" />
           </Cart>
         </CartBox>
       </ul>
       <li>
         <Cart className="user-interface__link" href="#f">
-          <img
-            className="user-img"
-            src="/src/assets/img/user.svg"
-            alt="user-icon"
-          />
+          <UserImg src="/src/assets/img/user.svg" alt="user-icon" />
         </Cart>
       </li>
     </UserIntefaceBox>

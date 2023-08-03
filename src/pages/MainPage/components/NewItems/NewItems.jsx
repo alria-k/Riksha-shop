@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -28,7 +28,6 @@ function getNewItems(arr, data) {
 }
 
 export function NewItems() {
-  const ref = useRef(null);
   const {
     data: { items },
     loading,
@@ -36,9 +35,11 @@ export function NewItems() {
   const [itemWidth, setItemWidth] = useState(0);
   const newItems = [];
 
-  useEffect(() => {
-    ref.current && setItemWidth(ref.current.getBoundingClientRect().width);
-  }, [ref.current]);
+  const measuredRef = useCallback((node) => {
+    if (node !== null) {
+      setItemWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
 
   return (
     <div>
@@ -49,7 +50,7 @@ export function NewItems() {
             [...Array(3).keys()].map((_, index) => (
               <NewItemsSlider
                 key={index}
-                ref={ref}
+                ref={measuredRef}
                 style={{ width: itemWidth }}
               >
                 <CardSkeleton key={index} />
@@ -59,7 +60,7 @@ export function NewItems() {
             getNewItems(newItems, items).map((elem, index) => (
               <NewItemsSlider
                 key={index}
-                ref={ref}
+                ref={measuredRef}
                 style={{ width: itemWidth }}
               >
                 <ItemCard obj={elem} i={0} category={Object.keys(elem)[0]} />

@@ -29,10 +29,10 @@ const NavigationList = styled(
 `;
 
 const CategoryImg = styled.img`
+  height: 32px;
+  width: 32px;
   margin: 0 auto;
   pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
   user-select: none;
   transition: filter 0.2s ease-in-out;
 `;

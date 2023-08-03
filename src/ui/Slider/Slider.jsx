@@ -40,7 +40,7 @@ const SliderArrow = styled.div`
     left: -40px;
   }
 `;
-const RightArrow = styled.svg`
+export const RightArrow = styled.svg`
   transform: rotate(180deg);
   path {
     transition: fill 0.1s ease-in-out, transform 0.1s ease-in-out;
@@ -62,10 +62,11 @@ export function Slider({
   singlePhotoSlider = false,
 }) {
   const [sliderCount, setSliderCount] = React.useState(0);
+  const defaultValue = "100%";
 
   function widthSetter() {
     if (!itemWidth) {
-      return "100%";
+      return defaultValue;
     }
     if (singlePhotoSlider) {
       return itemWidth;

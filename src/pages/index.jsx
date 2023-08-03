@@ -11,6 +11,7 @@ export {
   Sizes,
   LazyImg,
   Filterby,
+  RightArrow,
 } from "../ui";
 export { CardSkeleton } from "../skeleton";
 export { MainPage } from "./MainPage/MainPage";

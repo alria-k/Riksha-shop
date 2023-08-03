@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import styled from "styled-components";
 
 import { Slider } from "../../../../ui";
@@ -69,18 +69,22 @@ const saleImg = [
 ];
 
 export function SliderMain() {
-  const ref = useRef(null);
   const [itemWidth, setItemWidth] = useState(0);
 
-  useEffect(
-    () => setItemWidth(ref.current.getBoundingClientRect().width),
-    [ref.current]
-  );
+  const measuredRef = useCallback((node) => {
+    if (node !== null) {
+      setItemWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
 
   return (
     <Slider itemWidth={itemWidth} options={{ margin: 30 }}>
       {saleImg.map((saleImage) => (
-        <SliderItem key={saleImage.id} ref={ref} style={{ width: itemWidth }}>
+        <SliderItem
+          key={saleImage.id}
+          ref={measuredRef}
+          style={{ width: itemWidth }}
+        >
           <SliderTextWrapper>
             <SliderTitle>{saleImage.text}</SliderTitle>
             <SliderText>{saleImage.discr}</SliderText>

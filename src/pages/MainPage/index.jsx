@@ -15,4 +15,5 @@ export {
   CategoriesList,
   Price,
   CardSkeleton,
+  RightArrow,
 } from "../index";
