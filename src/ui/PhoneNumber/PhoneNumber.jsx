@@ -5,6 +5,7 @@ const PhoneNumberBox = styled.ul`
   ${navFlex}
   flex-direction: column;
   align-items: flex-end;
+  align-self: center;
   gap: 3px;
 `;
 

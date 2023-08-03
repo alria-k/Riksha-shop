@@ -15,6 +15,7 @@ const ItemCardWrapper = styled.div`
 const ItemCardImg = styled.img`
   user-select: none;
   pointer-events: none;
+  height: 256px;
 `;
 const ItemCardInner = styled.div`
   padding: 25px;

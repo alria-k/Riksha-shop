@@ -23,7 +23,9 @@ const NavigationList = styled(
     column-gap: 40px;
     flex-wrap: wrap;
     max-width: 410px;
-    justify-content: flex-start;`}
+    justify-content: flex-start;
+    align-self: center;
+    `}
 `;
 
 const CategoryImg = styled.img`

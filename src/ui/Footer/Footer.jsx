@@ -9,12 +9,9 @@ import {
 
 const FooterBox = styled.footer`
   margin-top: 140px;
-  background: linear-gradient(#1b1b1b, #1b1b1b);
-  background-size: auto 70%;
-  background-repeat: no-repeat;
-  background-position: bottom;
   color: #ffffff;
-  padding: 35px 0 50px 0;
+  padding: 32px 0 19px 0;
+  background: #1b1b1b;
 `;
 
 const FooterNavBox = styled.div`
@@ -22,22 +19,25 @@ const FooterNavBox = styled.div`
 `;
 
 const FooterInner = styled.div`
-  align-items: flex-end;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  column-gap: 88px;
   margin-bottom: 20px;
+  position: relative;
 `;
 
 const LogoWhiteImg = styled.img`
-  margin-bottom: 40px;
+  position: absolute;
+  top: -70px;
+  left: 0;
 `;
 
 const CopyrightText = styled.p`
-  float: right;
-  margin-top: 13px;
   font-weight: 300;
   font-size: 12px;
   line-height: 15px;
+  margin: 13px 0 0 auto;
+  width: fit-content;
 `;
 
 export function Footer() {
