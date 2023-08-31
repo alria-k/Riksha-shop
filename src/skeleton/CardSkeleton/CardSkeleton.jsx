@@ -38,7 +38,7 @@ export const CardSkeleton = () => (
       </TextWrapper>
       <PriceWrapper>
         <Skeleton width={60} />
-        <Skeleton width={200} />
+        <Skeleton width={200} height={45} />
       </PriceWrapper>
     </MainWrapper>
   </CardWrapper>

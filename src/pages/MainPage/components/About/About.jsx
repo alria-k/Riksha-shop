@@ -23,6 +23,10 @@ const AboutText = styled.p`
   line-height: 160%;
   color: #1b1b1b;
 `;
+const AboutImage = styled.img`
+  width: 513px;
+  height: 640px;
+`;
 
 export function About() {
   return (
@@ -43,7 +47,7 @@ export function About() {
               заказ на определенный день и время.
             </AboutText>
           </AboutTextBox>
-          <img src="/src/assets/img/About-img.png" alt="about" />
+          <AboutImage src="/src/assets/img/About-img.png" alt="about" />
         </AboutInner>
       </Container>
     </AboutWrapper>

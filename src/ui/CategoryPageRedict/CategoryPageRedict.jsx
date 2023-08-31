@@ -83,11 +83,7 @@ export function CategoryPageRedict({
               {[...Array(pages).keys()].map((elem, index) => {
                 let elemsP = elem + 1;
                 return (
-                  <NumberItem
-                    key={index}
-                    $activePage={activePage}
-                    $page={elemsP}
-                  >
+                  <NumberItem key={index} activePage={activePage} page={elemsP}>
                     <PageNumber onClick={(e) => handlerPages(e, elemsP)}>
                       {elemsP}
                     </PageNumber>

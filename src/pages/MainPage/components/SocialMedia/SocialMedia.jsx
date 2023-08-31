@@ -18,6 +18,7 @@ const SocialLink = styled.a`
   gap: 20px;
 `;
 const SocialImgGrid = styled.div`
+  height: 520px;
   display: grid;
   gap: 12px;
   grid-template-columns: 300px 300px 300px 300px;
@@ -32,6 +33,10 @@ const SocialImgGrid = styled.div`
       grid-row: 1 / 3;
     }
   }
+`;
+const SocialInstIcon = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 const socialImages = [
@@ -75,7 +80,10 @@ export function SocialMedia() {
           А вы уже подписались на наш <span>Instagram?</span>
         </TitleFont>
         <SocialLink href="#f">
-          <img src="/src/assets/img/social/inst.svg" alt="inst-icon" />
+          <SocialInstIcon
+            src="/src/assets/img/social/inst.svg"
+            alt="inst-icon"
+          />
           <p>@riksha_sushi</p>
         </SocialLink>
       </SocialTextWrapper>

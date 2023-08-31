@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -76,18 +76,16 @@ const DiscrItem = styled.p`
 
 export function ItemCard({ obj, i, category }) {
   const currentItem = obj[category].items[i];
-  const [price, setPrice] = React.useState(0);
+  const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
 
-  const handleItemPicker = (e, item) => {
+  const handleItemPicker = (item) => {
     dispatch(pickItem(item));
   };
 
   return (
     i < obj[category].items.length && (
-      <ItemCardWrapper
-        onClick={(e) => handleItemPicker(e, obj[category].items[i])}
-      >
+      <ItemCardWrapper onClick={() => handleItemPicker(obj[category].items[i])}>
         <ItemCardImg
           src={`/src/assets/img/categories/${category}/${currentItem.img}`}
           alt="item"

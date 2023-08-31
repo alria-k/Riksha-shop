@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -22,9 +22,9 @@ export function CategoriesList() {
     loading,
   } = useSelector((state) => state.clickedCategory);
 
-  const [currPage, setCurrPage] = React.useState(1);
+  const [currPage, setCurrPage] = useState(1);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrPage(1);
   }, [categories]);
 
