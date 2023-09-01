@@ -134,7 +134,7 @@ export function ItemPage() {
   const [itemWidth, setItemWidth] = useState(0);
   const [currentItem, setItem] = useState(null);
   const {
-    data: { items, sale },
+    data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
 

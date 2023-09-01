@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { btnStyles, paragraphFont } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
-import { pickItem } from "../";
+import { pickItem, SaleCard } from "../";
 
 const ItemCardWrapper = styled.div`
   background: #ffffff;
@@ -74,8 +74,7 @@ const DiscrItem = styled.p`
   ${paragraphFont}
 `;
 
-export function ItemCard({ obj, i, category }) {
-  const currentItem = obj[category].items[i];
+export function ItemCard({ obj, category }) {
   const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
 
@@ -84,36 +83,37 @@ export function ItemCard({ obj, i, category }) {
   };
 
   return (
-    i < obj[category].items.length && (
-      <ItemCardWrapper onClick={() => handleItemPicker(obj[category].items[i])}>
-        <ItemCardImg
-          src={`/src/assets/img/categories/${category}/${currentItem.img}`}
-          alt="item"
-        />
-        <ItemCardInner>
-          <ItemCardInfo>
-            <InfoWrapper>
-              <ItemInfoText>{currentItem.gramms} грамм</ItemInfoText>
-              {currentItem.organic != 0 && (
-                <ItemInfoText>
-                  {currentItem.organic.calories} каллорий
-                </ItemInfoText>
-              )}
-            </InfoWrapper>
-            <Sizes item={currentItem} price={price} setPrice={setPrice} />
-          </ItemCardInfo>
-          <InfoCardDiscr>
-            <Link to={`/${category}/${currentItem.id}`}>
-              <TitleItem>{currentItem.text}</TitleItem>
-            </Link>
-            <DiscrItem>{currentItem.disrc}</DiscrItem>
-          </InfoCardDiscr>
-          <PurchaseWrapper>
-            <Price item={currentItem} price={price} setPrice={setPrice} />
-            <PurchaseButton>Заказать</PurchaseButton>
-          </PurchaseWrapper>
-        </ItemCardInner>
-      </ItemCardWrapper>
-    )
+    <>
+      {category == "sale" && <SaleCard obj={obj} />}
+      {category !== "sale" && (
+        <ItemCardWrapper onClick={() => handleItemPicker(obj)}>
+          <ItemCardImg
+            src={`/src/assets/img/categories/${category}/${obj.img}`}
+            alt="item"
+          />
+          <ItemCardInner>
+            <ItemCardInfo>
+              <InfoWrapper>
+                <ItemInfoText>{obj.gramms} грамм</ItemInfoText>
+                {obj.organic ? (
+                  <ItemInfoText>{obj.organic.calories} каллорий</ItemInfoText>
+                ) : null}
+              </InfoWrapper>
+              <Sizes item={obj} price={price} setPrice={setPrice} />
+            </ItemCardInfo>
+            <InfoCardDiscr>
+              <Link to={`/${category}/${obj.id}`}>
+                <TitleItem>{obj.text}</TitleItem>
+              </Link>
+              <DiscrItem>{obj.disrc}</DiscrItem>
+            </InfoCardDiscr>
+            <PurchaseWrapper>
+              <Price item={obj} price={price} setPrice={setPrice} />
+              <PurchaseButton>Заказать</PurchaseButton>
+            </PurchaseWrapper>
+          </ItemCardInner>
+        </ItemCardWrapper>
+      )}
+    </>
   );
 }

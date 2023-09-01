@@ -29,17 +29,13 @@ const CardText = styled.p`
   color: #1b1b1b;
 `;
 
-export function SaleCard({ obj, i }) {
-  const currentItem = obj.sale.items[i];
-
+export function SaleCard({ obj }) {
   return (
-    i < obj.sale.items.length && (
-      <a href="#f">
-        <SaleCardItem backGroundImg={currentItem.bg}>
-          <CardTitle>{currentItem.title}</CardTitle>
-          <CardText>{currentItem.text}</CardText>
-        </SaleCardItem>
-      </a>
-    )
+    <a href="#f">
+      <SaleCardItem backGroundImg={obj.bg}>
+        <CardTitle>{obj.title}</CardTitle>
+        <CardText>{obj.text}</CardText>
+      </SaleCardItem>
+    </a>
   );
 }

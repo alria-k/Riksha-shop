@@ -2,14 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchData = createAsyncThunk("items/fetchData", async () => {
-  return await Promise.all([
-    axios.get("/src/db/items.json"),
-    axios.get("/src/db/sale.json"),
-  ]).then(([goods, sale]) => {
-    const [goodsData] = goods.data;
-    const [saleData] = sale.data;
-    return { goodsData, saleData };
-  });
+  return await axios.get("/src/db/items.json").then(({ data }) => data);
 });
 
 const initialState = {
@@ -31,8 +24,7 @@ const currentCategorySlice = createSlice({
     },
     [fetchData.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data.items = action.payload.goodsData;
-      state.data.sale = action.payload.saleData;
+      [state.data.items] = action.payload;
     },
     [fetchData.rejected]: (state, action) => {
       console.log(action);

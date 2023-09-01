@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { ItemCard, SaleCard, CategoryPageRedict, CardSkeleton } from "../";
+import { ItemCard, CategoryPageRedict, CardSkeleton } from "../";
 
 const CategoriesBox = styled.div`
   display: flex;
@@ -13,51 +12,51 @@ const CategoriesBox = styled.div`
   margin-bottom: 50px;
 `;
 
-const itemsOnOnePage = 15;
-
 export function CategoriesList() {
+  const [currPage, setCurrPage] = useState(1);
+  const [currentItems, setCurrentItems] = useState([]);
+
   const categories = useSelector((state) => state.category.category);
   const {
-    data: { items, sale },
+    data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
 
-  const [currPage, setCurrPage] = useState(1);
+  const itemsOnOnePage = 15;
+  let lastItemIndex = currPage * itemsOnOnePage;
+  let firstItemIndex = lastItemIndex - itemsOnOnePage;
 
   useEffect(() => {
     setCurrPage(1);
   }, [categories]);
 
+  useEffect(() => {
+    !loading &&
+      setCurrentItems(
+        items[categories].items.slice(firstItemIndex, lastItemIndex)
+      );
+  }, [currPage, loading, categories]);
+
   return (
     <>
       <CategoriesBox>
         {loading &&
-          [...Array(itemsOnOnePage).keys()].map((_, index) =>
-            categories == "sale" ? (
-              <Skeleton key={index} width={392} height={280} />
-            ) : (
-              <CardSkeleton key={index} />
-            )
-          )}
+          [...Array(itemsOnOnePage).keys()].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
         {!loading &&
-          [...Array(itemsOnOnePage).keys()].map((_, index) =>
-            categories == "sale" ? (
-              <SaleCard key={index} obj={sale} i={index} />
-            ) : (
-              <ItemCard
-                key={index}
-                obj={items}
-                i={index}
-                category={categories}
-              />
-            )
-          )}
+          currentItems.map((currentItem, index) => (
+            <ItemCard key={index} obj={currentItem} category={categories} />
+          ))}
       </CategoriesBox>
-      {/* <CategoryPageRedict
-        activePage={currPage}
-        setPage={setCurrPage}
-        visibleItems={itemsOnOnePage}
-      /> */}
+      {!loading && (
+        <CategoryPageRedict
+          allItems={items[categories].items.length}
+          activePage={currPage}
+          setPage={setCurrPage}
+          visibleItems={itemsOnOnePage}
+        />
+      )}
     </>
   );
 }

@@ -26,15 +26,13 @@ export function Catalog() {
   const dispatch = useDispatch();
 
   const {
-    data: { items, sale },
+    data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
 
-  const data = { ...items, ...sale };
-
   useEffect(() => {
     dispatch(changeCategory(category));
-  }, [items, sale]);
+  }, [items]);
 
   return (
     <div>
@@ -46,10 +44,10 @@ export function Catalog() {
         )}
         {!loading && (
           <>
-            <Title>{data[category].title}</Title>
+            <Title>{items[category].title}</Title>
             {/* /* add bread crumbs */}
-            {data[category].categories && <Filterby data={data[category]} />}
-            {data[category].sortby && <Sortby data={data[category]} />}
+            {items[category].categories && <Filterby data={items[category]} />}
+            {items[category].sortby && <Sortby data={items[category]} />}
             {/* /* add 'about' component */}
           </>
         )}

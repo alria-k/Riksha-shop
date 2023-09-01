@@ -5,10 +5,12 @@ const SwitchWrapper = styled.div`
   align-items: center;
   gap: 12px;
 `;
-const SwitchArrow = styled.div`
+const SwitchArrow = styled(({ direction, ...props }) => <div {...props} />)`
+  cursor: pointer;
   background: transparent;
   outline: none;
   border: none;
+  ${({ direction }) => direction == "right" && "transform: rotate(180deg);"}
 `;
 const NumberList = styled.ul`
   display: flex;
@@ -51,7 +53,7 @@ export function CategoryPageRedict({
   setPage,
   visibleItems,
 }) {
-  let pages = Math.floor(allItems / visibleItems);
+  let pages = Math.ceil(allItems / visibleItems);
 
   function handlerPages(event, page) {
     event.preventDefault();
@@ -59,7 +61,7 @@ export function CategoryPageRedict({
   }
 
   return (
-    pages != 0 && (
+    pages != 1 && (
       <div>
         <SwitchWrapper>
           {activePage != 1 && (
@@ -93,7 +95,10 @@ export function CategoryPageRedict({
             </NumberList>
           </div>
           {activePage != pages && (
-            <SwitchArrow onClick={(e) => handlerPages(e, activePage + 1)}>
+            <SwitchArrow
+              onClick={(e) => handlerPages(e, activePage + 1)}
+              direction="right"
+            >
               <svg
                 width="33"
                 height="12"

@@ -20,7 +20,7 @@ const itemsOnOnePage = 3;
 
 export function Sale() {
   const {
-    data: { sale },
+    data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
 
@@ -37,7 +37,7 @@ export function Sale() {
         {!loading &&
           [...Array(itemsOnOnePage).keys()].map((_, index) => (
             <li key={index}>
-              <SaleCard obj={sale} i={index} />
+              <SaleCard obj={items["sale"].items[index]} />
             </li>
           ))}
       </SaleList>

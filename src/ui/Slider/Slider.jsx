@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import styled from "styled-components";
 
 const SliderWrapper = styled.div`
@@ -71,8 +71,10 @@ export function Slider({
     if (singlePhotoSlider) {
       return itemWidth;
     }
-    return itemWidth * children.length + options.margin;
+    return itemWidth * Children.count(children) + options.margin;
   }
+
+  console.log(itemWidth * Children.count(children) + options.margin);
 
   return (
     <SliderWrapper>
