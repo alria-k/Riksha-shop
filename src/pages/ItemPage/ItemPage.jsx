@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 
 import { Container, Slider, Price, Sizes } from "../index";
 import {
@@ -39,7 +40,7 @@ const ItemImg = styled.img`
   border: 1px solid #e2e1e1;
   width: 570px;
 `;
-const ItemcatalogTitle = styled.h1`
+const ItemCatalogTitle = styled.h1`
   ${catalogTitle}
 `;
 const ItemDeliveryWrapper = styled.div`
@@ -76,13 +77,17 @@ const ItemPriceWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+const ItemCatalogBox = styled.div`
+  max-width: 531px;
+  width: 100%;
+`;
 const ItemPageQuantityWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 9px 10px;
   border: 1px solid #e2e1e1;
   border-radius: 8px;
-  gap: 24px;
+  gap: 6px;
 `;
 const OrganicTableWrapper = styled.table`
   text-align: center;
@@ -119,9 +124,13 @@ const QuantityText = styled.p`
   font-size: 24px;
   line-height: 30px;
   color: #1b1b1b;
+  width: 40px;
+  text-align: center;
 `;
 const OrderBtn = styled.button`
   ${btnStyles}
+  max-width: 248px;
+  width: 100%;
 `;
 const ImgWrapper = styled.div`
   height: 373px;
@@ -157,7 +166,6 @@ export function ItemPage() {
   useEffect(() => {
     if (!loading) {
       setPrice(items[category].items[id].price);
-      setItem(items[category].items[id]);
     }
   }, [loading]);
 
@@ -187,115 +195,141 @@ export function ItemPage() {
             <p>Назад в каталог</p>
           </ItemStepBackLink>
         </ItemStepBackWrapper>
-        {currentItem && (
-          <>
-            <div>
-              <ItemInfoWrapper>
-                <Slider
-                  itemWidth={itemWidth}
-                  options={{ margin: 50 }}
-                  singlePhotoSlider={true}
+        <div>
+          <ItemInfoWrapper>
+            <Slider
+              itemWidth={itemWidth}
+              options={{ margin: 50 }}
+              singlePhotoSlider={true}
+            >
+              {[...Array(3).keys()].map((_, id) => (
+                <ImgWrapper
+                  ref={measuredRef}
+                  key={id}
+                  style={{ width: itemWidth }}
                 >
-                  {[...Array(3).keys()].map((_, id) => (
-                    <ImgWrapper
-                      ref={measuredRef}
-                      key={id}
-                      style={{ width: itemWidth }}
-                    >
-                      <ItemImg
-                        src={`/src/assets/img/categories/${category}/${currentItem.img}`}
-                        alt={`${category}-img`}
-                      />
-                    </ImgWrapper>
-                  ))}
-                </Slider>
+                  {loading && <Skeleton width={570} height={372} />}
+                  {!loading && (
+                    <ItemImg
+                      src={`/src/assets/img/categories/${category}/${items[category].items[id].img}`}
+                      alt={`${category}-img`}
+                    />
+                  )}
+                </ImgWrapper>
+              ))}
+            </Slider>
+            <ItemCatalogBox>
+              {loading && (
+                <Skeleton
+                  width={200}
+                  height={50}
+                  style={{ marginBottom: 21 }}
+                />
+              )}
+              {!loading && (
+                <ItemCatalogTitle>
+                  {items[category].items[id].text}
+                </ItemCatalogTitle>
+              )}
+              {loading && <Skeleton width={100} />}
+              {!loading && (
+                <ItemText weight={true}>
+                  Вес: <span>{items[category].items[id].gramms} грамм</span>
+                </ItemText>
+              )}
+              {!loading && items[category].items[id].organic != 0 && (
                 <div>
-                  <ItemcatalogTitle>{currentItem.text}</ItemcatalogTitle>
-                  <ItemText weight={true}>
-                    Вес: <span>{currentItem.gramms} грамм</span>
-                  </ItemText>
-                  {currentItem.organic != 0 && (
-                    <div>
-                      <OrganicTableWrapper>
-                        <thead>
-                          <tr>
-                            <OrganicTitle>Белки</OrganicTitle>
-                            <OrganicTitle>Углеводы</OrganicTitle>
-                            <OrganicTitle>Жиры</OrganicTitle>
-                            <OrganicTitle>Каллорийность</OrganicTitle>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <OrganicDiscr>
-                              {currentItem.organic.protein}
-                            </OrganicDiscr>
-                            <OrganicDiscr>
-                              {currentItem.organic.carbs}
-                            </OrganicDiscr>
-                            <OrganicDiscr>
-                              {currentItem.organic.fats}
-                            </OrganicDiscr>
-                            <OrganicDiscr>
-                              {currentItem.organic.calories}
-                            </OrganicDiscr>
-                          </tr>
-                        </tbody>
-                      </OrganicTableWrapper>
-                    </div>
-                  )}
-                  <ItemDeliveryWrapper>
-                    <img
-                      src="/src/assets/img/delivery-icon.svg"
-                      alt="delivery-icon"
-                    />
-                    <ItemDeliveryText>Доставим за 40 мин</ItemDeliveryText>
-                    <ItemDeliveryLink to={"/delivery-payment"}>
-                      Условия доставки
-                    </ItemDeliveryLink>
-                  </ItemDeliveryWrapper>
-                  <ItemCompositionWrapper>
-                    <ItemText>Состав:</ItemText>
-                    <ItemCompositionText>
-                      {currentItem.disrc}
-                    </ItemCompositionText>
-                  </ItemCompositionWrapper>
-                  {currentItem.sizes != 0 && (
-                    <ItemSizeWrapper>
-                      <ItemSizeTitle>Размеры</ItemSizeTitle>
-                      <Sizes
-                        item={currentItem}
-                        price={price}
-                        setPrice={setPrice}
-                      />
-                    </ItemSizeWrapper>
-                  )}
-                  <ItemPriceWrapper>
-                    <Price
-                      item={currentItem}
-                      price={price}
-                      setPrice={setPrice}
-                      quantity={quantity}
-                    />
-                    <ItemPageQuantityWrapper>
-                      <QuantitySetter onClick={handlerQuantityMinus}>
-                        -
-                      </QuantitySetter>
-                      <QuantityText>{quantity}</QuantityText>
-                      <QuantitySetter onClick={handlerQuantityPlus}>
-                        +
-                      </QuantitySetter>
-                    </ItemPageQuantityWrapper>
-                    <OrderBtn>Заказать</OrderBtn>
-                  </ItemPriceWrapper>
+                  <OrganicTableWrapper>
+                    <thead>
+                      <tr>
+                        <OrganicTitle>Белки</OrganicTitle>
+                        <OrganicTitle>Углеводы</OrganicTitle>
+                        <OrganicTitle>Жиры</OrganicTitle>
+                        <OrganicTitle>Каллорийность</OrganicTitle>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <OrganicDiscr>
+                          {items[category].items[id].organic.protein}
+                        </OrganicDiscr>
+                        <OrganicDiscr>
+                          {items[category].items[id].organic.carbs}
+                        </OrganicDiscr>
+                        <OrganicDiscr>
+                          {items[category].items[id].organic.fats}
+                        </OrganicDiscr>
+                        <OrganicDiscr>
+                          {items[category].items[id].organic.calories}
+                        </OrganicDiscr>
+                      </tr>
+                    </tbody>
+                  </OrganicTableWrapper>
                 </div>
-              </ItemInfoWrapper>
-              <div className="itempage__buy-with-box"></div>
-              <div className="itempage__recomendation-box"></div>
-              {/* Component with feedback */}
-            </div>
-          </>
-        )}
+              )}
+              <ItemDeliveryWrapper>
+                <img
+                  src="/src/assets/img/delivery-icon.svg"
+                  alt="delivery-icon"
+                />
+                <ItemDeliveryText>Доставим за 40 мин</ItemDeliveryText>
+                <ItemDeliveryLink to={"/delivery-payment"}>
+                  Условия доставки
+                </ItemDeliveryLink>
+              </ItemDeliveryWrapper>
+              <ItemCompositionWrapper>
+                <ItemText>Состав:</ItemText>
+                {loading && (
+                  <>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                  </>
+                )}
+                {!loading && (
+                  <ItemCompositionText>
+                    {items[category].items[id].disrc}
+                  </ItemCompositionText>
+                )}
+              </ItemCompositionWrapper>
+              {!loading && items[category].items[id].sizes != 0 && (
+                <ItemSizeWrapper>
+                  <ItemSizeTitle>Размеры</ItemSizeTitle>
+                  <Sizes
+                    item={items[category].items[id]}
+                    price={price}
+                    setPrice={setPrice}
+                  />
+                </ItemSizeWrapper>
+              )}
+              <ItemPriceWrapper>
+                {loading && <Skeleton width={90} height={30} />}
+                {!loading && (
+                  <Price
+                    item={items[category].items[id]}
+                    price={price}
+                    setPrice={setPrice}
+                    quantity={quantity}
+                  />
+                )}
+
+                <ItemPageQuantityWrapper>
+                  <QuantitySetter onClick={handlerQuantityMinus}>
+                    -
+                  </QuantitySetter>
+                  <QuantityText>{quantity}</QuantityText>
+                  <QuantitySetter onClick={handlerQuantityPlus}>
+                    +
+                  </QuantitySetter>
+                </ItemPageQuantityWrapper>
+                <OrderBtn>Заказать</OrderBtn>
+              </ItemPriceWrapper>
+            </ItemCatalogBox>
+          </ItemInfoWrapper>
+          <div className="itempage__buy-with-box"></div>
+          <div className="itempage__recomendation-box"></div>
+          {/* Component with feedback */}
+        </div>
       </Container>
     </div>
   );

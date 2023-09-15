@@ -6,6 +6,7 @@ const SizeButtonsWrapper = styled.div`
   align-items: center;
   gap: 12px;
   position: relative;
+  width: fit-content;
 `;
 const SizeExtraPay = styled.div`
   position: absolute;

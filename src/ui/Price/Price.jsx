@@ -8,6 +8,7 @@ const PriceTitle = styled.h2`
   font-size: 24px;
   line-height: 30px;
   color: #1b1b1b;
+  width: 100px;
 `;
 const OldPrice = styled.span`
   font-weight: 400;

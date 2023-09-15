@@ -71,10 +71,8 @@ export function Slider({
     if (singlePhotoSlider) {
       return itemWidth;
     }
-    return itemWidth * Children.count(children) + options.margin;
+    return itemWidth * (Children.count(children) - 1) + options.margin;
   }
-
-  console.log(itemWidth * Children.count(children) + options.margin);
 
   return (
     <SliderWrapper>
@@ -107,7 +105,7 @@ export function Slider({
         </SliderSwiper>
         <SliderArrow
           onClick={() =>
-            sliderCount != children.length - 1 &&
+            sliderCount != Children.count(children) - 1 &&
             setSliderCount(sliderCount + 1)
           }
         >

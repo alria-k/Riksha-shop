@@ -61,7 +61,7 @@ export function CategoryPageRedict({
   }
 
   return (
-    pages != 1 && (
+    pages > 1 && (
       <div>
         <SwitchWrapper>
           {activePage != 1 && (
