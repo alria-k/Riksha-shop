@@ -141,7 +141,6 @@ const ImgWrapper = styled.div`
 export function ItemPage() {
   const { category, id } = useParams();
   const [itemWidth, setItemWidth] = useState(0);
-  const [currentItem, setItem] = useState(null);
   const {
     data: { items },
     loading,
@@ -202,10 +201,10 @@ export function ItemPage() {
               options={{ margin: 50 }}
               singlePhotoSlider={true}
             >
-              {[...Array(3).keys()].map((_, id) => (
+              {[...Array(3).keys()].map((_, key) => (
                 <ImgWrapper
                   ref={measuredRef}
-                  key={id}
+                  key={key}
                   style={{ width: itemWidth }}
                 >
                   {loading && <Skeleton width={570} height={372} />}

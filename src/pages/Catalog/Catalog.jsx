@@ -32,7 +32,7 @@ export function Catalog() {
 
   useEffect(() => {
     dispatch(changeCategory(category));
-  }, [items]);
+  }, [loading]);
 
   return (
     <div>

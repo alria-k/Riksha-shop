@@ -14,7 +14,6 @@ const CategoriesBox = styled.div`
 
 export function CategoriesList() {
   const [currPage, setCurrPage] = useState(1);
-  const [currentItems, setCurrentItems] = useState([]);
 
   const categories = useSelector((state) => state.category.category);
   const {
@@ -30,13 +29,6 @@ export function CategoriesList() {
     setCurrPage(1);
   }, [categories]);
 
-  useEffect(() => {
-    !loading &&
-      setCurrentItems(
-        items[categories].items.slice(firstItemIndex, lastItemIndex)
-      );
-  }, [currPage, loading, categories]);
-
   return (
     <>
       <CategoriesBox>
@@ -45,9 +37,11 @@ export function CategoriesList() {
             <CardSkeleton key={index} />
           ))}
         {!loading &&
-          currentItems.map((currentItem, index) => (
-            <ItemCard key={index} obj={currentItem} category={categories} />
-          ))}
+          items[categories].items
+            .slice(firstItemIndex, lastItemIndex)
+            .map((currentItem, index) => (
+              <ItemCard key={index} obj={currentItem} category={categories} />
+            ))}
       </CategoriesBox>
       {!loading && (
         <CategoryPageRedict

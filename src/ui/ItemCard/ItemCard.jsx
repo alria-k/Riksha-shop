@@ -102,7 +102,7 @@ export function ItemCard({ obj, category }) {
               <Sizes item={obj} price={price} setPrice={setPrice} />
             </ItemCardInfo>
             <InfoCardDiscr>
-              <Link to={`/${category}/${obj.id}`}>
+              <Link to={`/${category}/${obj.id - 1}`}>
                 <TitleItem>{obj.text}</TitleItem>
               </Link>
               <DiscrItem>{obj.disrc}</DiscrItem>

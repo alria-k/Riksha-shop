@@ -24,6 +24,7 @@ const SliderArrow = styled.div`
   border-radius: 100%;
   top: 38%;
   z-index: 3;
+  user-select: none;
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       svg {
