@@ -1,4 +1,7 @@
 import styled from "styled-components";
+
+import { Overlay } from "../Overlay/Overlay";
+import { Modal } from "../Modal/Modal";
 import { navFlex } from "../../style/styling/styling";
 
 const UserIntefaceBox = styled.ul`
@@ -10,13 +13,31 @@ const CartBox = styled.li`
   position: relative;
 `;
 
-const Cart = styled.a`
+const Cart = styled.button`
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 14px 16px;
   background: #f5f5f5;
   border-radius: 6px;
+  outline: none;
+  border: none;
+`;
+
+const UserIntefaceList = styled.ul`
+  position: relative;
+`;
+
+const ModalBox = styled.div`
+  position: absolute;
+  bottom: -58px;
+  right: 0px;
+  min-width: 624px;
+  width: 100%;
+`;
+
+const ExtendModalStyles = styled(Modal)`
+  width: 100%;
 `;
 
 const CartCount = styled.div`
@@ -54,17 +75,20 @@ const UserImg = styled.img`
 export function UserInteface() {
   return (
     <UserIntefaceBox>
-      <ul>
+      <UserIntefaceList>
+        <ModalBox>
+          <ExtendModalStyles>lollololoolololo</ExtendModalStyles>
+        </ModalBox>
         <CartBox>
-          <Cart href="#f">
-            <PriceText href="#f">0 ₽</PriceText>
+          <Cart>
+            <PriceText>0 ₽</PriceText>
             <CartCount>0</CartCount>
             <CardImg src="/src/assets/img/cart.svg" alt="cart" />
           </Cart>
         </CartBox>
-      </ul>
+      </UserIntefaceList>
       <li>
-        <Cart className="user-interface__link" href="#f">
+        <Cart>
           <UserImg src="/src/assets/img/user.svg" alt="user-icon" />
         </Cart>
       </li>

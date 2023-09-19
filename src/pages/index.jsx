@@ -12,6 +12,7 @@ export {
   LazyImg,
   Filterby,
   RightArrow,
+  Modal,
 } from "../ui";
 export { CardSkeleton } from "../skeleton";
 export { MainPage } from "./MainPage/MainPage";

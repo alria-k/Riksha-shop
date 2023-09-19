@@ -14,6 +14,8 @@ export { LazyImg } from "./LazyImg/LazyImg";
 export { CategoriesList } from "./CategoriesList/CategoriesList";
 export { CategoryPageRedict } from "./CategoryPageRedict/CategoryPageRedict";
 export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
+export { Modal } from "./Modal/Modal";
+export { Overlay } from "./Overlay/Overlay";
 export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
 export { MainPage, Catalog, ItemPage } from "../pages/index";

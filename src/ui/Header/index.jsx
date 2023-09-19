@@ -1,2 +1,8 @@
 export { Nav } from "./Nav/Nav";
-export { CategoriesNav, Menu, PhoneNumber, UserInteface } from "../index";
+export {
+  CategoriesNav,
+  Menu,
+  PhoneNumber,
+  UserInteface,
+  Modal,
+} from "../index";
