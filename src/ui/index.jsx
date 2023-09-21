@@ -15,6 +15,8 @@ export { CategoriesList } from "./CategoriesList/CategoriesList";
 export { CategoryPageRedict } from "./CategoryPageRedict/CategoryPageRedict";
 export { CategoriesNav } from "./CategoriesNav/CategoriesNav";
 export { Modal } from "./Modal/Modal";
+export { CartItem } from "./CartItem/CartItem";
+export { QuantityCounter } from "./QuantityCounter/QuantityCounter";
 export { Overlay } from "./Overlay/Overlay";
 export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";

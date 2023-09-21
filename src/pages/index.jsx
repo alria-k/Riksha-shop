@@ -13,6 +13,7 @@ export {
   Filterby,
   RightArrow,
   Modal,
+  QuantityCounter,
 } from "../ui";
 export { CardSkeleton } from "../skeleton";
 export { MainPage } from "./MainPage/MainPage";

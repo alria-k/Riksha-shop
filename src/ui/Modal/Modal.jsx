@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const ModalInner = styled.div`
   position: relative;
-  width: fit-content;
   background-color: white;
   border-radius: 24px;
   padding: 16px;
   pointer-events: all;
+  box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
 `;
 const CrossButton = styled.button`
   text-decoration: none;

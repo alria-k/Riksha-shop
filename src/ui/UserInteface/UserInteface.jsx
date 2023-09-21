@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Overlay } from "../Overlay/Overlay";
+import { CartItem } from "../CartItem/CartItem";
 import { Modal } from "../Modal/Modal";
 import { navFlex } from "../../style/styling/styling";
 
@@ -33,10 +34,6 @@ const ModalBox = styled.div`
   bottom: -58px;
   right: 0px;
   min-width: 624px;
-  width: 100%;
-`;
-
-const ExtendModalStyles = styled(Modal)`
   width: 100%;
 `;
 
@@ -77,7 +74,9 @@ export function UserInteface() {
     <UserIntefaceBox>
       <UserIntefaceList>
         <ModalBox>
-          <ExtendModalStyles>lollololoolololo</ExtendModalStyles>
+          <Modal closeBtnAbility={false}>
+            <CartItem />
+          </Modal>
         </ModalBox>
         <CartBox>
           <Cart>

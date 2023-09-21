@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 
-import { Container, Slider, Price, Sizes } from "../index";
+import { Container, Slider, Price, Sizes, QuantityCounter } from "../index";
 import {
   catalogTitle,
   paragraphFont,
@@ -81,14 +81,6 @@ const ItemCatalogBox = styled.div`
   max-width: 531px;
   width: 100%;
 `;
-const ItemPageQuantityWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 9px 10px;
-  border: 1px solid #e2e1e1;
-  border-radius: 8px;
-  gap: 6px;
-`;
 const OrganicTableWrapper = styled.table`
   text-align: center;
   padding: 9.5px 0;
@@ -109,23 +101,6 @@ const OrganicDiscr = styled.td`
   :not(:last-child) {
     border-right: 1px solid #e2e1e1;
   }
-`;
-const QuantitySetter = styled.button`
-  font-weight: 200;
-  font-size: 28px;
-  line-height: 34px;
-  color: #e07153;
-  border: none;
-  outline: none;
-  background-color: transparent;
-`;
-const QuantityText = styled.p`
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 30px;
-  color: #1b1b1b;
-  width: 40px;
-  text-align: center;
 `;
 const OrderBtn = styled.button`
   ${btnStyles}
@@ -148,19 +123,6 @@ export function ItemPage() {
 
   const [price, setPrice] = React.useState(0);
   const [quantity, setQuantity] = React.useState(1);
-
-  function handlerQuantityPlus(e) {
-    e.preventDefault();
-    if (quantity < 20) {
-      setQuantity(quantity + 1);
-    }
-  }
-  function handlerQuantityMinus(e) {
-    e.preventDefault();
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  }
 
   useEffect(() => {
     if (!loading) {
@@ -311,16 +273,7 @@ export function ItemPage() {
                     quantity={quantity}
                   />
                 )}
-
-                <ItemPageQuantityWrapper>
-                  <QuantitySetter onClick={handlerQuantityMinus}>
-                    -
-                  </QuantitySetter>
-                  <QuantityText>{quantity}</QuantityText>
-                  <QuantitySetter onClick={handlerQuantityPlus}>
-                    +
-                  </QuantitySetter>
-                </ItemPageQuantityWrapper>
+                <QuantityCounter count={quantity} setCount={setQuantity} />
                 <OrderBtn>Заказать</OrderBtn>
               </ItemPriceWrapper>
             </ItemCatalogBox>
