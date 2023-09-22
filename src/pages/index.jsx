@@ -14,6 +14,7 @@ export {
   RightArrow,
   Modal,
   QuantityCounter,
+  OrderBtn,
 } from "../ui";
 export { CardSkeleton } from "../skeleton";
 export { MainPage } from "./MainPage/MainPage";

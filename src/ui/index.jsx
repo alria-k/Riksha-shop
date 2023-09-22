@@ -20,6 +20,7 @@ export { QuantityCounter } from "./QuantityCounter/QuantityCounter";
 export { Overlay } from "./Overlay/Overlay";
 export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
+export { OrderBtn } from "./OrderBtn/OrderBtn";
 export { MainPage, Catalog, ItemPage } from "../pages/index";
 export { changeCategory, fetchData, pickItem } from "../redux";
 export { CardSkeleton } from "../skeleton";

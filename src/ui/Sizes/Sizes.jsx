@@ -33,13 +33,15 @@ const SizeRadio = styled.input`
   height: 100%;
   z-index: 11;
 `;
-const SizeWrapper = styled.form`
+const SizeWrapper = styled(({ bgColor, ...props }) => <form {...props} />)`
+  ${({ bgColor }) => bgColor && "background: #f5f5f5;"}
   position: relative;
-  background: #f5f5f5;
   border-radius: 2px;
   padding: 4px 8px;
   color: #b7b7b7;
   :has(${SizeRadio}:checked + ${SizeRadioCustom}) {
+    ${({ bgColor }) =>
+      !bgColor && "&& {background: transparent; color: #e07153;}"}
     background: #e07153;
     color: white;
   }
@@ -52,12 +54,12 @@ const SizeWrapper = styled.form`
       background: #e07153;
       border-radius: 100%;
       left: -15%;
-      top: 40%;
+      top: 50%;
     }
   }
 `;
 
-export function Sizes({ item, price, setPrice }) {
+export function Sizes({ item, price, setPrice, bgColor = true }) {
   const [extraPrice, setExtraPrice] = useState(0);
   const [checked, setChecked] = useState(0);
 
@@ -83,7 +85,7 @@ export function Sizes({ item, price, setPrice }) {
     <SizeButtonsWrapper>
       <SizeExtraPay>+{extraPrice} ₽</SizeExtraPay>
       {item.sizes.map((elem, index) => (
-        <SizeWrapper key={index}>
+        <SizeWrapper key={index} bgColor={bgColor}>
           <SizeRadio
             checked={index == checked}
             onChange={(e) => handleChange(e, elem.extraPay, index)}

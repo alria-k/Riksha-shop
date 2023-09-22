@@ -4,12 +4,15 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 
-import { Container, Slider, Price, Sizes, QuantityCounter } from "../index";
 import {
-  catalogTitle,
-  paragraphFont,
-  btnStyles,
-} from "../../style/styling/styling";
+  Container,
+  Slider,
+  Price,
+  Sizes,
+  QuantityCounter,
+  OrderBtn,
+} from "../index";
+import { catalogTitle, paragraphFont } from "../../style/styling/styling";
 
 const ItemText = styled(({ weight = false, ...props }) => <p {...props} />)`
   ${({ weight }) => weight && `margin-bottom: 8px;`}
@@ -102,10 +105,11 @@ const OrganicDiscr = styled.td`
     border-right: 1px solid #e2e1e1;
   }
 `;
-const OrderBtn = styled.button`
-  ${btnStyles}
-  max-width: 248px;
-  width: 100%;
+const ExtraOrderBtnStyles = styled(OrderBtn)`
+  && {
+    max-width: 248px;
+    width: 100%;
+  }
 `;
 const ImgWrapper = styled.div`
   height: 373px;
@@ -274,7 +278,7 @@ export function ItemPage() {
                   />
                 )}
                 <QuantityCounter count={quantity} setCount={setQuantity} />
-                <OrderBtn>Заказать</OrderBtn>
+                <ExtraOrderBtnStyles />
               </ItemPriceWrapper>
             </ItemCatalogBox>
           </ItemInfoWrapper>

@@ -31,10 +31,11 @@ const UserIntefaceList = styled.ul`
 
 const ModalBox = styled.div`
   position: absolute;
-  bottom: -58px;
+  top: 50px;
   right: 0px;
   min-width: 624px;
   width: 100%;
+  z-index: 2;
 `;
 
 const CartCount = styled.div`

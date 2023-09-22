@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-import { btnStyles, paragraphFont } from "../../style/styling/styling";
+import { paragraphFont } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
+import { OrderBtn } from "../OrderBtn/OrderBtn";
 import { pickItem, SaleCard } from "../";
 
 const ItemCardWrapper = styled.div`
@@ -61,9 +62,6 @@ const PurchaseWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const PurchaseButton = styled.button`
-  ${btnStyles}
-`;
 const TitleItem = styled.h1`
   font-size: 24px;
   font-style: normal;
@@ -109,7 +107,7 @@ export function ItemCard({ obj, category }) {
             </InfoCardDiscr>
             <PurchaseWrapper>
               <Price item={obj} price={price} setPrice={setPrice} />
-              <PurchaseButton>Заказать</PurchaseButton>
+              <OrderBtn />
             </PurchaseWrapper>
           </ItemCardInner>
         </ItemCardWrapper>
