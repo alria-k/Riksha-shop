@@ -105,11 +105,8 @@ const OrganicDiscr = styled.td`
     border-right: 1px solid #e2e1e1;
   }
 `;
-const ExtraOrderBtnStyles = styled(OrderBtn)`
-  && {
-    max-width: 248px;
-    width: 100%;
-  }
+const OrderBtnWrapper = styled.div`
+  min-width: 248px;
 `;
 const ImgWrapper = styled.div`
   height: 373px;
@@ -278,7 +275,9 @@ export function ItemPage() {
                   />
                 )}
                 <QuantityCounter count={quantity} setCount={setQuantity} />
-                <ExtraOrderBtnStyles />
+                <OrderBtnWrapper>
+                  {!loading && <OrderBtn item={items[category].items[id]} />}
+                </OrderBtnWrapper>
               </ItemPriceWrapper>
             </ItemCatalogBox>
           </ItemInfoWrapper>

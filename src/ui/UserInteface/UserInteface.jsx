@@ -75,9 +75,7 @@ export function UserInteface() {
     <UserIntefaceBox>
       <UserIntefaceList>
         <ModalBox>
-          <Modal closeBtnAbility={false}>
-            <CartItem />
-          </Modal>
+          <Modal closeBtnAbility={false}></Modal>
         </ModalBox>
         <CartBox>
           <Cart>

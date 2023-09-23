@@ -71,6 +71,9 @@ const TitleItem = styled.h1`
 const DiscrItem = styled.p`
   ${paragraphFont}
 `;
+const OrderBtnWrapper = styled.div`
+  min-width: 180px;
+`;
 
 export function ItemCard({ obj, category }) {
   const [price, setPrice] = useState(0);
@@ -107,7 +110,9 @@ export function ItemCard({ obj, category }) {
             </InfoCardDiscr>
             <PurchaseWrapper>
               <Price item={obj} price={price} setPrice={setPrice} />
-              <OrderBtn />
+              <OrderBtnWrapper>
+                <OrderBtn />
+              </OrderBtnWrapper>
             </PurchaseWrapper>
           </ItemCardInner>
         </ItemCardWrapper>
