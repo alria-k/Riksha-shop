@@ -276,7 +276,12 @@ export function ItemPage() {
                 )}
                 <QuantityCounter count={quantity} setCount={setQuantity} />
                 <OrderBtnWrapper>
-                  {!loading && <OrderBtn item={items[category].items[id]} />}
+                  {!loading && (
+                    <OrderBtn
+                      item={items[category].items[id]}
+                      quantity={quantity}
+                    />
+                  )}
                 </OrderBtnWrapper>
               </ItemPriceWrapper>
             </ItemCatalogBox>

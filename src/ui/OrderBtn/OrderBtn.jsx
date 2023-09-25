@@ -9,14 +9,16 @@ const OrderButton = styled.button`
   width: 100%;
 `;
 
-export function OrderBtn({ item }) {
+export function OrderBtn({ item, quantity }) {
   const dispatch = useDispatch();
 
-  function handlerAddToCart(i) {
-    dispatch(addToCart(i));
+  function handlerAddToCart(i, q) {
+    dispatch(addToCart({ item: i, quantity: q }));
   }
 
   return (
-    <OrderButton onClick={() => handlerAddToCart(item)}>Заказать</OrderButton>
+    <OrderButton onClick={() => handlerAddToCart(item, quantity)}>
+      Заказать
+    </OrderButton>
   );
 }
