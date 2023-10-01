@@ -111,7 +111,7 @@ export function ItemCard({ obj, category }) {
             <PurchaseWrapper>
               <Price item={obj} price={price} setPrice={setPrice} />
               <OrderBtnWrapper>
-                <OrderBtn />
+                <OrderBtn quantity={1} item={obj} category={category} />
               </OrderBtnWrapper>
             </PurchaseWrapper>
           </ItemCardInner>

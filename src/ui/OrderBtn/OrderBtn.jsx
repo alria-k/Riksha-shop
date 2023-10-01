@@ -9,11 +9,11 @@ const OrderButton = styled.button`
   width: 100%;
 `;
 
-export function OrderBtn({ item, quantity }) {
+export function OrderBtn({ item, quantity, category }) {
   const dispatch = useDispatch();
 
   function handlerAddToCart(i, q) {
-    dispatch(addToCart({ item: i, quantity: q }));
+    dispatch(addToCart({ item: i, quantity: q, category: category }));
   }
 
   return (

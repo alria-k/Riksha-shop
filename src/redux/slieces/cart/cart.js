@@ -13,14 +13,16 @@ const cartSlice = createSlice({
 
       if (existingVal) {
         return state.map((subject) =>
-          subject.item.text == action.payload.item.text
+          subject.item.text == action.payload.item.text && subject.quantity < 20
             ? {
                 item: subject.item,
                 quantity: subject.quantity + 1,
+                category: subject.category,
               }
             : {
                 item: subject.item,
                 quantity: subject.quantity,
+                category: subject.category,
               }
         );
       }

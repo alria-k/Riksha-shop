@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { Overlay } from "../Overlay/Overlay";
-import { CartItem } from "../CartItem/CartItem";
+import { CartList } from "../CartList/CartList";
 import { Modal } from "../Modal/Modal";
 import { navFlex } from "../../style/styling/styling";
 
@@ -75,7 +75,9 @@ export function UserInteface() {
     <UserIntefaceBox>
       <UserIntefaceList>
         <ModalBox>
-          <Modal closeBtnAbility={false}></Modal>
+          <Modal closeBtnAbility={false}>
+            <CartList />
+          </Modal>
         </ModalBox>
         <CartBox>
           <Cart>

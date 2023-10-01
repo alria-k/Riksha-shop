@@ -280,6 +280,7 @@ export function ItemPage() {
                     <OrderBtn
                       item={items[category].items[id]}
                       quantity={quantity}
+                      category={category}
                     />
                   )}
                 </OrderBtnWrapper>

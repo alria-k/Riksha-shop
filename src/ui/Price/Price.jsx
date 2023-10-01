@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const PriceTitle = styled.h2`
@@ -21,7 +21,7 @@ const OldPrice = styled.span`
 `;
 
 export function Price({ item, price, setPrice, quantity = 1 }) {
-  React.useEffect(() => {
+  useEffect(() => {
     setPrice(item.price);
   }, [item]);
 

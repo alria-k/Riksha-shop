@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { QuantityCounter } from "../QuantityCounter/QuantityCounter";
 import { Sizes } from "../Sizes/Sizes";
@@ -24,7 +25,7 @@ const CartTitleSizeWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const CartItemTitle = styled.p`
+const CartItemLink = styled(Link)`
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -49,24 +50,44 @@ const CartDeleteItem = styled.button`
   padding: none;
 `;
 
-export function CartItem() {
-  const [quantity, setQuantity] = useState(1);
+export function CartItem({ cartItems }) {
+  const [count, setCount] = useState(1);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    setCount(cartItems.quantity);
+  }, [cartItems.quantity]);
 
   return (
     <CartItemWrapper>
       <LeftSideWrapper>
-        <CartItemImage src="/src/assets/img/categories/pizza/vetchina-i-gribi.jpg" />
+        <CartItemImage
+          src={`/src/assets/img/categories/${cartItems.category}/${cartItems.item.img}`}
+          alt="item"
+        />
         <CartTitleSizeWrapper>
-          <CartItemTitle>Пицца “Рикша”</CartItemTitle>
-          {/* <Sizes bgColor={false} /> */}
+          <CartItemLink to={`/${cartItems.category}/${cartItems.item.id}`}>
+            {cartItems.item.text}
+          </CartItemLink>
+          {cartItems.item.sizes ? (
+            <Sizes
+              bgColor={false}
+              item={cartItems.item}
+              price={cartItems.item.price}
+            />
+          ) : null}
         </CartTitleSizeWrapper>
       </LeftSideWrapper>
       <CartPriceQuantityWrpper>
-        <QuantityCounter setCount={setQuantity} count={quantity} />
-        {/* <Price quantity={quantity} /> */}
-        <PriceText>100 Р</PriceText>
+        <QuantityCounter setCount={setCount} count={count} />
+        <Price
+          item={cartItems.item}
+          price={price}
+          setPrice={setPrice}
+          quantity={count}
+        />
         <CartDeleteItem>
-          <img src="/src/assets/img/delete-cart.svg" alt="" />
+          <img src="/src/assets/img/delete-cart.svg" alt="delete-icon" />
         </CartDeleteItem>
       </CartPriceQuantityWrpper>
     </CartItemWrapper>
