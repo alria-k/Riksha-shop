@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
+import { quantityChanger } from "../";
 import { QuantityCounter } from "../QuantityCounter/QuantityCounter";
 import { Sizes } from "../Sizes/Sizes";
 import { Price } from "../Price/Price";
@@ -51,12 +53,8 @@ const CartDeleteItem = styled.button`
 `;
 
 export function CartItem({ cartItems }) {
-  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
-
-  useEffect(() => {
-    setCount(cartItems.quantity);
-  }, [cartItems.quantity]);
 
   return (
     <CartItemWrapper>
@@ -79,12 +77,17 @@ export function CartItem({ cartItems }) {
         </CartTitleSizeWrapper>
       </LeftSideWrapper>
       <CartPriceQuantityWrpper>
-        <QuantityCounter setCount={setCount} count={count} />
+        <QuantityCounter
+          setCount={(q) =>
+            dispatch(quantityChanger({ q, text: cartItems.item.text }))
+          }
+          count={cartItems.quantity}
+        />
         <Price
           item={cartItems.item}
           price={price}
           setPrice={setPrice}
-          quantity={count}
+          quantity={cartItems.quantity}
         />
         <CartDeleteItem>
           <img src="/src/assets/img/delete-cart.svg" alt="delete-icon" />

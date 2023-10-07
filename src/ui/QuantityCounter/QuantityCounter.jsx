@@ -27,7 +27,7 @@ const QuantityText = styled.p`
   text-align: center;
 `;
 
-export function QuantityCounter({ count, setCount }) {
+export function QuantityCounter({ count, setCount, id = null }) {
   function handlerQuantityPlus(e) {
     e.preventDefault();
     if (count < 20) {

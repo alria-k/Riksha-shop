@@ -8,30 +8,45 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const existingVal = state.find(
-        (subject) => subject.item.text === action.payload.item.text
+        (obj) => obj.item.text === action.payload.item.text
       );
 
       if (existingVal) {
-        return state.map((subject) =>
-          subject.item.text == action.payload.item.text && subject.quantity < 20
+        return state.map((obj) =>
+          obj.item.text == action.payload.item.text && obj.quantity < 20
             ? {
-                item: subject.item,
-                quantity: subject.quantity + 1,
-                category: subject.category,
+                item: obj.item,
+                quantity: obj.quantity + 1,
+                category: obj.category,
               }
             : {
-                item: subject.item,
-                quantity: subject.quantity,
-                category: subject.category,
+                item: obj.item,
+                quantity: obj.quantity,
+                category: obj.category,
               }
         );
       }
 
       return [...state, action.payload];
     },
+    quantityChanger(state, action) {
+      return state.map((obj) =>
+        obj.item.text == action.payload.text
+          ? {
+              item: obj.item,
+              quantity: action.payload.q,
+              category: obj.category,
+            }
+          : {
+              item: obj.item,
+              quantity: obj.q,
+              category: obj.category,
+            }
+      );
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, quantityChanger } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -22,5 +22,11 @@ export { Filterby } from "./Filterby/Filterby";
 export { Menu } from "./Menu/Menu";
 export { OrderBtn } from "./OrderBtn/OrderBtn";
 export { MainPage, Catalog, ItemPage } from "../pages/index";
-export { changeCategory, fetchData, pickItem, addToCart } from "../redux";
+export {
+  changeCategory,
+  fetchData,
+  pickItem,
+  addToCart,
+  quantityChanger,
+} from "../redux";
 export { CardSkeleton } from "../skeleton";
