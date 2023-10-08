@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { quantityChanger } from "../";
+import { quantityChanger, deleteFromCart } from "../";
 import { QuantityCounter } from "../QuantityCounter/QuantityCounter";
 import { Sizes } from "../Sizes/Sizes";
 import { Price } from "../Price/Price";
@@ -46,10 +46,14 @@ const PriceText = styled.p`
   font-weight: 600;
   line-height: normal;
 `;
-const CartDeleteItem = styled.button`
+const CartDeleteItemBtn = styled.button`
   border: none;
   background: transparent;
   padding: none;
+`;
+const DeleteItemIcon = styled.img`
+  width: 24px;
+  height: 24;
 `;
 
 export function CartItem({ cartItems }) {
@@ -72,6 +76,7 @@ export function CartItem({ cartItems }) {
               bgColor={false}
               item={cartItems.item}
               price={cartItems.item.price}
+              setPrice={setPrice}
             />
           ) : null}
         </CartTitleSizeWrapper>
@@ -89,9 +94,14 @@ export function CartItem({ cartItems }) {
           setPrice={setPrice}
           quantity={cartItems.quantity}
         />
-        <CartDeleteItem>
-          <img src="/src/assets/img/delete-cart.svg" alt="delete-icon" />
-        </CartDeleteItem>
+        <CartDeleteItemBtn
+          onClick={() => dispatch(deleteFromCart(cartItems.item.text))}
+        >
+          <DeleteItemIcon
+            src="/src/assets/img/delete-cart.svg"
+            alt="delete-icon"
+          />
+        </CartDeleteItemBtn>
       </CartPriceQuantityWrpper>
     </CartItemWrapper>
   );

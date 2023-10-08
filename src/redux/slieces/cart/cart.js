@@ -7,46 +7,38 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const existingVal = state.find(
-        (obj) => obj.item.text === action.payload.item.text
-      );
-
-      if (existingVal) {
+      if (state.find((obj) => obj.item.text === action.payload.item.text)) {
         return state.map((obj) =>
           obj.item.text == action.payload.item.text && obj.quantity < 20
             ? {
-                item: obj.item,
+                ...obj,
                 quantity: obj.quantity + 1,
-                category: obj.category,
               }
             : {
-                item: obj.item,
-                quantity: obj.quantity,
-                category: obj.category,
+                ...obj,
               }
         );
       }
-
       return [...state, action.payload];
     },
     quantityChanger(state, action) {
       return state.map((obj) =>
         obj.item.text == action.payload.text
           ? {
-              item: obj.item,
+              ...obj,
               quantity: action.payload.q,
-              category: obj.category,
             }
           : {
-              item: obj.item,
-              quantity: obj.q,
-              category: obj.category,
+              ...obj,
             }
       );
+    },
+    deleteFromCart(state, action) {
+      return state.filter((obj) => obj.item.text != action.payload);
     },
   },
 });
 
-export const { addToCart, quantityChanger } = cartSlice.actions;
+export const { addToCart, quantityChanger, deleteFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

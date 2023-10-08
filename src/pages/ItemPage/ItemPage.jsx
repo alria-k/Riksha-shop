@@ -122,8 +122,8 @@ export function ItemPage() {
     loading,
   } = useSelector((state) => state.clickedCategory);
 
-  const [price, setPrice] = React.useState(0);
-  const [quantity, setQuantity] = React.useState(1);
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (!loading) {

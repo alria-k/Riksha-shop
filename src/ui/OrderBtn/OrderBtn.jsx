@@ -1,24 +1,14 @@
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 
+import { Button } from "../Button/Button";
 import { addToCart } from "../";
-import { btnStyles } from "../../style/styling/styling";
-
-const OrderButton = styled.button`
-  ${btnStyles}
-  width: 100%;
-`;
 
 export function OrderBtn({ item, quantity, category }) {
   const dispatch = useDispatch();
 
-  function handlerAddToCart(i, q) {
-    dispatch(addToCart({ item: i, quantity: q, category: category }));
+  function handlerAddToCart() {
+    dispatch(addToCart({ item: item, quantity: quantity, category: category }));
   }
 
-  return (
-    <OrderButton onClick={() => handlerAddToCart(item, quantity)}>
-      Заказать
-    </OrderButton>
-  );
+  return <Button handler={handlerAddToCart}>Заказать</Button>;
 }

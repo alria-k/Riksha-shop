@@ -28,5 +28,6 @@ export {
   pickItem,
   addToCart,
   quantityChanger,
+  deleteFromCart,
 } from "../redux";
 export { CardSkeleton } from "../skeleton";
