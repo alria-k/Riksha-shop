@@ -29,5 +29,6 @@ export {
   addToCart,
   quantityChanger,
   deleteFromCart,
+  countSummaryPrice,
 } from "../redux";
 export { CardSkeleton } from "../skeleton";
