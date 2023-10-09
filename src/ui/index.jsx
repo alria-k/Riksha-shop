@@ -31,4 +31,5 @@ export {
   deleteFromCart,
   countSummaryPrice,
 } from "../redux";
+export { useOnHoverOutside } from "../hooks/useHoverOutside";
 export { CardSkeleton } from "../skeleton";

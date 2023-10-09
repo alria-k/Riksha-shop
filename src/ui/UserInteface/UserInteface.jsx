@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { countSummaryPrice } from "../";
-import { Overlay } from "../Overlay/Overlay";
+import { countSummaryPrice, useOnHoverOutside } from "../";
 import { Cart } from "../Cart/Cart";
 import { Modal } from "../Modal/Modal";
 import { navFlex } from "../../style/styling/styling";
@@ -32,7 +31,11 @@ const UserIntefaceList = styled.ul`
   position: relative;
 `;
 
-const ModalBox = styled.div`
+const ModalBox = styled(({ toggle, ...props }) => <div {...props} />)`
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  visibility: visible;
+  ${({ toggle }) => !toggle && "opacity: 0; visibility: hidden;"}
   position: absolute;
   top: 50px;
   right: 0px;
@@ -77,26 +80,34 @@ const UserImg = styled.img`
 
 export function UserInteface() {
   const dispatch = useDispatch();
+  const cartRef = useRef();
   const [cart, summary] = useSelector((state) => [state.cart, state.summary]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handlerCartHover() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     dispatch(countSummaryPrice(cart));
   }, [cart]);
 
+  useOnHoverOutside(cartRef, handlerCartHover);
+
   return (
     <UserIntefaceBox>
       <UserIntefaceList>
-        <ModalBox>
-          <Modal closeBtnAbility={false}>
-            <Cart />
-          </Modal>
-        </ModalBox>
-        <CartBox>
+        <CartBox ref={cartRef} onMouseOver={() => setIsOpen(true)}>
           <CartBtn>
             <PriceText>{summary} ₽</PriceText>
             <CartCount>{cart.length}</CartCount>
             <CartImg src="/src/assets/img/cart.svg" alt="cart" />
           </CartBtn>
+          <ModalBox toggle={isOpen}>
+            <Modal closeBtnAbility={false}>
+              <Cart />
+            </Modal>
+          </ModalBox>
         </CartBox>
       </UserIntefaceList>
       <li>
