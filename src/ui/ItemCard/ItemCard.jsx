@@ -12,6 +12,10 @@ import { pickItem, SaleCard } from "../";
 const ItemCardWrapper = styled.div`
   background: #ffffff;
   max-width: 392px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 479px;
 `;
 const ItemCardImg = styled.img`
   user-select: none;

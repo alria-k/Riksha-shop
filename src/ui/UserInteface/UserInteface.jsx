@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import { countSummaryPrice } from "../";
 import { Overlay } from "../Overlay/Overlay";
 import { Cart } from "../Cart/Cart";
 import { Modal } from "../Modal/Modal";
@@ -56,7 +58,7 @@ const CartCount = styled.div`
 `;
 
 const PriceText = styled.p`
-  padding: 0 16px;
+  width: 60px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -64,7 +66,7 @@ const PriceText = styled.p`
   color: #1b1b1b;
   border-right: 1px solid #fff;
 `;
-const CardImg = styled.img`
+const CartImg = styled.img`
   width: 18px;
   height: 21px;
 `;
@@ -74,7 +76,12 @@ const UserImg = styled.img`
 `;
 
 export function UserInteface() {
+  const dispatch = useDispatch();
   const [cart, summary] = useSelector((state) => [state.cart, state.summary]);
+
+  useEffect(() => {
+    dispatch(countSummaryPrice(cart));
+  }, [cart]);
 
   return (
     <UserIntefaceBox>
@@ -88,7 +95,7 @@ export function UserInteface() {
           <CartBtn>
             <PriceText>{summary} ₽</PriceText>
             <CartCount>{cart.length}</CartCount>
-            <CardImg src="/src/assets/img/cart.svg" alt="cart" />
+            <CartImg src="/src/assets/img/cart.svg" alt="cart" />
           </CartBtn>
         </CartBox>
       </UserIntefaceList>

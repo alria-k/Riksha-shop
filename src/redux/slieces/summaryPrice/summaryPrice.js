@@ -7,7 +7,11 @@ const summaryPrice = createSlice({
   initialState,
   reducers: {
     countSummaryPrice(state, action) {
-      console.log("hi");
+      const summary = action.payload.reduce(
+        (acc, curr) => acc + curr.item.price * curr.quantity,
+        0
+      );
+      return summary;
     },
   },
 });
