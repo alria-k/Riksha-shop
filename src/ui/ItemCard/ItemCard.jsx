@@ -91,7 +91,7 @@ export function ItemCard({ obj, category }) {
     <>
       {category == "sale" && <SaleCard obj={obj} />}
       {category !== "sale" && (
-        <ItemCardWrapper onClick={() => handleItemPicker(obj)}>
+        <ItemCardWrapper>
           <ItemCardImg
             src={`/src/assets/img/categories/${category}/${obj.img}`}
             alt="item"
@@ -106,7 +106,7 @@ export function ItemCard({ obj, category }) {
               </InfoWrapper>
               <Sizes item={obj} price={price} setPrice={setPrice} />
             </ItemCardInfo>
-            <InfoCardDiscr>
+            <InfoCardDiscr onClick={() => handleItemPicker(obj)}>
               <Link to={`/${category}/${obj.id - 1}`}>
                 <TitleItem>{obj.text}</TitleItem>
               </Link>

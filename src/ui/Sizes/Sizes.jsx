@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SizeButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
   position: relative;
   width: fit-content;
 `;
@@ -41,11 +38,11 @@ const SizeWrapper = styled(({ bgColor, ...props }) => <form {...props} />)`
   color: #b7b7b7;
   :has(${SizeRadio}:checked + ${SizeRadioCustom}) {
     ${({ bgColor }) =>
-      !bgColor && "&& {background: transparent; color: #e07153;}"}
+      !bgColor && "&& {background: transparent; color: #e07153; padding: 0;}"}
     background: #e07153;
     color: white;
   }
-  :nth-child(3) {
+  :not(:first-child) {
     ::before {
       content: "";
       position: absolute;
@@ -54,9 +51,15 @@ const SizeWrapper = styled(({ bgColor, ...props }) => <form {...props} />)`
       background: #e07153;
       border-radius: 100%;
       left: -15%;
+      ${({ bgColor }) => !bgColor && "left: -7%;"}
       top: 50%;
     }
   }
+`;
+const SizerBox = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
 `;
 
 export function Sizes({ item, price, setPrice, bgColor = true }) {
@@ -83,18 +86,20 @@ export function Sizes({ item, price, setPrice, bgColor = true }) {
 
   return item.sizes ? (
     <SizeButtonsWrapper>
-      <SizeExtraPay>+{extraPrice} ₽</SizeExtraPay>
-      {item.sizes.map((elem, index) => (
-        <SizeWrapper key={index} bgColor={bgColor}>
-          <SizeRadio
-            checked={index == checked}
-            onChange={(e) => handleChange(e, elem.extraPay, index)}
-            type="radio"
-            name="size-pizza"
-          />
-          <SizeRadioCustom htmlFor="size-pizza">{elem.cm} см</SizeRadioCustom>
-        </SizeWrapper>
-      ))}
+      {bgColor && <SizeExtraPay>+{extraPrice} ₽</SizeExtraPay>}
+      <SizerBox>
+        {item.sizes.map((elem, index) => (
+          <SizeWrapper key={index} bgColor={bgColor}>
+            <SizeRadio
+              checked={index == checked}
+              onChange={(e) => handleChange(e, elem.extraPay, index)}
+              type="radio"
+              name="size-pizza"
+            />
+            <SizeRadioCustom htmlFor="size-pizza">{elem.cm} см</SizeRadioCustom>
+          </SizeWrapper>
+        ))}
+      </SizerBox>
     </SizeButtonsWrapper>
   ) : null;
 }

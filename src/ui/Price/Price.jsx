@@ -28,7 +28,7 @@ export function Price({ item, price, setPrice, quantity = 1 }) {
   return item.sale ? (
     <PriceTitle>
       <OldPrice>{price * quantity} ₽</OldPrice>
-      {Math.round(quantity * price - (price / 100) * item.sale)} ₽
+      {Math.round(quantity * (price - (price / 100) * item.sale))} ₽
     </PriceTitle>
   ) : (
     <PriceTitle>{price * quantity} ₽</PriceTitle>
