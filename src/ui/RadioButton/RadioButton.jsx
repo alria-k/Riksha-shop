@@ -11,6 +11,8 @@ const HiddenRadioButton = styled.input`
   position: absolute;
   cursor: pointer;
   z-index: 2;
+  top: 0;
+  margin: 0;
 `;
 const CustomRadioButton = styled(({ ...props }) => <label {...props} />)`
   cursor: pointer;

@@ -24,6 +24,8 @@ export { CartList } from "./CartList/CartList";
 export { Menu } from "./Menu/Menu";
 export { OrderBtn } from "./OrderBtn/OrderBtn";
 export { FormBox } from "./FormBox/FormBox";
+export { Checkbox } from "./Checkbox/Checkbox";
+export { Input } from "./Input/Input";
 export { RadioButton } from "./RadioButton/RadioButton";
 
 // pages

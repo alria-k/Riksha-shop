@@ -2,7 +2,14 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { catalogTitle } from "../../style/styling/styling";
-import { FormBox, CartList, Container, RadioButton } from "../";
+import {
+  FormBox,
+  CartList,
+  Container,
+  RadioButton,
+  Checkbox,
+  Input,
+} from "../";
 
 const OrderSummaryBox = styled.div`
   display: flex;
@@ -20,6 +27,7 @@ const paymentParams = ["Наличные", "Онлайн оплата"];
 
 export function CompleateOrder() {
   const [value, setValue] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <Container>
@@ -38,6 +46,12 @@ export function CompleateOrder() {
               name={value}
             />
           ))}
+          <Checkbox
+            isChecked={isChecked}
+            setIsChecked={setIsChecked}
+            name="change"
+          />
+          <Input placeholder="Ваше Имя" name="your-name" type="text" />
         </FormBox>
       </OrderSummaryBox>
     </Container>
