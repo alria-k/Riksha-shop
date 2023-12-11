@@ -36,9 +36,9 @@ export function Cart() {
           Сумма заказа: <SummaryPrice>{summary} ₽</SummaryPrice>
         </SummaryText>
         <ButtonWrapper>
-          <Button>
-            <Link to={"phpaapapaplol"}>Оформить заказ</Link>
-          </Button>
+          <Link to={summary !== 0 && "/order-confirmation"}>
+            <Button>Оформить заказ</Button>
+          </Link>
         </ButtonWrapper>
       </SummaryWrapper>
     </>

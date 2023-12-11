@@ -36,9 +36,10 @@ const SizeWrapper = styled(({ bgColor, ...props }) => <form {...props} />)`
   border-radius: 2px;
   padding: 4px 8px;
   color: #b7b7b7;
+  ${({ bgColor }) => !bgColor && "padding: 0;"}
   :has(${SizeRadio}:checked + ${SizeRadioCustom}) {
     ${({ bgColor }) =>
-      !bgColor && "&& {background: transparent; color: #e07153; padding: 0;}"}
+      !bgColor && "&& {background: transparent; color: #e07153;}"}
     background: #e07153;
     color: white;
   }
@@ -51,7 +52,7 @@ const SizeWrapper = styled(({ bgColor, ...props }) => <form {...props} />)`
       background: #e07153;
       border-radius: 100%;
       left: -15%;
-      ${({ bgColor }) => !bgColor && "left: -7%;"}
+      ${({ bgColor }) => !bgColor && "left: -20%;"}
       top: 50%;
     }
   }

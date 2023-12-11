@@ -8,6 +8,10 @@ const ButtonStyled = styled.button`
   width: 100%;
 `;
 
-export function Button({ children, handler }) {
-  return <ButtonStyled onClick={handler}>{children}</ButtonStyled>;
+export function Button({ children, handler, ...props }) {
+  return (
+    <ButtonStyled onClick={handler} {...props}>
+      {children}
+    </ButtonStyled>
+  );
 }

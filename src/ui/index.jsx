@@ -1,3 +1,4 @@
+// components
 export { Header } from "./Header/Header";
 export { Footer } from "./Footer/Footer";
 export { Container } from "./Container/Container";
@@ -19,9 +20,16 @@ export { CartItem } from "./CartItem/CartItem";
 export { QuantityCounter } from "./QuantityCounter/QuantityCounter";
 export { Overlay } from "./Overlay/Overlay";
 export { Filterby } from "./Filterby/Filterby";
+export { CartList } from "./CartList/CartList";
 export { Menu } from "./Menu/Menu";
 export { OrderBtn } from "./OrderBtn/OrderBtn";
+export { FormBox } from "./FormBox/FormBox";
+export { RadioButton } from "./RadioButton/RadioButton";
+
+// pages
 export { MainPage, Catalog, ItemPage } from "../pages/index";
+
+// redux
 export {
   changeCategory,
   fetchData,
@@ -31,5 +39,9 @@ export {
   deleteFromCart,
   countSummaryPrice,
 } from "../redux";
+
+// custom hooks
 export { useOnHoverOutside } from "../hooks/useHoverOutside";
+
+// skeletons
 export { CardSkeleton } from "../skeleton";

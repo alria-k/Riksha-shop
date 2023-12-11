@@ -39,7 +39,7 @@ export function Categories() {
   const categories = useSelector((state) => state.category.category);
 
   return (
-    <CategoriesWrapper>
+    <CategoriesWrapper id="categories">
       <TitleFont>Категории</TitleFont>
       <CategoriesNav swtch={true} categoriesStyles={true} />
       <CategoriesList />

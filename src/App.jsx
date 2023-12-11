@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { MainPage, Catalog, ItemPage, fetchData, Header, Footer } from "./ui";
+import { fetchData, Header, Footer } from "./ui";
+import { MainPage, Catalog, ItemPage, CompleateOrder } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ function App() {
 
         <Route path="/:category" element={<Catalog />} />
         <Route path="/:category/:id" element={<ItemPage />} />
+
+        <Route path="/order-confirmation" element={<CompleateOrder />} />
       </Routes>
       <Footer />
     </>
