@@ -11,6 +11,7 @@ const FormBoxHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-bottom: 18px;
 `;
 const SticksIconWrapper = styled.div`
   position: relative;

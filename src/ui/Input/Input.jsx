@@ -15,7 +15,7 @@ const CustomInput = styled.input`
   }
 `;
 
-export function Input({ placeholder, name, type }) {
+export function Input({ placeholder, name, type, ...props }) {
   const [value, setValue] = useState("");
 
   return (
@@ -25,6 +25,7 @@ export function Input({ placeholder, name, type }) {
       type={type}
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      {...props}
     />
   );
 }

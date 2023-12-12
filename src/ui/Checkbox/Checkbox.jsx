@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const CheckboxContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 const CustomCheckbox = styled(({ ...props }) => <label {...props} />)`
   cursor: pointer;
@@ -32,8 +35,14 @@ const HiddenCheckbox = styled.input`
   top: 0;
   margin: 0;
 `;
+const Text = styled.p`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
 
-export function Checkbox({ isChecked, setIsChecked, name }) {
+export function Checkbox({ isChecked, setIsChecked, name, text }) {
   return (
     <CheckboxContainer>
       <CustomCheckbox checked={isChecked}>
@@ -44,6 +53,7 @@ export function Checkbox({ isChecked, setIsChecked, name }) {
           onChange={() => setIsChecked(!isChecked)}
         />
       </CustomCheckbox>
+      <Text>{text}</Text>
     </CheckboxContainer>
   );
 }
