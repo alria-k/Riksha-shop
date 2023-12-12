@@ -33,6 +33,7 @@ const InputBox = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 8px;
+  align-items: center;
 `;
 const RadioBox = styled.div`
   display: flex;
@@ -50,25 +51,70 @@ const ItemDeliveryText = styled.p`
   font-weight: 500;
 `;
 const PriceText = styled.p`
-  ${paragraphFont}
-  font-weight: 500;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 `;
 const InputGridBox = styled.div`
   display: grid;
   gap: 8px;
   grid: repeat(2, 1fr) / repeat(3, 33%);
-  :nth-child(1) {
-    display: none;
+  input {
+    :nth-child(1) {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+    }
+    :nth-child(4) {
+      grid-row: 2 / 3;
+      grid-column: 2 / 4;
+    }
   }
 `;
 const MapImage = styled.img`
   margin-top: 8px;
 `;
-const OrderDetailsText = styled.p``;
-const BorderBox = styled.div``;
-const QuantityBox = styled.div``;
-const QuantityInner = styled.div``;
-const SummaryBox = styled.div``;
+const OrderDetailsText = styled.p`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+const BorderBox = styled.div`
+  padding: 30px 0;
+  border-top: 1px solid #e2e1e1;
+  border-bottom: 1px solid #e2e1e1;
+`;
+const QuantityBox = styled.div`
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+const QuantityInner = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  p {
+    width: 15px;
+    font-size: 16px;
+  }
+  div {
+    padding: 0px 6px;
+  }
+  button {
+    font-size: 19px;
+    padding: 0 3px;
+  }
+`;
+const SummaryBox = styled.div`
+  padding: 19px 0 0 0;
+  border-top: 1px solid #e07153;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 25px;
+`;
 const OrderBtnWrapper = styled.div``;
 
 const deliveryParams = ["Ближайшее время", "Самовывоз", "На дату / время"];
