@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { Container } from "../index";
 import { Nav } from "./";
@@ -27,7 +28,9 @@ export function Header() {
     <HeaderWrapper>
       <Container>
         <HeaderInner>
-          <StyledImage src="/src/assets/img/logo.svg" alt="logo-icon" />
+          <Link to={"/"}>
+            <StyledImage src="/src/assets/img/logo.svg" alt="logo-icon" />
+          </Link>
           <Nav />
         </HeaderInner>
       </Container>

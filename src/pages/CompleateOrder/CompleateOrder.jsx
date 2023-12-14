@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import { catalogTitle, paragraphFont } from "../../style/styling/styling";
 import {
@@ -10,7 +11,7 @@ import {
   Checkbox,
   Input,
   QuantityCounter,
-  OrderBtn,
+  Button,
 } from "../";
 
 const OrderSummaryBox = styled.div`
@@ -121,6 +122,8 @@ const deliveryParams = ["Ближайшее время", "Самовывоз", "
 const paymentParams = ["Наличные", "Онлайн оплата"];
 
 export function CompleateOrder() {
+  const summary = useSelector((state) => state.summary);
+
   const [deliveryOption, setDeliveryOption] = useState(0);
   const [paymentOption, setPaymentOption] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
@@ -217,7 +220,7 @@ export function CompleateOrder() {
             <BorderBox>
               <InputBox>
                 <OrderDetailsText>Сумма заказа</OrderDetailsText>
-                <PriceText>~ ₽</PriceText>
+                <PriceText>{summary} ₽</PriceText>
               </InputBox>
               <InputBox>
                 <OrderDetailsText>Стоимость доставки</OrderDetailsText>
@@ -236,7 +239,7 @@ export function CompleateOrder() {
               />
             </SummaryBox>
             <OrderBtnWrapper>
-              <OrderBtn>Подтвердить заказ</OrderBtn>
+              <Button>Подтвердить заказ</Button>
             </OrderBtnWrapper>
           </FormBox>
         </Form>

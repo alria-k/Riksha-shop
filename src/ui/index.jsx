@@ -27,6 +27,7 @@ export { FormBox } from "./FormBox/FormBox";
 export { Checkbox } from "./Checkbox/Checkbox";
 export { Input } from "./Input/Input";
 export { RadioButton } from "./RadioButton/RadioButton";
+export { Button } from "./Button/Button";
 
 // pages
 export { MainPage, Catalog, ItemPage } from "../pages/index";

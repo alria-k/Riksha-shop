@@ -3,7 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { fetchData, Header, Footer } from "./ui";
-import { MainPage, Catalog, ItemPage, CompleateOrder } from "./pages";
+import {
+  MainPage,
+  Catalog,
+  ItemPage,
+  CompleateOrder,
+  NotFoundPage,
+} from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +35,8 @@ function App() {
         <Route path="/:category/:id" element={<ItemPage />} />
 
         <Route path="/order-confirmation" element={<CompleateOrder />} />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </>

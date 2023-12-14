@@ -12,7 +12,7 @@ const CategoriesWrapper = styled.div`
 const CategoriesLink = styled(Link)`
   display: flex;
   align-items: center;
-  max-width: 260px;
+  max-width: 265px;
   margin: 0 0 0 auto;
   gap: 16px;
   font-weight: 600;

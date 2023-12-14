@@ -21,6 +21,7 @@ export {
   RadioButton,
   Checkbox,
   Input,
+  Button,
 } from "../ui";
 
 // skeletons
@@ -31,6 +32,7 @@ export { MainPage } from "./MainPage/MainPage";
 export { Catalog } from "./Catalog/Catalog";
 export { ItemPage } from "./ItemPage/ItemPage";
 export { CompleateOrder } from "./CompleateOrder/CompleateOrder";
+export { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 
 // redux
 export { fetchData, changeCategory } from "../redux";
