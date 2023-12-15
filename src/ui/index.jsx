@@ -41,6 +41,7 @@ export {
   quantityChanger,
   deleteFromCart,
   countSummaryPrice,
+  sizeChanger,
 } from "../redux";
 
 // custom hooks

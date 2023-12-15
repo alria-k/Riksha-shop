@@ -124,6 +124,7 @@ export function ItemPage() {
 
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [extraPrice, setExtraPrice] = useState(0);
 
   useEffect(() => {
     if (!loading) {
@@ -254,13 +255,15 @@ export function ItemPage() {
                   </ItemCompositionText>
                 )}
               </ItemCompositionWrapper>
-              {!loading && items[category].items[id].sizes != 0 && (
+              {!loading && (
                 <ItemSizeWrapper>
                   <ItemSizeTitle>Размеры</ItemSizeTitle>
                   <Sizes
                     item={items[category].items[id]}
                     price={price}
                     setPrice={setPrice}
+                    setExtra={(p) => setExtraPrice(p)}
+                    extraPrice={extraPrice}
                   />
                 </ItemSizeWrapper>
               )}
@@ -272,6 +275,7 @@ export function ItemPage() {
                     price={price}
                     setPrice={setPrice}
                     quantity={quantity}
+                    extraPrice={extraPrice}
                   />
                 )}
                 <QuantityCounter count={quantity} setCount={setQuantity} />
@@ -281,15 +285,13 @@ export function ItemPage() {
                       item={items[category].items[id]}
                       quantity={quantity}
                       category={category}
+                      extraPrice={extraPrice}
                     />
                   )}
                 </OrderBtnWrapper>
               </ItemPriceWrapper>
             </ItemCatalogBox>
           </ItemInfoWrapper>
-          <div className="itempage__buy-with-box"></div>
-          <div className="itempage__recomendation-box"></div>
-          {/* Component with feedback */}
         </div>
       </Container>
     </div>

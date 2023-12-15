@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { fetchData, Header, Footer } from "./ui";
@@ -12,8 +12,11 @@ import {
 } from "./pages";
 
 function App() {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   dispatch(fetchData());
+
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
 
   return (
     <>

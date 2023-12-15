@@ -20,9 +20,9 @@ const OldPrice = styled.span`
   top: -15px;
 `;
 
-export function Price({ item, price, setPrice, quantity = 1 }) {
+export function Price({ item, price, setPrice, extraPrice, quantity = 1 }) {
   useEffect(() => {
-    setPrice(item.price);
+    setPrice(item.price + extraPrice);
   }, [item]);
 
   return item.sale ? (

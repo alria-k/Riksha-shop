@@ -63,17 +63,20 @@ const SizerBox = styled.div`
   align-items: center;
 `;
 
-export function Sizes({ item, price, setPrice, bgColor = true }) {
-  const [extraPrice, setExtraPrice] = useState(0);
+export function Sizes({
+  item,
+  price,
+  extraPrice,
+  setExtra,
+  setPrice,
+  bgColor = true,
+}) {
   const [checked, setChecked] = useState(0);
 
-  function handleChange(event, priceVal, i) {
-    if (event.target.checked) {
-      setChecked(i);
-      setExtraPrice(priceVal);
-      setPrice(item.price);
-    }
-    return;
+  function handleChange(priceVal, i) {
+    setChecked(i);
+    setExtra(priceVal);
+    setPrice(item.price);
   }
 
   useEffect(() => {
@@ -81,9 +84,8 @@ export function Sizes({ item, price, setPrice, bgColor = true }) {
   }, [extraPrice]);
 
   useEffect(() => {
-    setChecked(0);
-    setExtraPrice(0);
-  }, [item.price]);
+    setChecked(extraPrice == 0 ? 0 : 1);
+  }, [item]);
 
   return item.sizes ? (
     <SizeButtonsWrapper>
@@ -93,7 +95,7 @@ export function Sizes({ item, price, setPrice, bgColor = true }) {
           <SizeWrapper key={index} bgColor={bgColor}>
             <SizeRadio
               checked={index == checked}
-              onChange={(e) => handleChange(e, elem.extraPay, index)}
+              onChange={() => handleChange(elem.extraPay, index)}
               type="radio"
               name="size-pizza"
             />

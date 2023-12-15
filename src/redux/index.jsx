@@ -5,5 +5,6 @@ export {
   addToCart,
   quantityChanger,
   deleteFromCart,
+  sizeChanger,
 } from "./slieces/cart/cart";
 export { countSummaryPrice } from "./slieces/summaryPrice/summaryPrice";

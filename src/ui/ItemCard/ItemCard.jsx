@@ -81,6 +81,8 @@ const OrderBtnWrapper = styled.div`
 
 export function ItemCard({ obj, category }) {
   const [price, setPrice] = useState(0);
+  const [extraPrice, setExtraPrice] = useState(0);
+
   const dispatch = useDispatch();
 
   const handleItemPicker = (item) => {
@@ -104,7 +106,13 @@ export function ItemCard({ obj, category }) {
                   <ItemInfoText>{obj.organic.calories} каллорий</ItemInfoText>
                 ) : null}
               </InfoWrapper>
-              <Sizes item={obj} price={price} setPrice={setPrice} />
+              <Sizes
+                extraPrice={extraPrice}
+                setExtra={(p) => setExtraPrice(p)}
+                item={obj}
+                price={price}
+                setPrice={setPrice}
+              />
             </ItemCardInfo>
             <InfoCardDiscr onClick={() => handleItemPicker(obj)}>
               <Link to={`/${category}/${obj.id - 1}`}>
@@ -113,9 +121,19 @@ export function ItemCard({ obj, category }) {
               <DiscrItem>{obj.disrc}</DiscrItem>
             </InfoCardDiscr>
             <PurchaseWrapper>
-              <Price item={obj} price={price} setPrice={setPrice} />
+              <Price
+                item={obj}
+                price={price}
+                setPrice={setPrice}
+                extraPrice={extraPrice}
+              />
               <OrderBtnWrapper>
-                <OrderBtn quantity={1} item={obj} category={category} />
+                <OrderBtn
+                  extraPrice={extraPrice}
+                  quantity={1}
+                  item={obj}
+                  category={category}
+                />
               </OrderBtnWrapper>
             </PurchaseWrapper>
           </ItemCardInner>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { quantityChanger, deleteFromCart } from "../";
+import { quantityChanger, deleteFromCart, sizeChanger } from "../";
 import { QuantityCounter } from "../QuantityCounter/QuantityCounter";
 import { Sizes } from "../Sizes/Sizes";
 import { Price } from "../Price/Price";
@@ -33,18 +33,12 @@ const CartItemLink = styled(Link)`
   font-weight: 600;
   line-height: normal;
   color: #1b1b1b;
+  max-width: 160px;
 `;
 const CartPriceQuantityWrpper = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
-`;
-const PriceText = styled.p`
-  color: #1b1b1b;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
 `;
 const CartDeleteItemBtn = styled.button`
   border: none;
@@ -59,6 +53,7 @@ const DeleteItemIcon = styled.img`
 export function CartItem({ cartItems }) {
   const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
+  const [extraPrice, setExtraPrice] = useState(cartItems.extraPrice);
 
   return (
     <CartItemWrapper>
@@ -77,6 +72,10 @@ export function CartItem({ cartItems }) {
               item={cartItems.item}
               price={cartItems.item.price}
               setPrice={setPrice}
+              setExtra={(p) =>
+                dispatch(sizeChanger({ p, text: cartItems.item.text }))
+              }
+              extraPrice={cartItems.extraPrice}
             />
           ) : null}
         </CartTitleSizeWrapper>
@@ -93,6 +92,7 @@ export function CartItem({ cartItems }) {
           price={price}
           setPrice={setPrice}
           quantity={cartItems.quantity}
+          extraPrice={extraPrice}
         />
         <CartDeleteItemBtn
           onClick={() => dispatch(deleteFromCart(cartItems.item.text))}

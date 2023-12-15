@@ -21,6 +21,18 @@ const cartSlice = createSlice({
       }
       return [...state, action.payload];
     },
+    sizeChanger(state, action) {
+      return state.map((obj) =>
+        obj.item.text == action.payload.text
+          ? {
+              ...obj,
+              extraPrice: action.payload.p,
+            }
+          : {
+              ...obj,
+            }
+      );
+    },
     quantityChanger(state, action) {
       return state.map((obj) =>
         obj.item.text == action.payload.text
@@ -39,6 +51,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, quantityChanger, deleteFromCart } = cartSlice.actions;
+export const { addToCart, quantityChanger, deleteFromCart, sizeChanger } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

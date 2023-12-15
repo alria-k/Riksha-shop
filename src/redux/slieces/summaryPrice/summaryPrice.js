@@ -11,8 +11,10 @@ const summaryPrice = createSlice({
         return curr.item.sale
           ? acc +
               curr.quantity *
-                (curr.item.price - (curr.item.price / 100) * curr.item.sale)
-          : acc + curr.item.price * curr.quantity;
+                (curr.item.price -
+                  (curr.item.price / 100) * curr.item.sale +
+                  curr.extraPrice)
+          : acc + (curr.item.price + curr.extraPrice) * curr.quantity;
       }, 0);
     },
   },
