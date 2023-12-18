@@ -7,23 +7,29 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      if (state.find((obj) => obj.item.text === action.payload.item.text)) {
-        return state.map((obj) =>
-          obj.item.text == action.payload.item.text && obj.quantity < 20
+      if (
+        state.find(
+          (obj) =>
+            obj.extraPrice == action.payload.extraPrice &&
+            obj.item.id === action.payload.item.id
+        )
+      ) {
+        return state.map((obj) => {
+          return obj.item.id == action.payload.item.id && obj.quantity < 20
             ? {
                 ...obj,
                 quantity: obj.quantity + 1,
               }
             : {
                 ...obj,
-              }
-        );
+              };
+        });
       }
       return [...state, action.payload];
     },
     sizeChanger(state, action) {
       return state.map((obj) =>
-        obj.item.text == action.payload.text
+        obj.item.id == action.payload.id
           ? {
               ...obj,
               extraPrice: action.payload.p,
@@ -35,7 +41,7 @@ const cartSlice = createSlice({
     },
     quantityChanger(state, action) {
       return state.map((obj) =>
-        obj.item.text == action.payload.text
+        obj.item.id == action.payload.id
           ? {
               ...obj,
               quantity: action.payload.q,
@@ -46,7 +52,7 @@ const cartSlice = createSlice({
       );
     },
     deleteFromCart(state, action) {
-      return state.filter((obj) => obj.item.text != action.payload);
+      return state.filter((obj) => obj.item.id != action.payload);
     },
   },
 });

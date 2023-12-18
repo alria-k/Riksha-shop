@@ -13,7 +13,7 @@ const summaryPrice = createSlice({
               curr.quantity *
                 (curr.item.price -
                   (curr.item.price / 100) * curr.item.sale +
-                  curr.extraPrice)
+                  (curr.extraPrice - (curr.extraPrice / 100) * curr.item.sale))
           : acc + (curr.item.price + curr.extraPrice) * curr.quantity;
       }, 0);
     },

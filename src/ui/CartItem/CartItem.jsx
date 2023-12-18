@@ -73,7 +73,7 @@ export function CartItem({ cartItems }) {
               price={cartItems.item.price}
               setPrice={setPrice}
               setExtra={(p) =>
-                dispatch(sizeChanger({ p, text: cartItems.item.text }))
+                dispatch(sizeChanger({ p, id: cartItems.item.id }))
               }
               extraPrice={cartItems.extraPrice}
             />
@@ -83,7 +83,12 @@ export function CartItem({ cartItems }) {
       <CartPriceQuantityWrpper>
         <QuantityCounter
           setCount={(q) =>
-            dispatch(quantityChanger({ q, text: cartItems.item.text }))
+            dispatch(
+              quantityChanger({
+                q,
+                id: cartItems.item.id,
+              })
+            )
           }
           count={cartItems.quantity}
         />
@@ -95,7 +100,7 @@ export function CartItem({ cartItems }) {
           extraPrice={extraPrice}
         />
         <CartDeleteItemBtn
-          onClick={() => dispatch(deleteFromCart(cartItems.item.text))}
+          onClick={() => dispatch(deleteFromCart(cartItems.item.id))}
         >
           <DeleteItemIcon
             src="/src/assets/img/delete-cart.svg"
