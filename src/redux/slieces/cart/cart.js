@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
@@ -11,7 +11,7 @@ const cartSlice = createSlice({
         state.find(
           (obj) =>
             obj.extraPrice == action.payload.extraPrice &&
-            obj.item.id === action.payload.item.id
+            obj.item.id == action.payload.item.id
         )
       ) {
         return state.map((obj) => {
@@ -28,8 +28,8 @@ const cartSlice = createSlice({
       return [...state, action.payload];
     },
     sizeChanger(state, action) {
-      return state.map((obj) =>
-        obj.item.id == action.payload.id
+      return state.map((obj, i) =>
+        i == action.payload.itemIndex && obj.item.id == action.payload.id
           ? {
               ...obj,
               extraPrice: action.payload.p,
@@ -40,8 +40,8 @@ const cartSlice = createSlice({
       );
     },
     quantityChanger(state, action) {
-      return state.map((obj) =>
-        obj.item.id == action.payload.id
+      return state.map((obj, i) =>
+        i == action.payload.itemIndex && obj.item.id == action.payload.id
           ? {
               ...obj,
               quantity: action.payload.q,
@@ -52,7 +52,10 @@ const cartSlice = createSlice({
       );
     },
     deleteFromCart(state, action) {
-      return state.filter((obj) => obj.item.id != action.payload);
+      return state.filter(
+        (obj, i) =>
+          !(i == action.payload.itemIndex && obj.item.id == action.payload.id)
+      );
     },
   },
 });

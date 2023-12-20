@@ -14,7 +14,7 @@ export function CartList() {
   const cart = useSelector((state) => state.cart);
 
   return cart.length ? (
-    cart.map((items, i) => <CartItem key={i} cartItems={items} />)
+    cart.map((items, i) => <CartItem key={i} cartItems={items} itemIndex={i} />)
   ) : (
     <EmptyCartWrapper>
       <img src="/src/assets/img/empty-cart.png" alt="empty-cart-image" />

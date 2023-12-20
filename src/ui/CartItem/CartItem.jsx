@@ -50,7 +50,7 @@ const DeleteItemIcon = styled.img`
   height: 24;
 `;
 
-export function CartItem({ cartItems }) {
+export function CartItem({ cartItems, itemIndex }) {
   const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
   const [extraPrice, setExtraPrice] = useState(cartItems.extraPrice);
@@ -73,7 +73,13 @@ export function CartItem({ cartItems }) {
               price={cartItems.item.price}
               setPrice={setPrice}
               setExtra={(p) =>
-                dispatch(sizeChanger({ p, id: cartItems.item.id }))
+                dispatch(
+                  sizeChanger({
+                    p,
+                    id: cartItems.item.id,
+                    itemIndex: itemIndex,
+                  })
+                )
               }
               extraPrice={cartItems.extraPrice}
             />
@@ -87,6 +93,7 @@ export function CartItem({ cartItems }) {
               quantityChanger({
                 q,
                 id: cartItems.item.id,
+                itemIndex: itemIndex,
               })
             )
           }
@@ -100,7 +107,14 @@ export function CartItem({ cartItems }) {
           extraPrice={extraPrice}
         />
         <CartDeleteItemBtn
-          onClick={() => dispatch(deleteFromCart(cartItems.item.id))}
+          onClick={() =>
+            dispatch(
+              deleteFromCart({
+                id: cartItems.item.id,
+                itemIndex: itemIndex,
+              })
+            )
+          }
         >
           <DeleteItemIcon
             src="/src/assets/img/delete-cart.svg"
