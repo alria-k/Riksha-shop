@@ -32,6 +32,8 @@ export { MainPage } from "./MainPage/MainPage";
 export { Catalog } from "./Catalog/Catalog";
 export { ItemPage } from "./ItemPage/ItemPage";
 export { CompleateOrder } from "./CompleateOrder/CompleateOrder";
+export { DeliveryPayment } from "./DeliveryPayment/DeliveryPayment";
+
 export { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 
 // redux

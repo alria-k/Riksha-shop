@@ -17,10 +17,12 @@ import {
 const OrderSummaryBox = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 const CartListBox = styled.div`
   max-width: 600px;
   width: 100%;
+  position: fixed;
 `;
 const Title = styled.h1`
   ${catalogTitle}
@@ -29,6 +31,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin: 0 0 0 auto;
 `;
 const InputBox = styled.div`
   display: flex;

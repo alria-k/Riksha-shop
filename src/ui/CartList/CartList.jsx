@@ -9,12 +9,20 @@ const EmptyCartWrapper = styled.div`
   justify-content: center;
   padding: 52px 0 69px 0;
 `;
+const CartWrapper = styled.div`
+  max-height: 350px;
+  overflow: auto;
+`;
 
 export function CartList() {
   const cart = useSelector((state) => state.cart);
 
   return cart.length ? (
-    cart.map((items, i) => <CartItem key={i} cartItems={items} itemIndex={i} />)
+    <CartWrapper>
+      {cart.map((items, i) => (
+        <CartItem key={i} cartItems={items} itemIndex={i} />
+      ))}
+    </CartWrapper>
   ) : (
     <EmptyCartWrapper>
       <img src="/src/assets/img/empty-cart.png" alt="empty-cart-image" />

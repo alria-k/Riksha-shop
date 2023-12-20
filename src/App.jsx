@@ -9,6 +9,7 @@ import {
   ItemPage,
   CompleateOrder,
   NotFoundPage,
+  DeliveryPayment,
 } from "./pages";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
         <Route path="/about" element={<MainPage />} />
 
-        <Route path="/delivery-payment" element={<MainPage />} />
+        <Route path="/delivery-payment" element={<DeliveryPayment />} />
 
         <Route path="/contacts" element={<MainPage />} />
 

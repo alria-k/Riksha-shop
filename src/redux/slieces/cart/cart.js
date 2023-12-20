@@ -14,16 +14,18 @@ const cartSlice = createSlice({
             obj.item.id == action.payload.item.id
         )
       ) {
-        return state.map((obj) => {
-          return obj.item.id == action.payload.item.id && obj.quantity < 20
+        return state.map((obj) =>
+          obj.extraPrice == action.payload.extraPrice &&
+          obj.item.id == action.payload.item.id &&
+          obj.quantity < 20
             ? {
                 ...obj,
                 quantity: obj.quantity + 1,
               }
             : {
                 ...obj,
-              };
-        });
+              }
+        );
       }
       return [...state, action.payload];
     },

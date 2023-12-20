@@ -46,7 +46,7 @@ const ModalBox = styled(({ toggle, ...props }) => <div {...props} />)`
 
 const CartCount = styled.div`
   position: absolute;
-  padding: 2px 4px;
+  padding: 1px 2px;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -57,7 +57,8 @@ const CartCount = styled.div`
   border-radius: 100%;
   color: white;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
+  text-align: center;
 `;
 
 const PriceText = styled.p`
