@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
@@ -22,6 +22,7 @@ const StyledSkeletonTitile = styled(Skeleton)`
 `;
 
 export function Catalog() {
+  const [currFilter, setCurrFilter] = useState(null);
   const { category } = useParams();
   const dispatch = useDispatch();
 
@@ -33,6 +34,10 @@ export function Catalog() {
   useEffect(() => {
     dispatch(changeCategory(category));
   }, [loading]);
+
+  useEffect(() => {
+    setCurrFilter(null);
+  }, [category]);
 
   return (
     <div>
@@ -46,12 +51,17 @@ export function Catalog() {
           <>
             <Title>{items[category].title}</Title>
             {/* /* add bread crumbs */}
-            {items[category].categories && <Filterby data={items[category]} />}
+            {items[category].categories && (
+              <Filterby
+                data={items[category]}
+                category={currFilter}
+                setCategory={setCurrFilter}
+              />
+            )}
             {items[category].sortby && <Sortby data={items[category]} />}
-            {/* /* add 'about' component */}
           </>
         )}
-        <CategoriesList />
+        <CategoriesList filter={currFilter} />
       </Container>
     </div>
   );

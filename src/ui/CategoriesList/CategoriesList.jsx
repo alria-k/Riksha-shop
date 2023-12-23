@@ -12,8 +12,9 @@ const CategoriesBox = styled.div`
   margin-bottom: 50px;
 `;
 
-export function CategoriesList() {
+export function CategoriesList({ filter }) {
   const [currPage, setCurrPage] = useState(1);
+  let itemsArr = [];
 
   const categories = useSelector((state) => state.category.category);
   const {
@@ -25,9 +26,17 @@ export function CategoriesList() {
   let lastItemIndex = currPage * itemsOnOnePage;
   let firstItemIndex = lastItemIndex - itemsOnOnePage;
 
+  if (!loading && filter) {
+    itemsArr = items[categories].items.filter(
+      (elem) => elem.category == filter
+    );
+  } else if (!loading) {
+    itemsArr = items[categories].items;
+  }
+
   useEffect(() => {
     setCurrPage(1);
-  }, [categories]);
+  }, [categories, filter]);
 
   return (
     <>
@@ -37,7 +46,7 @@ export function CategoriesList() {
             <CardSkeleton key={index} />
           ))}
         {!loading &&
-          items[categories].items
+          itemsArr
             .slice(firstItemIndex, lastItemIndex)
             .map((currentItem, index) => (
               <ItemCard key={index} obj={currentItem} category={categories} />
@@ -45,7 +54,7 @@ export function CategoriesList() {
       </CategoriesBox>
       {!loading && (
         <CategoryPageRedict
-          allItems={items[categories].items.length}
+          allItems={itemsArr.length}
           activePage={currPage}
           setPage={setCurrPage}
           visibleItems={itemsOnOnePage}

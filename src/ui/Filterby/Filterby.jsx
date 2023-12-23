@@ -10,14 +10,16 @@ const FilterByList = styled.ul`
   gap: 4px;
   align-items: center;
 `;
-const FilterByBtn = styled(({ category, key, ...props }) => (
+const FilterByBtn = styled(({ currFilter, filter, ...props }) => (
   <button {...props} />
 ))`
-  ${({ category, key }) =>
-    category == key &&
+  ${({ currFilter, filter }) =>
+    currFilter == filter &&
     `
-    color: #E07153;
-    border-color: #E07153;
+    &&{
+      color: #E07153;
+      border: 1px solid #E07153;
+    }
   `}
   outline: none;
   border: 1px solid #e8e8e8;
@@ -37,35 +39,35 @@ const FilterByImg = styled.img`
   height: 24px;
 `;
 
-export function Filterby({ data }) {
-  const [currCategory, setCurrCategory] = React.useState(null);
-
-  function handlerCategory(event, category) {
+export function Filterby({ data, category, setCategory }) {
+  function handlerCategory(event, filter) {
     event.preventDefault();
-    if (category == currCategory) {
-      setCurrCategory(null);
+    if (filter == category) {
+      setCategory(null);
       return;
     }
-    setCurrCategory(category);
+    setCategory(filter);
   }
 
   return (
     data.categories.length && (
       <FilterByWrapper>
         <FilterByList>
-          {data.categories.map((elem) => {
-            return (
-              <li key={elem.id}>
-                <FilterByBtn onClick={(e) => handlerCategory(e, elem.key)}>
-                  <FilterByImg
-                    src={`/src/assets/img/categories-icons/${elem.icon}`}
-                    alt="filter-icon"
-                  />
-                  {elem.text}
-                </FilterByBtn>
-              </li>
-            );
-          })}
+          {data.categories.map((elem) => (
+            <li key={elem.id}>
+              <FilterByBtn
+                filter={elem.key}
+                currFilter={category}
+                onClick={(e) => handlerCategory(e, elem.key)}
+              >
+                <FilterByImg
+                  src={`/src/assets/img/categories-icons/${elem.icon}`}
+                  alt="filter-icon"
+                />
+                {elem.text}
+              </FilterByBtn>
+            </li>
+          ))}
         </FilterByList>
       </FilterByWrapper>
     )
