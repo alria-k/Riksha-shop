@@ -35,7 +35,7 @@ const ItemStepBackWrapper = styled.div`
   border-bottom: 1px solid #e2e1e1;
 `;
 const ItemStepBackLink = styled(Link)`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 16px;
 `;
@@ -121,16 +121,12 @@ export function ItemPage() {
     data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
+  const currentItem =
+    !loading && items[category].items.find((elem) => elem.link == id);
 
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [extraPrice, setExtraPrice] = useState(0);
-
-  useEffect(() => {
-    if (!loading) {
-      setPrice(items[category].items[id].price);
-    }
-  }, [loading]);
 
   const measuredRef = useCallback((node) => {
     if (node !== null) {
@@ -174,7 +170,7 @@ export function ItemPage() {
                   {loading && <Skeleton width={570} height={372} />}
                   {!loading && (
                     <ItemImg
-                      src={`/src/assets/img/categories/${category}/${items[category].items[id].img}`}
+                      src={`/src/assets/img/categories/${category}/${currentItem.img}`}
                       alt={`${category}-img`}
                     />
                   )}
@@ -190,17 +186,15 @@ export function ItemPage() {
                 />
               )}
               {!loading && (
-                <ItemCatalogTitle>
-                  {items[category].items[id].text}
-                </ItemCatalogTitle>
+                <ItemCatalogTitle>{currentItem.text}</ItemCatalogTitle>
               )}
               {loading && <Skeleton width={100} />}
               {!loading && (
                 <ItemText weight={true}>
-                  Вес: <span>{items[category].items[id].gramms} грамм</span>
+                  Вес: <span>{currentItem.gramms} грамм</span>
                 </ItemText>
               )}
-              {!loading && items[category].items[id].organic != 0 && (
+              {!loading && currentItem.organic != 0 && (
                 <div>
                   <OrganicTableWrapper>
                     <thead>
@@ -214,16 +208,12 @@ export function ItemPage() {
                     <tbody>
                       <tr>
                         <OrganicDiscr>
-                          {items[category].items[id].organic.protein}
+                          {currentItem.organic.protein}
                         </OrganicDiscr>
+                        <OrganicDiscr>{currentItem.organic.carbs}</OrganicDiscr>
+                        <OrganicDiscr>{currentItem.organic.fats}</OrganicDiscr>
                         <OrganicDiscr>
-                          {items[category].items[id].organic.carbs}
-                        </OrganicDiscr>
-                        <OrganicDiscr>
-                          {items[category].items[id].organic.fats}
-                        </OrganicDiscr>
-                        <OrganicDiscr>
-                          {items[category].items[id].organic.calories}
+                          {currentItem.organic.calories}
                         </OrganicDiscr>
                       </tr>
                     </tbody>
@@ -250,16 +240,14 @@ export function ItemPage() {
                   </>
                 )}
                 {!loading && (
-                  <ItemCompositionText>
-                    {items[category].items[id].disrc}
-                  </ItemCompositionText>
+                  <ItemCompositionText>{currentItem.disrc}</ItemCompositionText>
                 )}
               </ItemCompositionWrapper>
-              {!loading && (
+              {!loading && currentItem.sizes != 0 && (
                 <ItemSizeWrapper>
                   <ItemSizeTitle>Размеры</ItemSizeTitle>
                   <Sizes
-                    item={items[category].items[id]}
+                    item={currentItem}
                     price={price}
                     setPrice={setPrice}
                     setExtra={(p) => setExtraPrice(p)}
@@ -271,7 +259,7 @@ export function ItemPage() {
                 {loading && <Skeleton width={90} height={30} />}
                 {!loading && (
                   <Price
-                    item={items[category].items[id]}
+                    item={currentItem}
                     price={price}
                     setPrice={setPrice}
                     quantity={quantity}
@@ -282,7 +270,7 @@ export function ItemPage() {
                 <OrderBtnWrapper>
                   {!loading && (
                     <OrderBtn
-                      item={items[category].items[id]}
+                      item={currentItem}
                       quantity={quantity}
                       category={category}
                       extraPrice={extraPrice}

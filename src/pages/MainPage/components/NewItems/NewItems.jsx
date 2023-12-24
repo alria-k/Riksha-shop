@@ -41,8 +41,6 @@ export function NewItems() {
     }
   }, []);
 
-  getNewItems(newItems, items);
-
   return (
     <div>
       <TitleFont>Новинки</TitleFont>
@@ -59,18 +57,21 @@ export function NewItems() {
               </NewItemsSlider>
             ))}
           {!loading &&
-            newItems.map((elem, index) => (
-              <NewItemsSlider
-                key={index}
-                ref={measuredRef}
-                style={{ width: itemWidth }}
-              >
-                <ItemCard
-                  obj={elem[Object.keys(elem)[0]].items[0]}
-                  category={Object.keys(elem)[0]}
-                />
-              </NewItemsSlider>
-            ))}
+            getNewItems(newItems, items).map((elem, index) => {
+              return (
+                <NewItemsSlider
+                  key={index}
+                  ref={measuredRef}
+                  style={{ width: itemWidth }}
+                >
+                  <ItemCard
+                    obj={elem[Object.keys(elem)[0]].items[0]}
+                    category={Object.keys(elem)[0]}
+                    itemLink={elem[Object.keys(elem)[0]].items[0].link}
+                  />
+                </NewItemsSlider>
+              );
+            })}
         </Slider>
       </div>
     </div>

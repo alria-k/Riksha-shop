@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { fetchData, Header, Footer } from "./ui";
+import { fetchData } from "./redux";
+import { Header, Footer } from "./ui";
 import {
   MainPage,
   Catalog,
@@ -15,6 +16,7 @@ import {
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+
   dispatch(fetchData());
 
   useEffect(() => window.scrollTo(0, 0), [pathname]);

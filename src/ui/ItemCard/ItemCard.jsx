@@ -79,15 +79,9 @@ const OrderBtnWrapper = styled.div`
   min-width: 180px;
 `;
 
-export function ItemCard({ obj, category }) {
+export function ItemCard({ obj, category, itemLink }) {
   const [price, setPrice] = useState(0);
   const [extraPrice, setExtraPrice] = useState(0);
-
-  const dispatch = useDispatch();
-
-  const handleItemPicker = (item) => {
-    dispatch(pickItem(item));
-  };
 
   return (
     <>
@@ -114,8 +108,8 @@ export function ItemCard({ obj, category }) {
                 setPrice={setPrice}
               />
             </ItemCardInfo>
-            <InfoCardDiscr onClick={() => handleItemPicker(obj)}>
-              <Link to={`/${category}/${obj.id - 1}`}>
+            <InfoCardDiscr>
+              <Link to={`/${category}/${itemLink}`}>
                 <TitleItem>{obj.text}</TitleItem>
               </Link>
               <DiscrItem>{obj.disrc}</DiscrItem>

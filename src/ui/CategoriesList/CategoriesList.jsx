@@ -49,7 +49,12 @@ export function CategoriesList({ filter }) {
           itemsArr
             .slice(firstItemIndex, lastItemIndex)
             .map((currentItem, index) => (
-              <ItemCard key={index} obj={currentItem} category={categories} />
+              <ItemCard
+                key={index}
+                obj={currentItem}
+                category={categories}
+                itemLink={currentItem.link}
+              />
             ))}
       </CategoriesBox>
       {!loading && (

@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  item: {},
-};
+const initialState = {};
 
 const itemPickerSlice = createSlice({
   name: "item",
