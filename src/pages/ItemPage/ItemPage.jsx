@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -121,12 +121,13 @@ export function ItemPage() {
     data: { items },
     loading,
   } = useSelector((state) => state.clickedCategory);
-  const currentItem =
-    !loading && items[category].items.find((elem) => elem.link == id);
 
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [extraPrice, setExtraPrice] = useState(0);
+
+  const currentItem =
+    !loading && items[category].items.find((elem) => elem.link == id);
 
   const measuredRef = useCallback((node) => {
     if (node !== null) {

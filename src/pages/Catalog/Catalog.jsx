@@ -22,9 +22,9 @@ const StyledSkeletonTitile = styled(Skeleton)`
 `;
 
 export function Catalog() {
-  const [currFilter, setCurrFilter] = useState(null);
   const { category } = useParams();
   const dispatch = useDispatch();
+  const [currFilter, setCurrFilter] = useState(null);
 
   const {
     data: { items },

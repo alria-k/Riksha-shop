@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { fetchData } from "./redux";
 import { Header, Footer } from "./ui";
@@ -17,7 +17,13 @@ function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
-  dispatch(fetchData());
+  const {
+    data: { items },
+  } = useSelector((state) => state.clickedCategory);
+
+  useEffect(() => {
+    if (!items) dispatch(fetchData());
+  }, [dispatch, items]);
 
   useEffect(() => window.scrollTo(0, 0), [pathname]);
 

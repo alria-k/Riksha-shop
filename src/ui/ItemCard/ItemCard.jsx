@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 
 import { paragraphFont } from "../../style/styling/styling";
 import { Price } from "../Price/Price";
 import { Sizes } from "../Sizes/Sizes";
 import { OrderBtn } from "../OrderBtn/OrderBtn";
-import { pickItem, SaleCard } from "../";
+import { SaleCard } from "../";
 
 const ItemCardWrapper = styled.div`
   background: #ffffff;

@@ -36,7 +36,6 @@ export { MainPage, Catalog, ItemPage } from "../pages/index";
 export {
   changeCategory,
   fetchData,
-  pickItem,
   addToCart,
   quantityChanger,
   deleteFromCart,
